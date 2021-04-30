@@ -1,4 +1,11 @@
 # 実験3 モバイル班
 
-# pushTest by e195746
-# pushTest by e195713
+## 開発環境
+- Node (14.16)
+
+## 起動方法
+
+```
+$ npm install
+$ npx http-server
+```
