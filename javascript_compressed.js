@@ -3,9 +3,9 @@
 /* eslint-disable */
 ;(function(root, factory) {
   if (typeof define === 'function' && define.amd) { // AMD
-    define(['./blockly_compressed.js'], factory);
+    define(['./js/blockly_compressed.js'], factory);
   } else if (typeof exports === 'object') { // Node.js
-    module.exports = factory(require('./blockly_compressed.js'));
+    module.exports = factory(require('./js/blockly_compressed.js'));
   } else { // Browser
     root.Blockly.JavaScript = factory(root.Blockly);
   }

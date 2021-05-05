@@ -1,42 +1,57 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Blocklyテスト</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <!-- Blocklyのライブラリ -->
+    <script src="js/blockly_compressed.js"></script>
+    <script src="js/blocks_compressed.js"></script>
+    <script src="javascript_compressed.js"></script>
+    <script src="js/en.js"></script>
+    <!-- 自作ブロックの定義 -->
+    <script src="js/myblock.js"></script>
+    <!-- ツールボックスの定義 -->
+    <xml id="toolbox">
+        <block type="go_ahead"></block>
+        <block type="turn_right"></block>
+    </xml>
 </head>
+
 <body>
-<!-- Blocklyのライブラリ -->
-<script src="blockly_compressed.js"></script>
-<script src="blocks_compressed.js"></script>
-<script src="javascript_compressed.js"></script>
-<script src="en.js"></script>
-<!-- 自作ブロックの定義 -->
-<script src="myblock.js"></script>
-<!-- ワークスペースのエリア -->
-<div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
-<button onclick="doCode()">コードの実行</button>
-<!-- ツールボックスの定義 -->
-<xml id="toolbox">
-    <block type="go_ahead"></block>
-    <block type="turn_right"></block>
+    <div class="game_container">
 
-</xml>
-<script>
-    //Blocklyをdivにはめ込み
-    var workspace = Blockly.inject('blocklyDiv',
-        {toolbox: document.getElementById('toolbox')});
+        <!-- canvasの定義 -->
+        <canvas id="canvas">このブラウザは HTML5 Canvas に対応していません。</canvas>
+        <script type="text/javascript" src="js/canvas.js"></script>
 
-    function doCode(){
-        //ブロックからプログラム（文字列）を作成
-        var code = Blockly.JavaScript.workspaceToCode(workspace);
-        //プログラムを実行
-        try{
-            eval(code);
+        <!-- 実行ボタンの定義 -->
+        <button id="button" onclick="doCode()">コードの実行</button>
+
+        <!-- ワークスペースのエリア -->
+        <div id="blocklyDiv" style="height: 50vw; width: 40vw;"></div>
+
+    </div><!-- game_container -->
+
+
+
+    <script>
+        //Blocklyをdivにはめ込み
+        var workspace = Blockly.inject('blocklyDiv',
+            {toolbox: document.getElementById('toolbox')});
+
+        function doCode(){
+            //ブロックからプログラム（文字列）を作成
+            var code = Blockly.JavaScript.workspaceToCode(workspace);
+            //プログラムを実行
+            try{
+                eval(code);
+            }
+            catch(e){
+                alert(e);
+            }
         }
-        catch(e){
-            alert(e);
-        }
-    }
-</script>
+    </script>
 </body>
 </html>

@@ -1,8 +1,10 @@
 const canvas = document.getElementById('mycanvas')
 const renderer = new PIXI.Renderer({
     view: canvas,
-    width: window.innerWidth,  // 追加
-    height: window.innerHeight,  // 追加
+    //width: window.innerWidth,
+    width: window.innerWidth,
+    height: window.innerHeight,
+    //height: window.innerHeight,  // 追加
 })
 
 const stage = new PIXI.Container()
