@@ -1,10 +1,8 @@
 const canvas = document.getElementById('mycanvas')
 const renderer = new PIXI.Renderer({
     view: canvas,
-    //width: window.innerWidth,
     width: window.innerWidth,
     height: window.innerHeight,
-    //height: window.innerHeight,  // 追加
 })
 
 const stage = new PIXI.Container()
@@ -12,6 +10,16 @@ const mediumFattyTunaTexture = PIXI.Texture.from('https://1.bp.blogspot.com/-B4q
 const Button1 = PIXI.Texture.from('images/button01_play.png')
 const sushi = new PIXI.Sprite(mediumFattyTunaTexture)
 const button01 = new PIXI.Sprite(Button1)
+
+// クリック対象と実行される関数の追加
+sushi.on('click', onClick)
+
+// https://pixijs.download/dev/docs/PIXI.Sprite.html#interactive
+// Enable interaction events for the DisplayObject. Touch, pointer and mouse events will not be emitted unless interactive is set to true.
+sushi.interactive = true;
+
+// カーソルを合わせたときにカーソルが変更する
+sushi.buttonMode = true;
 
 sushi.width = 200
 sushi.height = 200
@@ -36,3 +44,7 @@ stage.addChild(button01)
 
 // ステージをレンダリング
 renderer.render(stage)
+
+function onClick(){
+    console.log("click!!");
+}
