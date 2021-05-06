@@ -36,7 +36,10 @@ class Player{
         } else {
             direction += 1
         }
+    }
 
+    get_direction(){
+        return this.direction
     }
 
     //テスト用のメソッド
