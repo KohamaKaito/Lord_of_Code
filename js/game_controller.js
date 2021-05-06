@@ -1,5 +1,5 @@
 class GameController{
-    player = new Player();
+    //player = new Player();
     player_view = new PlayerView();
 
     GameController(){
@@ -9,3 +9,6 @@ class GameController{
 
     }
 }
+
+
+

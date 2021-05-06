@@ -30,12 +30,13 @@ Blockly.JavaScript['go_ahead'] =  function(block) {
     /* ここに実行したい処理を書く！！（まっすぐボタン） */
     var code = 'console.log("まっすぐ進む");\n';
     /* canvas.jsで定義しているplayer.y */
-    code += 'player.y -= 100;\n';
+    code += 'pv.go_ahead()\n';
     return code;
 }
 
 Blockly.JavaScript['turn_right'] =  function(block) {
     /* ここに実行したい処理を書く！！（右向くボタン） */
     var code = 'console.log("右を向く");\n';
+    code += 'pv.turn_right()\n';
     return code;
 }
