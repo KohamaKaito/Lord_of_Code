@@ -1,0 +1,48 @@
+@startuml
+class GameController{
+    Button startButton;
+}
+
+class MyBlockly{
+    getBlockInformation();
+}
+
+class Button{
+}
+
+class ButtonView{
+}
+
+class Player{
+    int x;
+    int y;
+    Direction direction;
+    void GoAHead();
+    void TurnRight();
+}
+
+class PlayerView{
+}
+
+class Map{
+    int map[7][7];
+    MapState getState(x,y);
+}
+
+class MapView{
+}
+
+class MapState{
+    state int;
+}
+
+class Direction{
+    direction int;
+}
+
+Player --* GameController
+PlayerView --* GameController
+Map --* GameController
+MapView --* GameController
+MyBlockly --* GameController
+@enduml
