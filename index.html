@@ -1,12 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>Hello World</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.3/pixi.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Blocklyテスト</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <!-- Blocklyのライブラリ -->
+    <script src="js/blockly_compressed.js"></script>
+    <script src="js/blocks_compressed.js"></script>
+    <script src="javascript_compressed.js"></script>
+    <script src="js/en.js"></script>
+    <!-- 自作ブロックの定義 -->
+    <script src="js/myblock.js"></script>
+    <!-- ツールボックスの定義 -->
+    <xml id="toolbox">
+        <block type="go_ahead"></block>
+        <block type="turn_right"></block>
+    </xml>
 </head>
+
 <body>
-<canvas id="mycanvas"></canvas>
-<script src="main.js"></script>
+    <div class="game_container">
+
+        <!-- canvasの定義 -->
+        <canvas id="canvas">このブラウザは HTML5 Canvas に対応していません。</canvas>
+        <script type="text/javascript" src="js/canvas.js"></script>
+
+        <div class="blockly_container">
+            <!-- ワークスペースのエリア -->
+            <div id="blocklyDiv" ></div>
+            <!-- 実行ボタンの定義 -->
+            <button id="button" onclick="doCode()">コードの実行</button>
+        </div><!-- blockly_container -->
+
+    </div><!-- game_container -->
+
+
+
+    <script>
+        //Blocklyをdivにはめ込み
+        var workspace = Blockly.inject('blocklyDiv',
+            {toolbox: document.getElementById('toolbox')});
+
+        function doCode(){
+            //ブロックからプログラム（文字列）を作成
+            var code = Blockly.JavaScript.workspaceToCode(workspace);
+            //プログラムを実行
+            try{
+                eval(code);
+            }
+            catch(e){
+                alert(e);
+            }
+        }
+    </script>
 </body>
 </html>
