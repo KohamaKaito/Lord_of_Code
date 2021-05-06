@@ -9,7 +9,7 @@ class Map{
         [MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE]
     ]
     getState(x,y){
-        return this.map[x,y]
+        return this.map[x][y]
     }
 }
 
