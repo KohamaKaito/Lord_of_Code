@@ -1,7 +1,7 @@
 //canvasの設定
 var canvas = document.getElementById( 'canvas' );
 var width = window.innerWidth/2;
-var height = window.innerWidth/2;
+var height = window.innerHeight;
 canvas.width = width;		//canvasの横幅
 canvas.height = height;	//canvasの縦幅
 

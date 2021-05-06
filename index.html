@@ -26,11 +26,12 @@
         <canvas id="canvas">このブラウザは HTML5 Canvas に対応していません。</canvas>
         <script type="text/javascript" src="js/canvas.js"></script>
 
-        <!-- 実行ボタンの定義 -->
-        <button id="button" onclick="doCode()">コードの実行</button>
-
-        <!-- ワークスペースのエリア -->
-        <div id="blocklyDiv" style="height: 50vw; width: 40vw;"></div>
+        <div class="blockly_container">
+            <!-- ワークスペースのエリア -->
+            <div id="blocklyDiv" ></div>
+            <!-- 実行ボタンの定義 -->
+            <button id="button" onclick="doCode()">コードの実行</button>
+        </div><!-- blockly_container -->
 
     </div><!-- game_container -->
 
