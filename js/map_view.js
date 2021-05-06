@@ -7,4 +7,9 @@ class MapView extends Object {
         this.y = 0;
         this.move = 0;
     }
+
+    draw_map(ctx, width, height){
+        console.log("マップビュー")
+        ctx.drawImage(this.img, this.x, this.y, width, height);
+    }
 }

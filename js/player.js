@@ -1,6 +1,5 @@
 class Player{
-    player_direction = new Direction();
-
+    //player_direction = new Direction();
     constructor(x, y, direction){
         this.x = x;
         this.y = y;

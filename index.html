@@ -17,17 +17,22 @@
         <block type="go_ahead"></block>
         <block type="turn_right"></block>
     </xml>
-    <!-- 各種クラスの定義 -->
-    <script src="js/player_view.js"></script>
-    <script src="js/map_view.js"></script>
+    
+    
 </head>
 
 <body>
     <div class="game_container">
 
-        <!-- canvasの定義 -->
+        <!-- canvasの表示 -->
         <canvas id="canvas">このブラウザは HTML5 Canvas に対応していません。</canvas>
-        <script type="text/javascript" src="js/canvas.js"></script>
+        <!-- キャンバスの定義 -->
+        <!-- 各種クラスの定義 -->
+        <script src="js/player_view.js"></script>
+        <script src="js/map_view.js"></script>
+        <script src="js/player.js"></script>
+        <script src="js/game_controller.js"></script>
+    
 
 
         <div class="blockly_container">
