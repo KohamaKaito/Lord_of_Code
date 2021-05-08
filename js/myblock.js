@@ -28,12 +28,12 @@ Blockly.defineBlocksWithJsonArray(
 
 Blockly.JavaScript['go_ahead'] =  function(block) {
     /* ここに実行したい処理を書く！！（まっすぐボタン） */
-    code += 'gc.go_player()\n';
+    var code = 'gc.go_player()\n';
     return code;
 }
 
 Blockly.JavaScript['turn_right'] =  function(block) {
     /* ここに実行したい処理を書く！！（右向くボタン） */
-    code += 'gc.turn_player()\n';
+    var code = 'gc.turn_player()\n';
     return code;
 }
