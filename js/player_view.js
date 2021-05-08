@@ -1,16 +1,22 @@
 class PlayerView extends Object {
+
+    // コンストラクタ
     constructor(canvas,src) {
         super();
-        this.size_x = canvas.width / 7
+        // playerの幅(canvas.width/7は1マス分)
+        this.size_x = canvas.width / 7;
+        // playerの高さ(canvas.height/7は1マス分)
         this.size_y = canvas.height / 7;
+        // playerのx座標(初期位置3マス目に設定)
         this.x = this.size_x * 3;
+        // playerのy座標(初期位置4マス目に設定)
         this.y = this.size_y * 4;
+        // playerの画像を設定
         this.img = new Image();
         this.img.src = src;
-        this.move = 0;
-        this.direction = 1;
     }
 
+    // 向いてる方向に1マス分進ませる関数
     go_ahead(direction){
         switch (direction){
             case 0:
@@ -28,6 +34,7 @@ class PlayerView extends Object {
         }
     }
 
+    // player(Model)のdirectionに画像を対応させる関数
     turn_right(direction){
         switch (direction){
             case 0:
@@ -45,6 +52,7 @@ class PlayerView extends Object {
         }
     }
 
+    // 画像を描画する関数(img, x座標, y座標, 画像の幅, 画像の高さ)
     draw(){
         canvas.getContext( '2d' ).drawImage( this.img, this.x, this.y, this.size_x, this.size_y);
     }

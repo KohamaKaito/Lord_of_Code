@@ -1,5 +1,4 @@
 class Player{
-    //player_direction = new Direction();
 
     constructor(x, y, direction){
         this.x = x;
@@ -13,8 +12,6 @@ class Player{
         west : 3
         */
     }
-
-
 
     go_ahead(){
         switch(this.direction){
