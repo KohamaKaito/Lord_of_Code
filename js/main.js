@@ -17,7 +17,10 @@ var mv = new MapView(canvas,'images/map1.png');
 // コントローラーのオブジェクトを作成
 var gc = new GameController(pv,pm,mv);
 
+mv.draw();
+pv.draw();
 
+/**
 // メインループ
 function main() {
 
@@ -28,3 +31,4 @@ function main() {
 
 // ページと依存している全てのデータが読み込まれたら、メインループ開始
 addEventListener('load', main(), false);
+ **/

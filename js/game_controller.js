@@ -13,11 +13,13 @@ class GameController{
         this.pm.go_ahead();
         var direction = this.pm.get_direction();
         this.pv.go_ahead(direction);
+        this.draw_all();
     }
     turn_player(){
         this.pm.turn_right();
         var direction = this.pm.get_direction();
         this.pv.turn_right(direction);
+        this.draw_all();
     }
 }
 
