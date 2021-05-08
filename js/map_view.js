@@ -1,10 +1,12 @@
 class MapView extends Object {
-    constructor(src) {
+    constructor(canvas, src) {
         super();
         this.img = new Image();
         this.img.src = src;
-        this.x = 0;
-        this.y = 0;
-        this.move = 0;
+        this.canvas = canvas;
+    }
+
+    draw(){
+        this.canvas.getContext( '2d' ).drawImage( this.img, 0, 0, window.innerWidth/2, window.innerHeight);
     }
 }

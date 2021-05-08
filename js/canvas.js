@@ -1,3 +1,7 @@
+
+
+
+/**
 // canvasの設定
 var canvas = document.getElementById( 'canvas' );
 
@@ -15,9 +19,6 @@ pv.y = canvas.height/7 * 4;
 // マップビューのオブジェクトを作成
 var mv = new MapView('images/map1.png')
 
-
-
-
 // メインループ
 function main() {
 
@@ -31,7 +32,7 @@ function main() {
 // ページと依存している全てのデータが読み込まれたら、メインループ開始
 addEventListener('load', main(), false);
 
-
+**/
 
 
 

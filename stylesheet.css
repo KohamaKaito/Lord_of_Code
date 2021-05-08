@@ -7,22 +7,17 @@
 #blocklyDiv{
     height: 70%;
     width: 100%;
-
 }
 
 #button{
     height: 30%;
     width: 100%;
-
 }
-
 
 .blockly_container{
     width: 50%;
-
     flex-direction: column;
 }
-
 
 .game_container{
     display: flex;

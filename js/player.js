@@ -1,5 +1,5 @@
 class Player{
-    player_direction = new Direction();
+    //player_direction = new Direction();
 
     constructor(x, y, direction){
         this.x = x;
@@ -7,7 +7,6 @@ class Player{
         this.direction = direction; 
         /*
         directionはプレイヤーの向いている方向を表す
-
         north : 0
         east : 1
         south : 2
@@ -20,21 +19,21 @@ class Player{
     go_ahead(){
         switch(this.direction){
             case 0:
-                y -= 1
+                this.y -= 1
             case 1:
-                x += 1
+                this.x += 1
             case 2:
-                y += 1
+                this.y += 1
             case 3:
-                x -= 1
+                this.x -= 1
         }
     }
 
     turn_right(){
         if(this.direction == 3){
-            direction = 0
+            this.direction = 0
         } else {
-            direction += 1
+            this.direction += 1
         }
     }
 
