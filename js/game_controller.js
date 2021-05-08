@@ -29,6 +29,25 @@ class GameController{
         var direction = this.pm.get_direction();
         this.pv.turn_right(direction);
     }
+
+    /*
+    実装案（こはま）
+     
+    // マップの情報を参照してまっすぐ進めるか判定する関数
+    is_goahead(){
+        return true;
+    }
+
+    // マップの情報を参照して足元がゴールか判定する関数
+    is_goal(){
+        return true;
+    }
+
+    // 足元がゴールだったらクリア画面に遷移させる関数
+    view_goalScene(){
+
+    }
+     */
 }
 
 
