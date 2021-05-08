@@ -29,6 +29,7 @@ Blockly.defineBlocksWithJsonArray(
 Blockly.JavaScript['go_ahead'] =  function(block) {
     /* ここに実行したい処理を書く！！（まっすぐボタン） */
     var code = 'gc.go_player()\n';
+    code += 'gc.which_action()\n';
     return code;
 }
 

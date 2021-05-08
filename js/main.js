@@ -9,20 +9,28 @@ var canvas = document.getElementById( 'canvas' );
 canvas.width = window.innerWidth/2;	    // canvasの横幅
 canvas.height = window.innerHeight;	    // canvasの縦幅
 
-// コンテキストを取得
-// var ctx = canvas.getContext( '2d' );
-
-
 // プレイヤー(Model)のインスタンス生成
-var pm = new Player(4,5,0);
+var pm = new Player(3,4,0);
 // マップ(Model)のインスタンス作成
-// var mm = new Map();
+var ms = new MapState();
+var mm = new Map(ms);
 // プレイヤー(View)インスタンス生成
 var pv = new PlayerView(canvas,'images/player_north.png');
 // マップ(View)のインスタンス作成
 var mv = new MapView(canvas,'images/map1.png');
 // (Controller)のインスタンス作成
-var gc = new GameController(pv,pm,mv);
+var gc = new GameController(pv,pm,mv,mm);
+
+// ステージ１の生成
+mm.map =  [
+    [ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE],
+    [ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE],
+    [ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.GOAL,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE],
+    [ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE],
+    [ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE],
+    [ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE],
+    [ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE,ms.state.CAN_NOT_MOVE],
+    ]
 
 // ページと依存している全てのデータが読み込まれたら、メインループ開始
 addEventListener('load', main(), false);
