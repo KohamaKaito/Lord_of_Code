@@ -12,7 +12,7 @@ class Map{
     }
 
     getState(x,y){
-        return this.map[y][x]
+        return this.map[y][x];
     }
 }
 
@@ -22,5 +22,5 @@ class MapState{
         CAN_NOT_MOVE : 2,
         GOAL : 3
     }
-    static state;
+    //static state;
 }
