@@ -16,6 +16,7 @@
     <xml id="toolbox">
         <block type="go_ahead"></block>
         <block type="turn_right"></block>
+        <block type="pick_up"></block>
     </xml>
     <!-- 各種クラスの定義 -->
     <script src="js/player_view.js"></script>
@@ -27,11 +28,9 @@
 
 <body>
     <div class="game_container">
-
         <!-- canvasの定義 -->
         <canvas id="canvas"></canvas>
         <script type="text/javascript" src="js/main.js"></script>
-
 
         <div class="blockly_container">
             <!-- ワークスペースのエリア -->
@@ -39,10 +38,7 @@
             <!-- 実行ボタンの定義 -->
             <button id="button" onclick="doCode()">コードの実行</button>
         </div><!-- blockly_container -->
-
     </div><!-- game_container -->
-
-
 
     <script>
         //Blocklyをdivにはめ込み
@@ -61,5 +57,6 @@
             }
         }
     </script>
+
 </body>
 </html>

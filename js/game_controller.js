@@ -18,7 +18,6 @@ class GameController{
     go_player(){
         this.pm.go_ahead();
         this.pv.go_ahead(this.pm.get_direction());
-
     }
 
     // ModelとViewに右折を命令する関数

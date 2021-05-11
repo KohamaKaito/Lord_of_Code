@@ -22,6 +22,17 @@ Blockly.defineBlocksWithJsonArray(
             "colour": 135,
             "tooltip": "",
             "helpUrl": ""
+        },
+        /* 拾うボタン */
+        {
+            "type": "pick_up",
+            "message0": "ひろう",
+            "inputsInline": true,
+            "previousStatement": null,
+            "nextStatement": null,
+            "colour": 45,
+            "tooltip": "",
+            "helpUrl": ""
         }
     ]
 );
@@ -37,4 +48,10 @@ Blockly.JavaScript['turn_right'] =  function(block) {
     /* ここに実行したい処理を書く！！（右向くボタン） */
     var code = 'gc.turn_player()\n';
     return code;
+}
+
+Blockly.JavaScript['pick_up'] =  function(block) {
+    /* ここに実行したい処理を書く！！（拾うボタン） */
+    //var code = '\n';
+    //return code;
 }

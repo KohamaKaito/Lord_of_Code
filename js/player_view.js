@@ -14,13 +14,21 @@ class PlayerView extends Object {
         // playerの画像を設定
         this.img = new Image();
         this.img.src = src;
+        // コンテキストを設定
+        this.cxt = canvas.getContext('2d');
+
+        this.canvas = canvas;
     }
 
     // 向いてる方向に1マス分進ませる関数
     go_ahead(direction){
         switch (direction){
             case 0:
-                this.y -= canvas.height/7;
+                var point = this.y - canvas.height/7;
+                while(this.y > point){
+                    this.y -= 0.01;
+                    this.draw();
+                }
                 break;
             case 1:
                 this.x += canvas.width/7;
@@ -54,7 +62,7 @@ class PlayerView extends Object {
 
     // 画像を描画する関数(img, x座標, y座標, 画像の幅, 画像の高さ)
     draw(){
-        canvas.getContext( '2d' ).drawImage( this.img, this.x, this.y, this.size_x, this.size_y);
+        canvas.getContext('2d').drawImage(this.img, this.x, this.y, this.size_x, this.size_y);
     }
 }
 
