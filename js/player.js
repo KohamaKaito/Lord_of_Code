@@ -13,7 +13,7 @@ class Player{
         */
     }
 
-    go_ahead(){
+    goAhead(){
         switch(this.direction){
             case 0:
                 this.y -= 1;
@@ -30,7 +30,7 @@ class Player{
         }
     }
 
-    turn_right(){
+    turnRight(){
         if(this.direction == 3){
             this.direction = 0;
         } else {
@@ -38,12 +38,12 @@ class Player{
         }
     }
 
-    get_direction(){
+    getDirection(){
         return this.direction;
     }
 
     //テスト用のメソッド
-    get_status(){
+    getStatus(){
         console.log("現在の座標は[" + this.x + ", " + this.y + "]")
         switch(this.direction){
             case 0:

@@ -15,7 +15,7 @@ class MapView extends Object {
         this.canvas.getContext('2d').drawImage(this.img, 0, 0, window.innerWidth / 2, window.innerHeight);
     }
 
-    draw_map(ctx, width, height){
+    drawMap(ctx, width, height){
         console.log("マップビュー")
         ctx.drawImage(this.img, this.x, this.y, width, height);
     }

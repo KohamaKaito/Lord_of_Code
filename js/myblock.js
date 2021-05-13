@@ -39,14 +39,14 @@ Blockly.defineBlocksWithJsonArray(
 
 Blockly.JavaScript['go_ahead'] =  function(block) {
     /* ここに実行したい処理を書く！！（まっすぐボタン） */
-    var code = 'gc.go_player()\n';
-    code += 'gc.which_action()\n';
+    var code = 'gameController.goPlayer()\n';
+    code += 'gameController.whichAction()\n';
     return code;
 }
 
 Blockly.JavaScript['turn_right'] =  function(block) {
     /* ここに実行したい処理を書く！！（右向くボタン） */
-    var code = 'gc.turn_player()\n';
+    var code = 'gameController.turnPlayer()\n';
     return code;
 }
 

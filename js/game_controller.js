@@ -2,33 +2,33 @@ class GameController{
 
     // コンストラクタ
     constructor(pv, pm, mv, mm) {
-        this.pv = pv;
-        this.pm = pm;
-        this.mv = mv;
-        this.mm = mm;
+        this.playerView = pv;
+        this.playerModel = pm;
+        this.mapView = mv;
+        this.mapModel = mm;
     }
 
     // すべてのViewerに描画を命令する関数
-    draw_all(){
-        this.mv.draw();
-        this.pv.draw();
+    drawAll(){
+        this.mapView.draw();
+        this.playerView.draw();
     }
 
     // ModelとViewに前進を命令する関数
-    go_player(){
-        this.pm.go_ahead();
-        this.pv.go_ahead(this.pm.get_direction());
+    goPlayer(){
+        this.playerModel.goAhead();
+        this.playerView.goAhead(this.playerModel.getDirection());
     }
 
     // ModelとViewに右折を命令する関数
-    turn_player(){
-        this.pm.turn_right();
-        this.pv.turn_right(this.pm.get_direction());
+    turnPlayer(){
+        this.playerModel.turnRight();
+        this.playerView.turnRight(this.playerModel.getDirection());
     }
 
     // マップ(Model)で現在地を参照してアクションを判断する
-    which_action(){
-        switch (mm.getState(this.pm.x, this.pm.y)){
+    whichAction(){
+        switch (this.mapModel.getState(this.playerModel.x, this.playerModel.y)){
             case 1:
                 break;
             case 2:
