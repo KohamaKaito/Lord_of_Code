@@ -46,6 +46,7 @@ class GameController{
         }
     }
 
+    // 一マス先が可動域ならtrueを返す
     canMove(){
         switch (this.playerModel.getDirection()){
             case 0:
