@@ -3,14 +3,14 @@ Blockly.defineBlocksWithJsonArray(
     [
         /* まっすぐ進むボタン */
         {
-        "type": "go_ahead",
-        "message0": "まっすぐ進む",
-        "inputsInline": true,
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": 230,
-        "tooltip": "",
-        "helpUrl": ""
+            "type": "go_ahead",
+            "message0": "まっすぐ進む",
+            "inputsInline": true,
+            "previousStatement": null,
+            "nextStatement": null,
+            "colour": 230,
+            "tooltip": "",
+            "helpUrl": ""
         },
         /* 右へ向くボタン */
         {
