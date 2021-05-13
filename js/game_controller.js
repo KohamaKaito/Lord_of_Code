@@ -43,11 +43,23 @@ class GameController{
     }
 
     doCode(workspace){
-        //ブロックからプログラム（文字列）を作成
-        var code = Blockly.JavaScript.workspaceToCode(workspace);
-        //プログラムを実行
+        //blocklyからブロックリストを取得
+        var block_list = Blockly.JavaScript.workspaceToCode(workspace).split("\n");
+        
+        //ブロック毎にプログラムを実行
         try{
-            eval(code);
+            for(const block of block_list){
+            //ブロック毎に設定されたアクションはここに記述！！！！！！
+                switch (block){
+                    case "go_ahead":
+                        this.goPlayer()
+                        this.whichAction()
+                        break;
+                    case "turn_right":
+                        this.turnPlayer()
+                        break;
+                }
+            }
         }
         catch(e){
             alert(e);

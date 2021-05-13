@@ -44,5 +44,5 @@ Player --* GameController
 PlayerView --* GameController
 Map --* GameController
 MapView --* GameController
-MyBlockly --* GameController
+MyBlock --* GameController
 @enduml

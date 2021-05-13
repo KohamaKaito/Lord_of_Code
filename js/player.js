@@ -48,12 +48,16 @@ class Player{
         switch(this.direction){
             case 0:
                 console.log("北を向いてます");
+                break;
             case 1:
                 console.log("東を向いてます");
+                break;
             case 2:
                 console.log("南を向いてます");
+                break;
             case 3:
                 console.log("西を向いてます");
+                break;
         }
     }
 }

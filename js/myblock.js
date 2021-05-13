@@ -38,20 +38,20 @@ Blockly.defineBlocksWithJsonArray(
 );
 
 Blockly.JavaScript['go_ahead'] =  function(block) {
-    /* ここに実行したい処理を書く！！（まっすぐボタン） */
-    var code = 'gameController.goPlayer()\n';
-    code += 'gameController.whichAction()\n';
-    return code;
+    /* controllerのblock_listにブロックの名前を返す（まっすぐボタン） */
+    var block_name = 'go_ahead\n';
+    return block_name;
+    
 }
 
 Blockly.JavaScript['turn_right'] =  function(block) {
-    /* ここに実行したい処理を書く！！（右向くボタン） */
-    var code = 'gameController.turnPlayer()\n';
-    return code;
+    /* controllerのblock_listにブロックの名前を返す（右向くボタン） */
+    var block_name = 'turn_right\n';
+    return block_name;
 }
 
 Blockly.JavaScript['pick_up'] =  function(block) {
-    /* ここに実行したい処理を書く！！（拾うボタン） */
-    //var code = '\n';
-    //return code;
+    /* controllerのblock_listにブロックの名前を返す（拾うボタン） */
+    //var block_name = '\n';
+    //return block_name;
 }
