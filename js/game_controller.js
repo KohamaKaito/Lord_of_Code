@@ -52,10 +52,12 @@ class GameController{
             //ブロック毎に設定されたアクションはここに記述！！！！！！
                 switch (block){
                     case "go_ahead":
+                        //「まっすぐ進む」のアクション
                         this.goPlayer()
                         this.whichAction()
                         break;
                     case "turn_right":
+                        //「右を向く」のアクション
                         this.turnPlayer()
                         break;
                 }
