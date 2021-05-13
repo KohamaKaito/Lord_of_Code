@@ -16,8 +16,12 @@ class GameController{
 
     // ModelとViewに前進を命令する関数
     goPlayer(){
-        this.playerModel.goAhead();
-        this.playerView.goAhead(this.playerModel.getDirection());
+        if(this.canMove()){
+            this.playerModel.goAhead();
+            this.playerView.goAhead(this.playerModel.getDirection());
+        }else {
+            console.log("その方向には進めません！！");
+        }
     }
 
     // ModelとViewに右折を命令する関数
@@ -38,6 +42,32 @@ class GameController{
             case 3:
                 // view_goalScene();
                 console.log("!!GOAL!!")
+                break;
+        }
+    }
+
+    // 一マス先が可動域ならtrueを返す
+    canMove(){
+        switch (this.playerModel.getDirection()){
+            case 0:
+                if(this.mapModel.getState(playerModel.x,playerModel.y-1) != 2){
+                    return true;
+                }
+                break;
+            case 1:
+                if(this.mapModel.getState(playerModel.x+1,playerModel.y) != 2){
+                    return true;
+                }
+                break;
+            case 2:
+                if(this.mapModel.getState(playerModel.x,playerModel.y+1) != 2){
+                    return true;
+                }
+                break;
+            case 3:
+                if(this.mapModel.getState(playerModel.x-1,playerModel.y) != 2){
+                    return true;
+                }
                 break;
         }
     }
