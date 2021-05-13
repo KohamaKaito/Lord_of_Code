@@ -41,6 +41,18 @@ class GameController{
                 break;
         }
     }
+
+    doCode(workspace){
+        //ブロックからプログラム（文字列）を作成
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        //プログラムを実行
+        try{
+            eval(code);
+        }
+        catch(e){
+            alert(e);
+        }
+    }
 }
 
 

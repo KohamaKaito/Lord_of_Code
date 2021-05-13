@@ -33,5 +33,9 @@ function main() {
     requestAnimationFrame( main );
 }
 
+function onClick(workspace){
+    gameController.doCode(workspace);
+}
+
 // ページと依存している全てのデータが読み込まれたら、メインループ開始
 addEventListener('load', main(), false);
