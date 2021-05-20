@@ -56,7 +56,7 @@ class GameController{
         var block_list = Blockly.JavaScript.workspaceToCode(workspace).split("\n");
         
         //ブロック毎にプログラムを実行
-        
+        try{
             for(const block of block_list){
             //ブロック毎に設定されたアクションはここに記述！！！！！！
                 switch (block){
@@ -74,6 +74,9 @@ class GameController{
                         break;
                 }
             }
+        }catch(e){
+            alert(e)
+        }
     }
 
     // 一マス先が可動域ならtrueを返す
