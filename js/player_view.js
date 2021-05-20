@@ -2,42 +2,41 @@ class PlayerView extends Object {
 
     // コンストラクタ
     player;
-    app;
-    constructor(app, src) {
+    constructor(src, width, height) {
         super();
         // playerの画像を設定
-        let image = PIXI.Texture(src);
-        this.player = PIXI.Sprite.from(image);
+        let image = new PIXI.Texture.from(src);
+        this.player = new PIXI.Sprite(image);
         // playerの幅(app.width/7は1マス分)
-        this.sizeX = app.width / 7;
+        this.sizeX = width / 7;
         // playerの高さ(app.height/7は1マス分)
-        this.sizeY = app.height / 7;
+        this.sizeY = height / 7;
         // playerのx座標(初期位置3マス目に設定)
         this.player.x = this.sizeX * 3;
         // playerのy座標(初期位置4マス目に設定)
         this.player.y = this.sizeY * 4;
-
-        this.app = app;
+        this.width = width;
+        this.height = height;
     }
 
     // 向いてる方向に1マス分進ませる関数
     goAhead(direction){
         switch (direction){
             case 0:
-                var point = this.y - this.app.height/7;
+                let point = this.y - this.height/7;
                 while(this.y > point){
                     this.y -= 0.01;
                     this.draw();
                 }
                 break;
             case 1:
-                this.x += this.app.width/7;
+                this.x += this.width/7;
                 break;
             case 2:
-                this.y += this.app.height/7;
+                this.y += this.height/7;
                 break;
             case 3:
-                this.x -= this.app.width/7;
+                this.x -= this.width/7;
                 break;
         }
     }
