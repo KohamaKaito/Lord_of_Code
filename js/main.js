@@ -5,10 +5,11 @@ canvas.width = window.innerWidth/2;	    // canvasの横幅
 canvas.height = window.innerHeight;	    // canvasの縦幅
 */
 
+let game_window = document.getElementById("game_window");
 const app = new PIXI.Application({
     width: window.innerWidth/2, height: window.innerHeight, backgroundColor: 0x1099bb, resolution: window.devicePixelRatio || 1,
 });
-document.body.appendChild(app.view);
+game_window.appendChild(app.view);
 
 const container = new PIXI.Container();
 app.stage.addChild(container);
