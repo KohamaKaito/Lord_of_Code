@@ -60,6 +60,7 @@ class PlayerView extends Object {
         }
     }
 
+
     // 画像を描画する関数(img, x座標, y座標, 画像の幅, 画像の高さ)
     draw(){
         canvas.getContext('2d').drawImage(this.img, this.x, this.y, this.sizeX, this.sizeY);
