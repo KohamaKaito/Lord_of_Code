@@ -1,10 +1,4 @@
-// canvasの設定
-/*
-let canvas = document.getElementById( 'canvas' );
-canvas.width = window.innerWidth/2;	    // canvasの横幅
-canvas.height = window.innerHeight;	    // canvasの縦幅
-*/
-
+// window の設定
 let game_window = document.getElementById("game_window");
 const app = new PIXI.Application({
     width: window.innerWidth/2, height: window.innerHeight, backgroundColor: 0x1099bb, resolution: window.devicePixelRatio || 1,
@@ -45,18 +39,6 @@ mapModel.map =  [
     [mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE],
     ]
 
-
-// メインループ
-/*
-function main() {
-    gameController.drawAll();
-    requestAnimationFrame( main );
-}
- */
-
 function onClick(workspace){
     gameController.doCode(workspace);
 }
-
-// ページと依存している全てのデータが読み込まれたら、メインループ開始
-//addEventListener('load', main(), false);
