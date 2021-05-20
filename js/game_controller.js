@@ -1,11 +1,11 @@
 class GameController{
 
     // コンストラクタ
-    constructor(pv, pm, mv, mm) {
-        this.playerView = pv;
-        this.playerModel = pm;
-        this.mapView = mv;
-        this.mapModel = mm;
+    constructor(playerView, playerModel, mapView, mapModel) {
+        this.playerView = playerView;
+        this.playerModel = playerModel;
+        this.mapView = mapView;
+        this.mapModel = mapModel;
         this.stageNumber
         this.numTarget
     }
@@ -17,8 +17,10 @@ class GameController{
 
     // すべてのViewerに描画を命令する関数
     drawAll(){
+        /*
         this.mapView.draw();
         this.playerView.draw();
+        */
     }
 
     // ModelとViewに前進を命令する関数
@@ -44,7 +46,7 @@ class GameController{
         }else{
             alert("There is no item.")
         }
-        
+
         if(this.playerModel.numItem == this.numTarget){
             alert("STAGE " + this.stageNumber + " CLEAR!!")
             this.playerModel.numItem = 0;
