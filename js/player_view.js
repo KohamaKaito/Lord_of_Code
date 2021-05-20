@@ -23,20 +23,20 @@ class PlayerView extends Object {
     goAhead(direction){
         switch (direction){
             case 0:
-                let point = this.y - this.height/7;
-                while(this.y > point){
-                    this.y -= 0.01;
+                let point = this.player.y - this.height/7;
+                while(this.player.y > point){
+                    this.player.y -= 0.01;
                     this.draw();
                 }
                 break;
             case 1:
-                this.x += this.width/7;
+                this.player.x += this.width/7;
                 break;
             case 2:
-                this.y += this.height/7;
+                this.player.y += this.height/7;
                 break;
             case 3:
-                this.x -= this.width/7;
+                this.player.x -= this.width/7;
                 break;
         }
     }
