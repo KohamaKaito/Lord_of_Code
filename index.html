@@ -30,33 +30,21 @@
     <div class="game_container">
         <!-- canvasの定義 -->
         <canvas id="canvas"></canvas>
-        <script type="text/javascript" src="js/main.js"></script>
-
         <div class="blockly_container">
             <!-- ワークスペースのエリア -->
             <div id="blocklyDiv" ></div>
             <!-- 実行ボタンの定義 -->
-            <button id="button" onclick="doCode()">コードの実行</button>
+            <button id="run_button" onclick="onClick(workspace)">コードの実行</button>
         </div><!-- blockly_container -->
+        <script type="text/javascript" src="js/main.js"></script>
     </div><!-- game_container -->
 
-    <script>
-        //Blocklyをdivにはめ込み
-        var workspace = Blockly.inject('blocklyDiv',
-            {toolbox: document.getElementById('toolbox')});
-
-        function doCode(){
-            //ブロックからプログラム（文字列）を作成
-            var code = Blockly.JavaScript.workspaceToCode(workspace);
-            //プログラムを実行
-            try{
-                eval(code);
-            }
-            catch(e){
-                alert(e);
-            }
-        }
-    </script>
-
 </body>
+
+<script>
+    //Blocklyをdivにはめ込み
+    var workspace = Blockly.inject('blocklyDiv',
+    {toolbox: document.getElementById('toolbox')});
+</script>
+
 </html>

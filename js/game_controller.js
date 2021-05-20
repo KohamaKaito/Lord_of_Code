@@ -46,6 +46,32 @@ class GameController{
         }
     }
 
+    doCode(workspace){
+        //blocklyからブロックリストを取得
+        var block_list = Blockly.JavaScript.workspaceToCode(workspace).split("\n");
+        
+        //ブロック毎にプログラムを実行
+        try{
+            for(const block of block_list){
+            //ブロック毎に設定されたアクションはここに記述！！！！！！
+                switch (block){
+                    case "go_ahead":
+                        //「まっすぐ進む」のアクション
+                        this.goPlayer()
+                        this.whichAction()
+                        break;
+                    case "turn_right":
+                        //「右を向く」のアクション
+                        this.turnPlayer()
+                        break;
+                }
+            }
+        }
+        catch(e){
+            alert(e);
+        }
+    }
+
     // 一マス先が可動域ならtrueを返す
     canMove(){
         switch (this.playerModel.getDirection()){
