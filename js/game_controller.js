@@ -40,13 +40,14 @@ class GameController{
     pickUpPlayer(){
         if(this.mapModel.getState(playerModel.x, playerModel.y) == 3){
             this.playerModel.pickUpItem()
-            //this.mapModel.setState(this.playerModel.x, this.playerModel, this.mapModel.mapState.state.CAN_MOVE)
+            this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.mapState.state.CAN_MOVE)
         }else{
             alert("There is no item.")
         }
         
         if(this.playerModel.numItem == this.numTarget){
             alert("STAGE " + this.stageNumber + " CLEAR!!")
+            this.playerModel.numItem = 0;
         }
     }
 
