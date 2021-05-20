@@ -6,7 +6,7 @@ class GameController{
         this.playerModel = pm;
         this.mapView = mv;
         this.mapModel = mm;
-        this.stageNumber = 0
+        this.stageNumber
         this.numTarget
     }
 
@@ -40,7 +40,7 @@ class GameController{
     pickUpPlayer(){
         if(this.mapModel.getState(playerModel.x, playerModel.y) == 3){
             this.playerModel.pickUpItem()
-            //this.mapModel.setState(this.playerModel.x, this.playerModel, 1)
+            //this.mapModel.setState(this.playerModel.x, this.playerModel, this.mapModel.mapState.state.CAN_MOVE)
         }else{
             alert("There is no item.")
         }

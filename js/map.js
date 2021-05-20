@@ -9,6 +9,7 @@ class Map{
             [MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE],
             [MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE]
         ]
+        this.mapState = MapState
     }
 
     getState(x,y){
@@ -16,19 +17,7 @@ class Map{
     }
 
     setState(x, y, newState){
-        switch(newState){
-            case 1:
-                this.map[y][x] = MapState.state.CAN_MOVE;
-                break;
-            case 2:
-                this.map[y][x] = MapState.state.CAN_NOT_MOVE;
-                break;
-            case 3:
-                this.map[y][x] = MapState.state.GOAL;
-                break;
-                
-
-        }
+        this.map[y][x] = newState;
     }
 }
 
