@@ -52,6 +52,6 @@ Blockly.JavaScript['turn_right'] =  function(block) {
 
 Blockly.JavaScript['pick_up'] =  function(block) {
     /* controllerのblock_listにブロックの名前を返す（拾うボタン） */
-    //var block_name = '\n';
-    //return block_name;
+    let block_name = 'pick_up\n';
+    return block_name;
 }

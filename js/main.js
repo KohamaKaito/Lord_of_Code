@@ -14,6 +14,7 @@ var playerView = new PlayerView(canvas,'images/player_north.png');
 var mapView = new MapView(canvas,'images/map1.png');
 // (Controller)のインスタンス生成
 var gameController = new GameController(playerView,playerModel,mapView,mapModel);
+gameController.setStageInfo(1, 2) //ステージ１、必要取得アイテム数１
 
 // ステージ１の生成
 mapModel.map =  [

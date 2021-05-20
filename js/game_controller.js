@@ -6,6 +6,13 @@ class GameController{
         this.playerModel = pm;
         this.mapView = mv;
         this.mapModel = mm;
+        this.stageNumber = 0
+        this.numTarget
+    }
+
+    setStageInfo(stageNumber, numTarget){
+        this.stageNumber = stageNumber;
+        this.numTarget = numTarget;
     }
 
     // すべてのViewerに描画を命令する関数
@@ -30,19 +37,16 @@ class GameController{
         this.playerView.turnRight(this.playerModel.getDirection());
     }
 
-    // マップ(Model)で現在地を参照してアクションを判断する
-    whichAction(){
-        switch (this.mapModel.getState(this.playerModel.x, this.playerModel.y)){
-            case 1:
-                break;
-            case 2:
-                // view_gameOverScene();
-                console.log("!!GAME OVER!!");
-                break;
-            case 3:
-                // view_goalScene();
-                console.log("!!GOAL!!")
-                break;
+    pickUpPlayer(){
+        if(this.mapModel.getState(playerModel.x, playerModel.y) == 3){
+            this.playerModel.pickUpItem()
+            //this.mapModel.setState(this.playerModel.x, this.playerModel, 1)
+        }else{
+            alert("There is no item.")
+        }
+        
+        if(this.playerModel.numItem == this.numTarget){
+            alert("STAGE " + this.stageNumber + " CLEAR!!")
         }
     }
 
@@ -51,25 +55,24 @@ class GameController{
         var block_list = Blockly.JavaScript.workspaceToCode(workspace).split("\n");
         
         //ブロック毎にプログラムを実行
-        try{
+        
             for(const block of block_list){
             //ブロック毎に設定されたアクションはここに記述！！！！！！
                 switch (block){
                     case "go_ahead":
                         //「まっすぐ進む」のアクション
                         this.goPlayer()
-                        this.whichAction()
                         break;
                     case "turn_right":
                         //「右を向く」のアクション
                         this.turnPlayer()
                         break;
+                    case "pick_up":
+                        //「ひろう」のアクション
+                        this.pickUpPlayer()
+                        break;
                 }
             }
-        }
-        catch(e){
-            alert(e);
-        }
     }
 
     // 一マス先が可動域ならtrueを返す
