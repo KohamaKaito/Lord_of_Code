@@ -18,8 +18,7 @@ app.stage.addChild(container);
 // プレイヤー(Model)のインスタンス生成
 let playerModel = new Player(3,4,0);
 // マップ(Model)のインスタンス生成
-let mapState = new MapState();
-let mapModel = new Map(mapState);
+let mapModel = new Map();
 
 // マップ(View)のインスタンス生成
 let mapView = new MapView('images/map1.png', GameWindowWidth, GameWindowHeight);
