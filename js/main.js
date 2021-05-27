@@ -44,7 +44,6 @@ mapModel.map =  [
     [mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE],
     ]
 
-
 function onClick(workspace){
     gameController.doCode(workspace);
 }
