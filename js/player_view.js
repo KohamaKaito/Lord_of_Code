@@ -15,8 +15,8 @@ class PlayerView extends Object {
         this.player.x = this.sizeX * 3;
         // playerのy座標(初期位置4マス目に設定)
         this.player.y = this.sizeY * 4;
-        this.width = width;
-        this.height = height;
+        this.player.width = width;
+        this.player.height = height;
     }
 
     // 向いてる方向に1マス分進ませる関数
