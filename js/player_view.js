@@ -4,13 +4,13 @@ class PlayerView extends Object {
     constructor(canvas,src) {
         super();
         // playerの幅(canvas.width/7は1マス分)
-        this.sizeX = canvas.width / 7;
+        this.sizeX = canvas.width / 3;
         // playerの高さ(canvas.height/7は1マス分)
-        this.sizeY = canvas.height / 7;
+        this.sizeY = canvas.height / 3;
         // playerのx座標(初期位置3マス目に設定)
-        this.x = this.sizeX * 3;
+        this.x = canvas.width / 2.4;
         // playerのy座標(初期位置4マス目に設定)
-        this.y = this.sizeY * 4;
+        this.y = canvas.height / 3.1;
         // playerの画像を設定
         this.img = new Image();
         this.img.src = src;
@@ -24,20 +24,20 @@ class PlayerView extends Object {
     goAhead(direction){
         switch (direction){
             case 0:
-                var point = this.y - canvas.height/7;
-                while(this.y > point){
-                    this.y -= 0.01;
-                    this.draw();
-                }
+                this.x -= canvas.width/14;
+                this.y += canvas.height/28;
                 break;
             case 1:
-                this.x += canvas.width/7;
+                this.x -= canvas.width/14;
+                this.y -= canvas.height/28;
                 break;
             case 2:
-                this.y += canvas.height/7;
+                this.x += canvas.width/14;
+                this.y -= canvas.height/28;
                 break;
             case 3:
-                this.x -= canvas.width/7;
+                this.x += canvas.width/14;
+                this.y += canvas.height/28;
                 break;
         }
     }
@@ -46,16 +46,16 @@ class PlayerView extends Object {
     turnRight(direction){
         switch (direction){
             case 0:
-                this.img.src = "images/player_north.png";
+                this.img.src = "images/player1.png";
                 break;
             case 1:
-                this.img.src = "images/player_east.png";
+                this.img.src = "images/player4.png";
                 break;
             case 2:
-                this.img.src = "images/player_south.png";
+                this.img.src = "images/player3.png";
                 break;
             case 3:
-                this.img.src = "images/player_west.png";
+                this.img.src = "images/player2.png";
                 break;
         }
     }

@@ -24,4 +24,9 @@
     flex-direction: row;
 }
 
+.game_window{
+    float: left;
+    width: 50%;
+}
+
 

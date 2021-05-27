@@ -9,12 +9,23 @@ var playerModel = new Player(3,4,0);
 var mapState = new MapState();
 var mapModel = new Map(mapState);
 // プレイヤー(View)インスタンス生成
-var playerView = new PlayerView(canvas,'images/player_north.png');
+var playerView = new PlayerView(canvas,'images/player1.png');
 // マップ(View)のインスタンス生成
-var mapView = new MapView(canvas,'images/map1.png');
+var mapView = new MapView(canvas,'images/map.png');
 // (Controller)のインスタンス生成
 var gameController = new GameController(playerView,playerModel,mapView,mapModel);
 
+mapModel.map =  [
+    [mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE],
+    [mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE],
+    [mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE],
+    [mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE],
+    [mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE],
+    [mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE],
+    [mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE],
+]
+
+/**
 // ステージ１の生成
 mapModel.map =  [
     [mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE],
@@ -25,6 +36,7 @@ mapModel.map =  [
     [mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE],
     [mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE],
     ]
+**/
 
 
 // メインループ
@@ -32,6 +44,7 @@ function main() {
     gameController.drawAll();
     requestAnimationFrame( main );
 }
+
 
 function onClick(workspace){
     gameController.doCode(workspace);
