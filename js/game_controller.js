@@ -1,17 +1,26 @@
 class GameController{
 
     // コンストラクタ
-    constructor(pv, pm, mv, mm) {
-        this.playerView = pv;
-        this.playerModel = pm;
-        this.mapView = mv;
-        this.mapModel = mm;
+    constructor(playerView, playerModel, mapView, mapModel) {
+        this.playerView = playerView;
+        this.playerModel = playerModel;
+        this.mapView = mapView;
+        this.mapModel = mapModel;
+        this.stageNumber
+        this.numTarget
+    }
+
+    setStageInfo(stageNumber, numTarget){
+        this.stageNumber = stageNumber;
+        this.numTarget = numTarget;
     }
 
     // すべてのViewerに描画を命令する関数
     drawAll(){
+        /*
         this.mapView.draw();
         this.playerView.draw();
+        */
     }
 
     // ModelとViewに前進を命令する関数
@@ -30,19 +39,17 @@ class GameController{
         this.playerView.turnRight(this.playerModel.getDirection());
     }
 
-    // マップ(Model)で現在地を参照してアクションを判断する
-    whichAction(){
-        switch (this.mapModel.getState(this.playerModel.x, this.playerModel.y)){
-            case 1:
-                break;
-            case 2:
-                // view_gameOverScene();
-                console.log("!!GAME OVER!!");
-                break;
-            case 3:
-                // view_goalScene();
-                console.log("!!GOAL!!")
-                break;
+    pickUpPlayer(){
+        if(this.mapModel.getState(playerModel.x, playerModel.y) == 3){
+            this.playerModel.pickUpItem()
+            this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.mapState.state.CAN_MOVE)
+        }else{
+            alert("There is no item.")
+        }
+
+        if(this.playerModel.numItem == this.numTarget){
+            alert("STAGE " + this.stageNumber + " CLEAR!!")
+            this.playerModel.numItem = 0;
         }
     }
 
@@ -58,17 +65,19 @@ class GameController{
                     case "go_ahead":
                         //「まっすぐ進む」のアクション
                         this.goPlayer()
-                        this.whichAction()
                         break;
                     case "turn_right":
                         //「右を向く」のアクション
                         this.turnPlayer()
                         break;
+                    case "pick_up":
+                        //「ひろう」のアクション
+                        this.pickUpPlayer()
+                        break;
                 }
             }
-        }
-        catch(e){
-            alert(e);
+        }catch(e){
+            alert(e)
         }
     }
 

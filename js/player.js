@@ -4,6 +4,7 @@ class Player{
         this.x = x;
         this.y = y;
         this.direction = direction; 
+        this.numItem = 0;
         /*
         directionはプレイヤーの向いている方向を表す
         north : 0
@@ -59,5 +60,9 @@ class Player{
                 console.log("西を向いてます");
                 break;
         }
+    }
+    
+    pickUpItem(){
+        this.numItem += 1;
     }
 }
