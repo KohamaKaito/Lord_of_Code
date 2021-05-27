@@ -1,7 +1,13 @@
 // window の設定
 let game_window = document.getElementById("game_window");
-const app = new PIXI.Application({
-    width: window.innerWidth/2, height: window.innerHeight, backgroundColor: 0x1099bb, resolution: window.devicePixelRatio || 1,
+
+let GameWindowHeight = window.innerHeight;
+let GameWindowWidth = window.innerWidth/2;
+
+let app = new PIXI.Application({
+    width: GameWindowWidth,     // スクリーン(ビュー)横幅
+    height: GameWindowHeight,    // スクリーン(ビュー)縦幅
+    backgroundColor: 0x1099bb,  // 背景色 16進 0xRRGGBB);
 });
 game_window.appendChild(app.view);
 
@@ -16,13 +22,12 @@ let mapState = new MapState();
 let mapModel = new Map(mapState);
 
 // マップ(View)のインスタンス生成
-let mapView = new MapView('images/map1.png', window.innerWidth/2, window.innerHeight);
+let mapView = new MapView('images/map1.png', GameWindowWidth, GameWindowHeight);
 container.addChild(mapView.map);
 
 // プレイヤー(View)インスタンス生成
-let playerView = new PlayerView('images/player_north.png', window.innerWidth/2, window.innerHeight);
+let playerView = new PlayerView('images/player_north.png', GameWindowWidth/7, GameWindowWidth/7);
 container.addChild(playerView.player);
-
 
 // (Controller)のインスタンス生成
 let gameController = new GameController(playerView,playerModel,mapView,mapModel);
@@ -38,6 +43,7 @@ mapModel.map =  [
     [mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE],
     [mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE],
     ]
+
 
 function onClick(workspace){
     gameController.doCode(workspace);

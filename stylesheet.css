@@ -3,6 +3,15 @@
     float: left;
 }
  */
+.game_container{
+    display: flex;
+    flex-direction: row;
+}
+
+.blockly_container{
+    width: 50%;
+    flex-direction: column;
+}
 
 #blocklyDiv{
     height: 70%;
@@ -14,22 +23,12 @@
     width: 100%;
 }
 
-.blockly_container{
+/**
+#game_window{
     width: 50%;
     flex-direction: column;
 }
-
-.game_container{
-    display: flex;
-    flex-direction: row;
-}
-
-.game_window{
-    float: left;
-    width: 50%;
-}
+**/
 
 
-.game_window{
-    width: 50%;
-}
+
