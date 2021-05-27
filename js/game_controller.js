@@ -1,11 +1,13 @@
 class GameController{
 
     // コンストラクタ
-    constructor(playerView, playerModel, mapView, mapModel) {
+    constructor(playerView, playerModel, mapView, mapModel, item, itemView) {
         this.playerView = playerView;
         this.playerModel = playerModel;
         this.mapView = mapView;
         this.mapModel = mapModel;
+        this.item = item;
+        this.itemView = itemView;
         this.stageNumber
         this.numTarget
     }
@@ -40,9 +42,11 @@ class GameController{
     }
 
     pickUpPlayer(){
-        if(this.mapModel.getState(playerModel.x, playerModel.y) == 3){
-            this.playerModel.pickUpItem()
-            this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.mapState.state.CAN_MOVE)
+        if(this.mapModel.getState(playerModel.x, playerModel.y) == MAP_ITEM){
+            this.playerModel.pickUpItem();
+            this.item.addOwned();
+            this.itemView.setOwned(this.item.owned);
+            this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.mapState.state.CAN_MOVE);
         }else{
             alert("There is no item.")
         }
@@ -85,22 +89,22 @@ class GameController{
     canMove(){
         switch (this.playerModel.getDirection()){
             case 0:
-                if(this.mapModel.getState(playerModel.x,playerModel.y-1) != 2){
+                if(this.mapModel.getState(playerModel.x,playerModel.y-1) != MAP_CAN_MOVE){
                     return true;
                 }
                 break;
             case 1:
-                if(this.mapModel.getState(playerModel.x+1,playerModel.y) != 2){
+                if(this.mapModel.getState(playerModel.x+1,playerModel.y) != MAP_CAN_MOVE){
                     return true;
                 }
                 break;
             case 2:
-                if(this.mapModel.getState(playerModel.x,playerModel.y+1) != 2){
+                if(this.mapModel.getState(playerModel.x,playerModel.y+1) != MAP_CAN_MOVE){
                     return true;
                 }
                 break;
             case 3:
-                if(this.mapModel.getState(playerModel.x-1,playerModel.y) != 2){
+                if(this.mapModel.getState(playerModel.x-1,playerModel.y) != MAP_CAN_MOVE){
                     return true;
                 }
                 break;
