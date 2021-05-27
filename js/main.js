@@ -11,8 +11,23 @@ let app = new PIXI.Application({
 });
 game_window.appendChild(app.view);
 
-const container = new PIXI.Container();
-app.stage.addChild(container);
+const stage1 = new PIXI.Container();
+
+const title = new PIXI.Container();
+
+let hoge = new PIXI.Text("TITLE");
+hoge.interactive = true;
+hoge.buttonMode = true;
+hoge.on('click', change);
+
+function change(){
+    app.stage.removeChild(title);
+    app.stage.addChild(stage1);
+}
+
+title.addChild(hoge)
+
+app.stage.addChild(title);
 
 
 // プレイヤー(Model)のインスタンス生成
@@ -22,11 +37,16 @@ let mapModel = new Map();
 
 // マップ(View)のインスタンス生成
 let mapView = new MapView('images/map1.png', GameWindowWidth, GameWindowHeight);
-container.addChild(mapView.map);
+stage1.addChild(mapView.map);
 
 // プレイヤー(View)インスタンス生成
 let playerView = new PlayerView('images/player_north.png', GameWindowWidth/7, GameWindowWidth/7);
-container.addChild(playerView.player);
+stage1.addChild(playerView.player);
+
+let item = new Item(0, 1);
+let itemView = new ItemView(0,1);
+stage1.addChild(itemView.needed_text)
+stage1.addChild(itemView.owned_text)
 
 let item = new Item(0, 1);
 let itemView = new ItemView(0,1);
