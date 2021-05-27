@@ -9,10 +9,15 @@ class Map{
             [MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE],
             [MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE]
         ]
+        this.mapState = MapState
     }
 
     getState(x,y){
         return this.map[y][x];
+    }
+
+    setState(x, y, newState){
+        this.map[y][x] = newState;
     }
 }
 
