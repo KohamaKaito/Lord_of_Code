@@ -8,6 +8,9 @@ class GameController{
         this.mapModel = mapModel;
         this.stageNumber
         this.numTarget
+
+        this.actionFlag = 0;
+        this.blockList;
     }
 
     setStageInfo(stageNumber, numTarget){
@@ -36,30 +39,34 @@ class GameController{
     // ModelとViewに右折を命令する関数
     turnPlayer(){
         this.playerModel.turnRight();
-        this.playerView.turnRight(this.playerModel.getDirection());
+        // this.playerView.turnRight(this.playerModel.getDirection());
     }
 
     pickUpPlayer(){
         if(this.mapModel.getState(playerModel.x, playerModel.y) == 3){
             this.playerModel.pickUpItem()
-            this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.mapState.state.CAN_MOVE)
+            // this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.mapState.state.CAN_MOVE)
         }else{
-            alert("There is no item.")
+            // alert("There is no item.")
         }
 
         if(this.playerModel.numItem == this.numTarget){
-            alert("STAGE " + this.stageNumber + " CLEAR!!")
+            // alert("STAGE " + this.stageNumber + " CLEAR!!")
             this.playerModel.numItem = 0;
         }
     }
 
     doCode(workspace){
+        // アクションフラグを立てる0->1
+        this.actionFlag = 1;
+        console.log("this.actionFlag = 1;");
+
         //blocklyからブロックリストを取得
-        var block_list = Blockly.JavaScript.workspaceToCode(workspace).split("\n");
-        
+        this.blockList = Blockly.JavaScript.workspaceToCode(workspace).split("\n");
+
         //ブロック毎にプログラムを実行
         try{
-            for(const block of block_list){
+            for(const block of this.blockList){
             //ブロック毎に設定されたアクションはここに記述！！！！！！
                 switch (block){
                     case "go_ahead":
@@ -106,6 +113,8 @@ class GameController{
                 break;
         }
     }
+
+
 }
 
 

@@ -8,57 +8,62 @@ class PlayerView extends Object {
         let image = new PIXI.Texture.from(src);
         this.player = new PIXI.Sprite(image);
         // playerの幅(app.width/7は1マス分)
-        this.sizeX = width / 7;
+        // this.sizeX = width/3;
         // playerの高さ(app.height/7は1マス分)
-        this.sizeY = height / 7;
+        // this.sizeY = height/3;
         // playerのx座標(初期位置3マス目に設定)
-        this.player.x = this.sizeX * 3;
+        this.player.x = width / 2.5;
         // playerのy座標(初期位置4マス目に設定)
-        this.player.y = this.sizeY * 4;
-        this.player.width = width;
-        this.player.height = height;
+        this.player.y = height / 3.1;
+        this.player.width = width/3;
+        this.player.height = height/3;
     }
 
     // 向いてる方向に1マス分進ませる関数
     goAhead(direction){
         switch (direction){
             case 0:
-                let point = this.player.y - this.height/7;
-                while(this.player.y > point){
-                    this.player.y -= 0.01;
-                    this.draw();
-                }
+                this.x -= this.player.width/14;
+                this.y += this.player.height/28;
                 break;
             case 1:
-                this.player.x += this.width/7;
+                this.x -= this.player.width/14;
+                this.y -= this.player.height/28;
                 break;
             case 2:
-                this.player.y += this.height/7;
+                this.x += this.player.width/14;
+                this.y -= this.player.height/28;
                 break;
             case 3:
-                this.player.x -= this.width/7;
+                this.x += this.player.width/14;
+                this.y += this.player.height/28;
                 break;
         }
     }
 
+
+
     // player(Model)のdirectionに画像を対応させる関数
+    image;
     turnRight(direction){
-        // PIXIのアニメーションに置き換える
-        /*
         switch (direction){
             case 0:
-                this.img.src = "images/player_north.png";
+                this.image = new PIXI.Texture.from("images/player4.png");
+                this.player = new PIXI.Sprite(this.image);
                 break;
             case 1:
-                this.img.src = "images/player_east.png";
+                this.image = new PIXI.Texture.from("images/player3.png");
+                this.player = new PIXI.Sprite(this.image);
                 break;
             case 2:
-                this.img.src = "images/player_south.png";
+                this.image = new PIXI.Texture.from("images/player2.png");
+                this.player = new PIXI.Sprite(this.image);
                 break;
             case 3:
-                this.img.src = "images/player_west.png";
+                this.image = new PIXI.Texture.from("images/player1.png");
+                this.player = new PIXI.Sprite(this.image);
                 break;
-        }*/
+        }
     }
 
 
