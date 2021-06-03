@@ -48,11 +48,6 @@ let itemView = new ItemView(0,1);
 stage1.addChild(itemView.needed_text)
 stage1.addChild(itemView.owned_text)
 
-let item = new Item(0, 1);
-let itemView = new ItemView(0,1);
-container.addChild(itemView.needed_text)
-container.addChild(itemView.owned_text)
-
 // (Controller)のインスタンス生成
 let gameController = new GameController(playerView, playerModel, mapView, mapModel, item, itemView);
 gameController.setStageInfo(1, 1) //ステージ１、必要取得アイテム数１
