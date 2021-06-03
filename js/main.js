@@ -2,28 +2,30 @@
 let game_window = document.getElementById("game_window");
 
 let GameWindowHeight = window.innerHeight;
-let GameWindowWidth = window.innerWidth/2;
+let GameWindowWidth = window.innerWidth / 2;
 
 let app = new PIXI.Application({
-    width: GameWindowWidth,     // スクリーン(ビュー)横幅
-    height: GameWindowHeight,    // スクリーン(ビュー)縦幅
-    backgroundColor: 0x1099bb,  // 背景色 16進 0xRRGGBB);
+    width: GameWindowWidth,
+    // スクリーン(ビュー)横幅
+    height: GameWindowHeight,
+    // スクリーン(ビュー)縦幅
+    backgroundColor: 0x1099bb,
 });
+// 背景色 16進 0xRRGGBB);
 
 game_window.appendChild(app.view);
 
 const container = new PIXI.Container();
 app.stage.addChild(container);
 
-
 // プレイヤー(Model)のインスタンス生成
-let playerModel = new Player(3,4,0);
+let playerModel = new Player(3, 4, 0);
 // マップ(Model)のインスタンス生成
 let mapState = new MapState();
 let mapModel = new Map(mapState);
 
 // マップ(View)のインスタンス生成
-let mapView = new MapView('images/map02.png', GameWindowWidth, GameWindowHeight);
+let mapView = new MapView('images/map01.png', GameWindowWidth, GameWindowHeight);
 container.addChild(mapView.map);
 
 // プレイヤー(View)インスタンス生成
@@ -31,28 +33,28 @@ let playerView = new PlayerView('images/player0_0.png', GameWindowWidth, GameWin
 container.addChild(playerView.player);
 
 // (Controller)のインスタンス生成
-let gameController = new GameController(playerView,playerModel,mapView,mapModel);
+let gameController = new GameController(playerView, playerModel, mapView, mapModel);
 gameController.setStageInfo(1, 1) //ステージ１、必要取得アイテム数１
 
 // ステージ１の生成
-mapModel.map =  [
-    [mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE],
-    [mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.GOAL,mapState.state.CAN_NOT_MOVE],
-    [mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_NOT_MOVE],
-    [mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_NOT_MOVE],
-    [mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE],
-    [mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE],
-    [mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE,mapState.state.CAN_NOT_MOVE],
+mapModel.map = [
+    [mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE],
+    [mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE],
+    [mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.GOAL, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE],
+    [mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE],
+    [mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE],
+    [mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE],
+    [mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE, mapState.state.CAN_NOT_MOVE],
 ]
 
 
 
 let goalImage = new PIXI.Texture.from("images/goal.png");
 goal = new PIXI.Sprite(goalImage);
-goal.x = GameWindowWidth / 6.5;
-goal.y = GameWindowHeight / 1.9;
-goal.width = GameWindowWidth/8;
-goal.height = GameWindowHeight/8;
+goal.x = GameWindowWidth / 2.85;
+goal.y = GameWindowHeight / 1.75;
+goal.width = GameWindowWidth / 8;
+goal.height = GameWindowHeight / 8;
 goal.zIndex = 100;
 container.addChild(goal);
 
@@ -83,8 +85,8 @@ anim0.x = playerX;
 //anim0.y = (gameScene.height / 2) - (anim0.height / 2);
 anim0.y = playerY;
 
-anim0.width = GameWindowWidth/3;
-anim0.height = GameWindowHeight/3;
+anim0.width = GameWindowWidth / 3;
+anim0.height = GameWindowHeight / 3;
 
 //anim0.play();
 //container.addChild(anim0);
@@ -99,8 +101,8 @@ anim1 = createAnim([
 ]);
 anim1.x = playerX
 anim1.y = playerY
-anim1.width = GameWindowWidth/3;
-anim1.height = GameWindowHeight/3;
+anim1.width = GameWindowWidth / 3;
+anim1.height = GameWindowHeight / 3;
 
 let anim2;
 anim2 = createAnim([
@@ -111,8 +113,8 @@ anim2 = createAnim([
 ]);
 anim2.x = playerX;
 anim2.y = playerY;
-anim2.width = GameWindowWidth/3;
-anim2.height = GameWindowHeight/3;
+anim2.width = GameWindowWidth / 3;
+anim2.height = GameWindowHeight / 3;
 
 let anim3;
 anim3 = createAnim([
@@ -124,10 +126,8 @@ anim3 = createAnim([
 
 anim3.x = playerX;
 anim3.y = playerY;
-anim3.width = GameWindowWidth/3;
-anim3.height = GameWindowHeight/3;
-
-
+anim3.width = GameWindowWidth / 3;
+anim3.height = GameWindowHeight / 3;
 
 // フレーム更新時の処理(≒ループ処理)を追加する
 app.ticker.add(animate);
@@ -135,61 +135,54 @@ let amountTime = 0;
 
 let j = 0;
 let i = 0;
-let k = 0;
 let direction = 0;
-
-
 
 // 処理の定義
 function animate(delta) {
-    if(gameController.actionFlag == 1){
-        container.removeChild(playerView.player);
-        if(k==0){
-            anim0.play();
-            container.addChild(anim0);
-            k += 1;
-        }
-
-        switch (gameController.blockList[i]){
+    if (gameController.actionFlag == 1) {
+        switch (gameController.blockList[i]) {
             case "go_ahead":
+                container.removeChild(playerView.player);
+                anim0.play();
+                container.addChild(anim0);
                 container.removeChild(goal);
                 container.addChild(goal);
-                if(j < 150){
-                    switch (direction){
+                if (j < 150) {
+                    switch (direction) {
                         case 0:
-                            anim0.x -= anim0.width/14 * 0.02;
-                            playerX -= anim0.width/14 * 0.02;
-                            anim0.y += anim0.height/28 * 0.02;
-                            playerY += anim0.height/28 * 0.02;
+                            anim0.x -= anim0.width / 14 * 0.02;
+                            playerX -= anim0.width / 14 * 0.02;
+                            anim0.y += anim0.height / 28 * 0.02;
+                            playerY += anim0.height / 28 * 0.02;
                             break
                         case 1:
-                            anim1.x -= anim0.width/14 * 0.02;
-                            playerX -= anim0.width/14 * 0.02;
-                            anim1.y -= anim0.height/28 * 0.02;
-                            playerY -= anim0.height/28 * 0.02;
+                            anim1.x -= anim0.width / 14 * 0.02;
+                            playerX -= anim0.width / 14 * 0.02;
+                            anim1.y -= anim0.height / 28 * 0.02;
+                            playerY -= anim0.height / 28 * 0.02;
                             break
                         case 2:
-                            anim2.x += anim0.width/14 * 0.02;
-                            playerX += anim0.width/14 * 0.02;
-                            anim2.y -= anim0.height/28 * 0.02;
-                            playerY -= anim0.height/28 * 0.02;
+                            anim2.x += anim0.width / 14 * 0.02;
+                            playerX += anim0.width / 14 * 0.02;
+                            anim2.y -= anim0.height / 28 * 0.02;
+                            playerY -= anim0.height / 28 * 0.02;
                             break
                         case 3:
-                            anim3.x += anim0.width/14 * 0.02;
-                            playerX += anim0.width/14 * 0.02;
-                            anim3.y += anim0.height/28 * 0.02;
-                            playerY += anim0.height/28 * 0.02;
+                            anim3.x += anim0.width / 14 * 0.02;
+                            playerX += anim0.width / 14 * 0.02;
+                            anim3.y += anim0.height / 28 * 0.02;
+                            playerY += anim0.height / 28 * 0.02;
                             break
                     }
                     j += 1;
-                }else {
+                } else {
                     j = 0;
                     i += 1;
                 }
                 break;
             case "turn_right":
                 //「右を向く」のアクション
-                switch (direction){
+                switch (direction) {
                     case 0:
                         direction = 1;
                         container.removeChild(anim0);
@@ -229,13 +222,13 @@ function animate(delta) {
                 //「ひろう」のアクション
                 //this.pickUpPlayer();
                 console.log("ひろう");
-                console.log("x"+playerModel.x);
-                console.log("y"+playerModel.y);
-                console.log(mapModel.getState(3,1));
-                console.log(mapModel.getState(3,2));
-                console.log(mapModel.getState(3,3));
-                console.log(mapModel.getState(playerModel.x,playerModel.y));
-                if(mapModel.getState(playerModel.x,playerModel.y) == 3){
+                console.log("x" + playerModel.x);
+                console.log("y" + playerModel.y);
+                console.log(mapModel.getState(3, 1));
+                console.log(mapModel.getState(3, 2));
+                console.log(mapModel.getState(3, 3));
+                console.log(mapModel.getState(playerModel.x, playerModel.y));
+                if (mapModel.getState(playerModel.x, playerModel.y) == 3) {
                     container.removeChild(goal);
                     container.addChild(goalScene);
                 }
@@ -244,19 +237,24 @@ function animate(delta) {
         }
 
 
-        //anim0.x -= anim0.width/14 * 0.01;
-        //anim0.y += anim0.height/28 * 0.01;
+
+
     }
-    //anim0.x -= anim0.width/14 * 0.01;
-    //anim0.y += anim0.height/28 * 0.01;
+
+
 }
+//anim0.x -= anim0.width/14 * 0.01;
+//anim0.y += anim0.height/28 * 0.01;
+//anim0.x -= anim0.width/14 * 0.01;
+//anim0.y += anim0.height/28 * 0.01;
 
 function createAnim(imgs) {
     const textureArray = [];
     for (let i = 0; i < imgs.length; i++) {
         let texture = PIXI.Texture.from(imgs[i]);
         textureArray.push(texture);
-    };
+    }
+    ;
     const animatedSprite = new PIXI.AnimatedSprite(textureArray);
     animatedSprite.animationSpeed = 0.1;
     animatedSprite.height = 500;
@@ -276,6 +274,6 @@ function play(e) {
 
 
 
-function onClick(workspace){
+function onClick(workspace) {
     gameController.doCode(workspace);
 }

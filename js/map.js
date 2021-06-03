@@ -28,7 +28,4 @@ class MapState{
         GOAL : 3
     }
     //static state;
-
-
-
 }
