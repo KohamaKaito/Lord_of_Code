@@ -39,34 +39,32 @@ class GameController{
     // ModelとViewに右折を命令する関数
     turnPlayer(){
         this.playerModel.turnRight();
-        // this.playerView.turnRight(this.playerModel.getDirection());
+        this.playerView.turnRight(this.playerModel.getDirection());
     }
 
     pickUpPlayer(){
-        if(this.mapModel.getState(playerModel.x, playerModel.y) == 3){
-            this.playerModel.pickUpItem()
-            // this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.mapState.state.CAN_MOVE)
+        if(this.mapModel.getState(playerModel.x, playerModel.y) == MAP_ITEM){
+            this.playerModel.pickUpItem();
+            this.item.addOwned();
+            this.itemView.setOwned(this.item.owned);
+            this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.mapState.state.CAN_MOVE);
         }else{
-            // alert("There is no item.")
+            alert("There is no item.")
         }
 
         if(this.playerModel.numItem == this.numTarget){
-            // alert("STAGE " + this.stageNumber + " CLEAR!!")
+            alert("STAGE " + this.stageNumber + " CLEAR!!")
             this.playerModel.numItem = 0;
         }
     }
 
     doCode(workspace){
-        // アクションフラグを立てる0->1
-        this.actionFlag = 1;
-        console.log("this.actionFlag = 1;");
-
         //blocklyからブロックリストを取得
-        this.blockList = Blockly.JavaScript.workspaceToCode(workspace).split("\n");
-
+        var block_list = Blockly.JavaScript.workspaceToCode(workspace).split("\n");
+        
         //ブロック毎にプログラムを実行
         try{
-            for(const block of this.blockList){
+            for(const block of block_list){
             //ブロック毎に設定されたアクションはここに記述！！！！！！
                 switch (block){
                     case "go_ahead":
@@ -92,29 +90,27 @@ class GameController{
     canMove(){
         switch (this.playerModel.getDirection()){
             case 0:
-                if(this.mapModel.getState(playerModel.x,playerModel.y-1) != 2){
+                if(this.mapModel.getState(playerModel.x,playerModel.y-1) != MAP_CAN_MOVE){
                     return true;
                 }
                 break;
             case 1:
-                if(this.mapModel.getState(playerModel.x+1,playerModel.y) != 2){
+                if(this.mapModel.getState(playerModel.x+1,playerModel.y) != MAP_CAN_MOVE){
                     return true;
                 }
                 break;
             case 2:
-                if(this.mapModel.getState(playerModel.x,playerModel.y+1) != 2){
+                if(this.mapModel.getState(playerModel.x,playerModel.y+1) != MAP_CAN_MOVE){
                     return true;
                 }
                 break;
             case 3:
-                if(this.mapModel.getState(playerModel.x-1,playerModel.y) != 2){
+                if(this.mapModel.getState(playerModel.x-1,playerModel.y) != MAP_CAN_MOVE){
                     return true;
                 }
                 break;
         }
     }
-
-
 }
 
 

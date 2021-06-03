@@ -1,18 +1,15 @@
-const MAP_CAN_MOVE = 1;
-const MAP_CAN_NOT_MOVE = 2;
-const MAP_ITEM = 3;
-
 class Map{
-    constructor() {
+    constructor(MapState) {
         this.map = [
-            [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-            [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-            [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-            [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-            [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-            [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-            [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE]
+            [MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE],
+            [MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE],
+            [MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE],
+            [MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE],
+            [MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE],
+            [MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE],
+            [MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE,MapState.state.CAN_MOVE]
         ]
+        this.mapState = MapState
     }
 
     getState(x,y){
@@ -22,4 +19,16 @@ class Map{
     setState(x, y, newState){
         this.map[y][x] = newState;
     }
+}
+
+class MapState{
+    state = {
+        CAN_MOVE : 1,
+        CAN_NOT_MOVE : 2,
+        GOAL : 3
+    }
+    //static state;
+
+
+
 }
