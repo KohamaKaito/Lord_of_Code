@@ -39,7 +39,7 @@ class GameController{
     }
 
     pickUpPlayer(){
-        if(this.mapModel.getState(playerModel.x, playerModel.y) == MAP_ITEM){
+        if(this.mapModel.getState(this.playerModel.x, this.playerModel.y) == MAP_ITEM){
             this.playerModel.pickUpItem()
             this.item.addOwned();
             this.itemView.setOwned(this.item.owned);
@@ -90,22 +90,22 @@ class GameController{
     canMove(){
         switch (this.playerModel.getDirection()){
             case 0:
-                if(this.mapModel.getState(playerModel.x,playerModel.y-1) != 2){
+                if(this.mapModel.getState(this.playerModel.x,this.playerModel.y-1) != 2){
                     return true;
                 }
                 break;
             case 1:
-                if(this.mapModel.getState(playerModel.x+1,playerModel.y) != 2){
+                if(this.mapModel.getState(this.playerModel.x+1,this.playerModel.y) != 2){
                     return true;
                 }
                 break;
             case 2:
-                if(this.mapModel.getState(playerModel.x,playerModel.y+1) != 2){
+                if(this.mapModel.getState(this.playerModel.x,this.playerModel.y+1) != 2){
                     return true;
                 }
                 break;
             case 3:
-                if(this.mapModel.getState(playerModel.x-1,playerModel.y) != 2){
+                if(this.mapModel.getState(this.playerModel.x-1,this.playerModel.y) != 2){
                     return true;
                 }
                 break;
@@ -115,7 +115,7 @@ class GameController{
     stageSet(stageNum){
         switch (stageNum){
             case 1:
-                playerView.player.x
+                playerView01.player.x
                 break;
             case 2:
                 break;

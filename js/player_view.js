@@ -58,42 +58,8 @@ class PlayerView extends Object {
 
     // player(Model)のdirectionに画像を対応させる関数
     image;
-    turnRight(){
+    turnRight(stage){
         //「右を向く」のアクション
-        switch (this.direction){
-            case 0:
-                this.direction = 1;
-                stage.removeChild(this.anim0);
-                this.anim1.x = this.playerX
-                this.anim1.y = this.playerY
-                this.anim1.play();
-                stage.addChild(this.anim1);
-                break;
-            case 1:
-                this.direction = 2;
-                stage.removeChild(this.anim1);
-                this.anim2.x = this.playerX
-                this.anim2.y = this.playerY
-                this.anim2.play();
-                stage.addChild(this.anim2);
-                break;
-            case 2:
-                this.direction = 3;
-                stage.removeChild(this.anim2);
-                this.anim3.x = this.playerX
-                this.anim3.y = this.playerY
-                this.anim3.play();
-                stage.addChild(this.anim3);
-                break;
-            case 3:
-                this.direction = 0;
-                stage.removeChild(this.anim3);
-                this.anim0.x = this.playerX
-                this.anim0.y = this.playerY
-                this.anim0.play();
-                stage.addChild(this.anim0);
-                break;
-        }
     }
 
 
@@ -123,7 +89,7 @@ class PlayerView extends Object {
         this.player.y = height / 3.1;
         this.player.width = width/3;
         this.player.height = height/3;
-        stage.addChild(playerView.player);
+        stage01.addChild(playerView01.player);
     }
 }
 
