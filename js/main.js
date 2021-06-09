@@ -10,13 +10,37 @@ gameWindow.appendChild(app.view);
 
 
 // タイトル画面の設定
-const title = new PIXI.Container();
-let titleText = new PIXI.Text("TITLE");
+const titleScene = new PIXI.Container();
+let titleText = new PIXI.Text("タイトル \n \n START");
 titleText.interactive = true;
 titleText.buttonMode = true;
-titleText.on('click', change);
-title.addChild(titleText);
-app.stage.addChild(title);
+titleText.on('click', toGame);
+titleText.x = GameWindowWidth/2 - titleText.width/2;
+titleText.y = GameWindowWidth/2 - titleText.height/2;
+titleScene.addChild(titleText);
+app.stage.addChild(titleScene);
+function toGame(){
+    app.stage.removeChild(titleScene);
+    app.stage.addChild(stage01);
+}
+
+
+// クリア画面の設定
+const clearScene = new PIXI.Container();
+let clearText = new PIXI.Text("クリア！！ \n Next Stage");
+clearText.interactive = true;
+clearText.buttonMode = true;
+clearText.x = GameWindowWidth/2 - titleText.width/2;
+clearText.y = GameWindowHeight/2 - titleText.height/2;
+clearText.on('click', toNext);
+clearScene.addChild(clearText);
+function toNext(){
+    app.stage.removeChild(clearScene);
+    app.stage.addChild(stage02);
+    stageNum += 1;
+}
+
+
 
 let stageNum = 1;
 
@@ -89,20 +113,10 @@ stage02.addChild(goal02);
 
 
 
-const clearScene = new PIXI.Container();
-
-let clearText = new PIXI.Text("Next Stage");
-clearText.interactive = true;
-clearText.buttonMode = true;
-clearText.on('click', change1);
-clearScene.addChild(clearText);
 
 
-function change1(){
-    app.stage.removeChild(clearScene);
-    app.stage.addChild(stage02);
-    stageNum += 1;
-}
+
+
 
 
 
@@ -119,161 +133,11 @@ let amountTime = 0;
 // 処理の定義
 function animate(delta) {
     if(gameController01.actionFlag == 1){
-
-        // 歩行アニメーションの開始(一回のみ実行)
-        if(k == 0){
-            stage01.removeChild(playerView01.player);
-            playerView01.anim0.play();
-            playerView01.anim0.x = playerView01.playerX;
-            playerView01.anim0.y = playerView01.playerY;
-            stage01.addChild(playerView01.anim0);
-            k += 1;
-        }
-        // 宝箱を最前面にするため
-        stage01.removeChild(goal01);
-        stage01.addChild(goal01);
-
-        switch (gameController01.blockList[gameController01.listNum]){
-            case "go_ahead":
-                if(j < 150){
-                    playerView01.goAhead();
-                    j += 1;
-                } else {
-                    j = 0;
-                    gameController01.listNum += 1;
-                }
-                break;
-
-            case "turn_right":
-                switch (playerView01.direction){
-                    case 0:
-                        playerView01.direction = 1;
-                        stage01.removeChild(playerView01.anim0);
-                        playerView01.anim1.x = playerView01.playerX
-                        playerView01.anim1.y = playerView01.playerY
-                        playerView01.anim1.play();
-                        stage01.addChild(playerView01.anim1);
-                        break;
-                    case 1:
-                        playerView01.direction = 2;
-                        stage01.removeChild(playerView01.anim1);
-                        playerView01.anim2.x = playerView01.playerX
-                        playerView01.anim2.y = playerView01.playerY
-                        playerView01.anim2.play();
-                        stage01.addChild(playerView01.anim2);
-                        break;
-                    case 2:
-                        playerView01.direction = 3;
-                        stage01.removeChild(playerView01.anim2);
-                        playerView01.anim3.x = playerView01.playerX
-                        playerView01.anim3.y = playerView01.playerY
-                        playerView01.anim3.play();
-                        stage01.addChild(playerView01.anim3);
-                        break;
-                    case 3:
-                        playerView01.direction = 0;
-                        stage01.removeChild(playerView01.anim3);
-                        playerView01.anim0.x = playerView01.playerX
-                        playerView01.anim0.y = playerView01.playerY
-                        playerView01.anim0.play();
-                        stage01.addChild(playerView01.anim0);
-                        break;
-                }
-                gameController01.listNum += 1;
-                break;
-
-            case "pick_up":
-                if(mapModel01.getState(playerModel01.x,playerModel01.y) == 3){
-                    //stage.removeChild(goal);
-                    //stage.addChild(goalScene);
-                    app.stage.removeChild(stage01);
-                    app.stage.addChild(clearScene);
-                    gameController01.actionFlag = 0;
-                    k = 0;
-                    i = 0;
-                }
-                gameController01.listNum += 1;
-                break;
-        }
+        gameControl(gameController01, stage01, goal01);
     }
 
     if(gameController02.actionFlag == 1){
-
-        // 歩行アニメーションの開始(一回のみ実行)
-        if(k == 0){
-            stage02.removeChild(playerView02.player);
-            playerView02.anim0.play();
-            playerView02.anim0.x = playerView02.playerX;
-            playerView02.anim0.y = playerView02.playerY;
-            stage02.addChild(playerView02.anim0);
-            k += 1;
-        }
-        // 宝箱を最前面にするため
-        stage02.removeChild(goal02);
-        stage02.addChild(goal02);
-
-        console.log(gameController02.blockList)
-        console.log(gameController02.listNum)
-
-        switch (gameController02.blockList[gameController02.listNum]){
-            case "go_ahead":
-                if(j < 150){
-                    playerView02.goAhead();
-                    j += 1;
-                } else {
-                    j = 0;
-                    gameController02.listNum += 1;
-                }
-                break;
-
-            case "turn_right":
-                switch (playerView02.direction){
-                    case 0:
-                        playerView02.direction = 1;
-                        stage02.removeChild(playerView02.anim0);
-                        playerView02.anim1.x = playerView02.playerX
-                        playerView02.anim1.y = playerView02.playerY
-                        playerView02.anim1.play();
-                        stage02.addChild(playerView02.anim1);
-                        break;
-                    case 1:
-                        playerView02.direction = 2;
-                        stage02.removeChild(playerView02.anim1);
-                        playerView02.anim2.x = playerView02.playerX
-                        playerView02.anim2.y = playerView02.playerY
-                        playerView02.anim2.play();
-                        stage02.addChild(playerView02.anim2);
-                        break;
-                    case 2:
-                        playerView02.direction = 3;
-                        stage02.removeChild(playerView02.anim2);
-                        playerView02.anim3.x = playerView02.playerX
-                        playerView02.anim3.y = playerView02.playerY
-                        playerView02.anim3.play();
-                        stage02.addChild(playerView02.anim3);
-                        break;
-                    case 3:
-                        playerView02.direction = 0;
-                        stage02.removeChild(playerView02.anim3);
-                        playerView02.anim0.x = playerView02.playerX
-                        playerView02.anim0.y = playerView02.playerY
-                        playerView02.anim0.play();
-                        stage02.addChild(playerView02.anim0);
-                        break;
-                }
-                gameController02.listNum += 1;
-                break;
-
-            case "pick_up":
-                if(mapModel02.getState(playerModel02.x,playerModel02.y) == 3){
-                    //stage.removeChild(goal);
-                    //stage.addChild(goalScene);
-                    app.stage.removeChild(stage02);
-                    app.stage.addChild(clearScene);
-                }
-                gameController02.listNum += 1;
-                break;
-        }
+        gameControl(gameController02, stage02, goal02);
     }
 }
 
@@ -288,7 +152,81 @@ function onClick(workspace){
     }
 }
 
-function change(){
-    app.stage.removeChild(title);
-    app.stage.addChild(stage01);
+function gameControl(gameController,stage,goal){
+
+    if(k == 0){
+        stage.removeChild(gameController.playerView.player);
+        gameController.playerView.anim0.play();
+        gameController.playerView.anim0.x = gameController.playerView.playerX;
+        gameController.playerView.anim0.y = gameController.playerView.playerY;
+        stage.addChild(gameController.playerView.anim0);
+        k += 1;
+    }
+    // 宝箱を最前面にするため
+    stage.removeChild(goal);
+    stage.addChild(goal);
+
+    switch (gameController.blockList[gameController.listNum]){
+        case "go_ahead":
+            if(j < 150){
+                gameController.playerView.goAhead();
+                j += 1;
+            } else {
+                j = 0;
+                gameController.listNum += 1;
+            }
+            break;
+
+        case "turn_right":
+            switch (gameController.playerView.direction){
+                case 0:
+                    gameController.playerView.direction = 1;
+                    stage.removeChild(gameController.playerView.anim0);
+                    gameController.playerView.anim1.x = gameController.playerView.playerX
+                    gameController.playerView.anim1.y = gameController.playerView.playerY
+                    gameController.playerView.anim1.play();
+                    stage.addChild(gameController.playerView.anim1);
+                    break;
+                case 1:
+                    gameController.playerView.direction = 2;
+                    stage.removeChild(gameController.playerView.anim1);
+                    gameController.playerView.anim2.x = gameController.playerView.playerX
+                    gameController.playerView.anim2.y = gameController.playerView.playerY
+                    gameController.playerView.anim2.play();
+                    stage.addChild(gameController.playerView.anim2);
+                    break;
+                case 2:
+                    gameController.playerView.direction = 3;
+                    stage.removeChild(gameController.playerView.anim2);
+                    gameController.playerView.anim3.x = gameController.playerView.playerX
+                    gameController.playerView.anim3.y = gameController.playerView.playerY
+                    gameController.playerView.anim3.play();
+                    stage.addChild(gameController.playerView.anim3);
+                    break;
+                case 3:
+                    gameController.playerView.direction = 0;
+                    stage.removeChild(gameController.playerView.anim3);
+                    gameController.playerView.anim0.x = gameController.playerView.playerX
+                    gameController.playerView.anim0.y = gameController.playerView.playerY
+                    gameController.playerView.anim0.play();
+                    stage.addChild(gameController.playerView.anim0);
+                    break;
+            }
+            gameController.listNum += 1;
+            break;
+
+        case "pick_up":
+            if(gameController.mapModel.getState(gameController.playerModel.x,gameController.playerModel.y) == 3){
+                //stage.removeChild(goal);
+                //stage.addChild(goalScene);
+                app.stage.removeChild(stage);
+                app.stage.addChild(clearScene);
+                gameController.actionFlag = 0;
+                k = 0;
+                i = 0;
+            }
+            gameController.listNum += 1;
+            break;
+    }
 }
+
