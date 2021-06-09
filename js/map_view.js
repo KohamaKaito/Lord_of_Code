@@ -22,4 +22,13 @@ class MapView extends Object {
         //console.log("マップビュー")
         //ctx.drawImage(this.img, this.x, this.y, width, height);
     }
+
+    reset(src, width, height){
+        let image = new PIXI.Texture.from(src);
+        this.map = new PIXI.Sprite(image);
+        this.map.x = 0;
+        this.map.y = 0;
+        this.map.width = width;
+        this.map.height = height;
+    }
 }

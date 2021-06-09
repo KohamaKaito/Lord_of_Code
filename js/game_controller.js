@@ -1,29 +1,25 @@
 class GameController{
 
     // コンストラクタ
-    constructor(playerView, playerModel, mapView, mapModel) {
+    constructor(playerView, playerModel, mapView, mapModel, item, itemView) {
         this.playerView = playerView;
         this.playerModel = playerModel;
         this.mapView = mapView;
         this.mapModel = mapModel;
+        this.item = item;
+        this.itemView = itemView;
         this.stageNumber
         this.numTarget
 
         this.actionFlag = 0;
         this.blockList;
+        this.listNum = 0;
+
     }
 
     setStageInfo(stageNumber, numTarget){
         this.stageNumber = stageNumber;
         this.numTarget = numTarget;
-    }
-
-    // すべてのViewerに描画を命令する関数
-    drawAll(){
-        /*
-        this.mapView.draw();
-        this.playerView.draw();
-        */
     }
 
     // ModelとViewに前進を命令する関数
@@ -43,15 +39,17 @@ class GameController{
     }
 
     pickUpPlayer(){
-        if(this.mapModel.getState(playerModel.x, playerModel.y) == 3){
+        if(this.mapModel.getState(playerModel.x, playerModel.y) == MAP_ITEM){
             this.playerModel.pickUpItem()
-            // this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.mapState.state.CAN_MOVE)
+            this.item.addOwned();
+            this.itemView.setOwned(this.item.owned);
+            //this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.CAN_MOVE);
         }else{
-            // alert("There is no item.")
+            alert("There is no item.")
         }
 
         if(this.playerModel.numItem == this.numTarget){
-            // alert("STAGE " + this.stageNumber + " CLEAR!!")
+            alert("STAGE " + this.stageNumber + " CLEAR!!")
             this.playerModel.numItem = 0;
         }
     }
@@ -114,5 +112,16 @@ class GameController{
         }
     }
 
-
+    stageSet(stageNum){
+        switch (stageNum){
+            case 1:
+                playerView.player.x
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    }
 }
+
