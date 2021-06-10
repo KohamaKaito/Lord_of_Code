@@ -38,6 +38,7 @@ class GameController{
         // this.playerView.turnRight(this.playerModel.getDirection());
     }
 
+
     pickUpPlayer(){
         if(this.mapModel.getState(this.playerModel.x, this.playerModel.y) == MAP_ITEM){
             this.playerModel.pickUpItem()

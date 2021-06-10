@@ -9,6 +9,7 @@ let app = new PIXI.Application({
 gameWindow.appendChild(app.view);
 
 
+
 // タイトル画面の設定
 const titleScene = new PIXI.Container();
 let titleText = new PIXI.Text("タイトル \n \n START");
@@ -23,6 +24,7 @@ function toGame(){
     app.stage.removeChild(titleScene);
     app.stage.addChild(stage01);
 }
+
 
 
 // クリア画面の設定
@@ -42,9 +44,6 @@ function toNext(){
 
 
 
-let stageNum = 1;
-
-
 // ステージ１の設定
 const stage01 = new PIXI.Container();
 let playerModel01 = new Player(3,4,0);
@@ -59,7 +58,6 @@ stage01.addChild(itemView01.needed_text)
 stage01.addChild(itemView01.owned_text)
 let gameController01 = new GameController(playerView01, playerModel01, mapView01, mapModel01, item01, itemView01);
 gameController01.setStageInfo(1, 1) //ステージ１、必要取得アイテム数１
-// ステージ１の生成
 mapModel01.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
@@ -78,6 +76,7 @@ goal01.height = GameWindowHeight/8;
 stage01.addChild(goal01);
 
 
+
 // ステージ２の設定
 const stage02 = new PIXI.Container();
 let playerModel02 = new Player(3,4,0);
@@ -92,7 +91,6 @@ stage02.addChild(itemView02.needed_text)
 stage02.addChild(itemView02.owned_text)
 let gameController02 = new GameController(playerView02, playerModel02, mapView02, mapModel02, item02, itemView02);
 gameController02.setStageInfo(1, 1) //ステージ１、必要取得アイテム数１
-// ステージ２の生成
 mapModel02.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM,        MAP_CAN_NOT_MOVE],
@@ -113,24 +111,16 @@ stage02.addChild(goal02);
 
 
 
-
-
-
-
-
-
-
+// メインループ
+let stageNum = 1;
 let k = 0;
 let j = 0;
 let i = 0;
 let direction = 0;
 
-
-// フレーム更新時の処理(ループ処理)を追加する
 app.ticker.add(animate);
 let amountTime = 0;
 
-// 処理の定義
 function animate(delta) {
     if(gameController01.actionFlag == 1){
         gameControl(gameController01, stage01, goal01);
@@ -141,20 +131,9 @@ function animate(delta) {
     }
 }
 
-function onClick(workspace){
-    switch (stageNum){
-        case 1:
-            gameController01.doCode(workspace);
-            break
-        case 2:
-            gameController02.doCode(workspace);
-            break
-    }
-}
-
 function gameControl(gameController,stage,goal){
-
     if(k == 0){
+        // アニメーションをスタート(1回のみ実行)
         stage.removeChild(gameController.playerView.player);
         gameController.playerView.anim0.play();
         gameController.playerView.anim0.x = gameController.playerView.playerX;
@@ -162,10 +141,10 @@ function gameControl(gameController,stage,goal){
         stage.addChild(gameController.playerView.anim0);
         k += 1;
     }
-    // 宝箱を最前面にするため
+    // 宝箱を最前面にする
     stage.removeChild(goal);
     stage.addChild(goal);
-
+    // ブロックリストを1つずつ実行
     switch (gameController.blockList[gameController.listNum]){
         case "go_ahead":
             if(j < 150){
@@ -178,6 +157,7 @@ function gameControl(gameController,stage,goal){
             break;
 
         case "turn_right":
+            //gameController.playerView.turn_right(stage);
             switch (gameController.playerView.direction){
                 case 0:
                     gameController.playerView.direction = 1;
@@ -230,3 +210,14 @@ function gameControl(gameController,stage,goal){
     }
 }
 
+
+function onClick(workspace){
+    switch (stageNum){
+        case 1:
+            gameController01.doCode(workspace);
+            break
+        case 2:
+            gameController02.doCode(workspace);
+            break
+    }
+}
