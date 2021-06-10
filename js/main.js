@@ -55,7 +55,7 @@ stage01.addChild(mapView01.map);
 let playerView01 = new PlayerView('images/player0_0.png', GameWindowWidth, GameWindowHeight);
 stage01.addChild(playerView01.player);
 let itemCount01 = new ItemCount(0, 1);
-let itemCountView01 = new ItemCountView(0,1);
+let itemCountView01 = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
 stage01.addChild(itemCountView01.needed_text)
 stage01.addChild(itemCountView01.owned_text)
 let itemView01 = new ItemView("images/goal.png", GameWindowWidth, GameWindowHeight);
@@ -82,7 +82,7 @@ stage02.addChild(mapView02.map);
 let playerView02 = new PlayerView('images/player0_0.png', GameWindowWidth, GameWindowHeight);
 stage02.addChild(playerView02.player);
 let itemCount02 = new ItemCount(0, 1);
-let itemCountView02 = new ItemCountView(0,1);
+let itemCountView02 = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
 stage02.addChild(itemCountView02.needed_text)
 stage02.addChild(itemCountView02.owned_text)
 let itemView02 = new ItemView('images/goal.png', GameWindowWidth, GameWindowHeight);
