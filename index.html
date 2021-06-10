@@ -39,7 +39,9 @@
             <!-- ワークスペースのエリア -->
             <div id="blocklyDiv" ></div>
             <!-- 実行ボタンの定義 -->
-            <button id="run_button" onclick="onClick(workspace)">コードの実行</button>
+            <button id="run_button" onclick="onClickRun(workspace)">コードの実行</button>
+            <!-- リセットボタンの定義 -->
+            <button id="reset_button" onclick="onClickReset()">リセット</button>
         </div><!-- blockly_container -->
 
         <script type="text/javascript" src="js/main.js"></script>
