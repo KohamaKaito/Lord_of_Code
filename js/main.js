@@ -54,11 +54,13 @@ let mapView01 = new MapView('images/map01.png', GameWindowWidth, GameWindowHeigh
 stage01.addChild(mapView01.map);
 let playerView01 = new PlayerView('images/player0_0.png', GameWindowWidth, GameWindowHeight);
 stage01.addChild(playerView01.player);
-let itemCount01 = new Item(0, 1);
-let itemCountView01 = new ItemView(0,1);
-stage01.addChild(itemCount01.needed_text)
+let itemCount01 = new ItemCount(0, 1);
+let itemCountView01 = new ItemCountView(0,1);
+stage01.addChild(itemCountView01.needed_text)
 stage01.addChild(itemCountView01.owned_text)
-let gameController01 = new GameController(playerView01, playerModel01, mapView01, mapModel01, itemCount01, itemCountView01);
+let itemView01 = new ItemView("images/goal.png", GameWindowWidth, GameWindowHeight);
+stage01.addChild(itemView01.item);
+let gameController01 = new GameController(playerView01, playerModel01, mapView01, mapModel01, itemView01, itemCount01, itemCountView01);
 gameController01.setStageInfo(1, 1) //ステージ１、必要取得アイテム数１
 mapModel01.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
@@ -69,13 +71,6 @@ mapModel01.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
 ]
-let goalImage01 = new PIXI.Texture.from("images/goal.png");
-goal01 = new PIXI.Sprite(goalImage01);
-goal01.x = GameWindowWidth / 2.85;
-goal01.y = GameWindowHeight / 1.75;
-goal01.width = GameWindowWidth/8;
-goal01.height = GameWindowHeight/8;
-stage01.addChild(goal01);
 
 
 
@@ -91,7 +86,9 @@ let itemCount02 = new ItemCount(0, 1);
 let itemCountView02 = new ItemCountView(0,1);
 stage02.addChild(itemCountView02.needed_text)
 stage02.addChild(itemCountView02.owned_text)
-let gameController02 = new GameController(playerView02, playerModel02, mapView02, mapModel02, itemCount02, itemCountView02);
+let itemView02 = new ItemView('images/goal.png', GameWindowWidth, GameWindowHeight);
+stage02.addChild(itemView02.item);
+let gameController02 = new GameController(playerView02, playerModel02, mapView02, mapModel02, itemView02, itemCount02, itemCountView02);
 gameController02.setStageInfo(1, 1) //ステージ１、必要取得アイテム数１
 mapModel02.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
@@ -102,13 +99,6 @@ mapModel02.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
 ]
-let goalImage02 = new PIXI.Texture.from("images/goal.png");
-goal02 = new PIXI.Sprite(goalImage02);
-goal02.x = GameWindowWidth / 6.5;
-goal02.y = GameWindowHeight / 1.9;
-goal02.width = GameWindowWidth/8;
-goal02.height = GameWindowHeight/8;
-stage02.addChild(goal02);
 
 
 
@@ -126,15 +116,15 @@ let amountTime = 0;
 
 function animate(delta) {
     if(gameController01.actionFlag == 1){
-        gameControl(gameController01, stage01, goal01);
+        gameControl(gameController01, stage01);
     }
 
     if(gameController02.actionFlag == 1){
-        gameControl(gameController02, stage02, goal02);
+        gameControl(gameController02, stage02);
     }
 }
 
-function gameControl(gameController,stage,goal){
+function gameControl(gameController,stage){
     if(k == 0){
         // アニメーションをスタート(1回のみ実行)
         stage.removeChild(gameController.playerView.player);
@@ -145,8 +135,8 @@ function gameControl(gameController,stage,goal){
         k += 1;
     }
     // 宝箱を最前面にする
-    stage.removeChild(goal);
-    stage.addChild(goal);
+    stage.removeChild(gameController.itemView.item);
+    stage.addChild(gameController.itemView.item);
     // ブロックリストを1つずつ実行
     switch (gameController.blockList[gameController.listNum]){
         case "go_ahead":
