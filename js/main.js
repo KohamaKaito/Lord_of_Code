@@ -58,7 +58,7 @@ let itemCount01 = new ItemCount(0, 1);
 let itemCountView01 = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
 stage01.addChild(itemCountView01.needed_text)
 stage01.addChild(itemCountView01.owned_text)
-let itemView01 = new ItemView("images/goal.png", GameWindowWidth, GameWindowHeight);
+let itemView01 = new ItemView("images/goal.png", GameWindowWidth, GameWindowHeight, 2.85, 1.75);
 stage01.addChild(itemView01.item);
 let gameController01 = new GameController(playerView01, playerModel01, mapView01, mapModel01, itemView01, itemCount01, itemCountView01);
 mapModel01.map =  [
@@ -85,7 +85,7 @@ let itemCount02 = new ItemCount(0, 1);
 let itemCountView02 = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
 stage02.addChild(itemCountView02.needed_text)
 stage02.addChild(itemCountView02.owned_text)
-let itemView02 = new ItemView('images/goal.png', GameWindowWidth, GameWindowHeight);
+let itemView02 = new ItemView('images/goal.png', GameWindowWidth, GameWindowHeight,6.5,1.9);
 stage02.addChild(itemView02.item);
 let gameController02 = new GameController(playerView02, playerModel02, mapView02, mapModel02, itemView02, itemCount02, itemCountView02);
 mapModel02.map =  [
