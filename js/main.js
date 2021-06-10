@@ -16,6 +16,7 @@ let titleText = new PIXI.Text("タイトル \n \n START");
 titleText.interactive = true;
 titleText.buttonMode = true;
 titleText.on('click', toGame);
+titleText.on('touchstart', toGame);
 titleText.x = GameWindowWidth/2 - titleText.width/2;
 titleText.y = GameWindowWidth/2 - titleText.height/2;
 titleScene.addChild(titleText);
@@ -35,6 +36,7 @@ clearText.buttonMode = true;
 clearText.x = GameWindowWidth/2 - titleText.width/2;
 clearText.y = GameWindowHeight/2 - titleText.height/2;
 clearText.on('click', toNext);
+clearText.on('touchstart', toNext);
 clearScene.addChild(clearText);
 function toNext(){
     app.stage.removeChild(clearScene);
@@ -213,13 +215,24 @@ function gameControl(gameController,stage,goal){
 
 
 
-function onClick(workspace){
+function onClickRun(workspace){
     switch (stageNum){
         case 1:
             gameController01.doCode(workspace);
             break
         case 2:
             gameController02.doCode(workspace);
+            break
+    }
+}
+
+function onClickReset(){
+    switch (stageNum){
+        case 1:
+            gameController01 = new GameController(playerView01, playerModel01, mapView01, mapModel01, item01, itemView01);
+            break
+        case 2:
+            gameController02 = new GameController(playerView02, playerModel02, mapView02, mapModel02, item02, itemView02);
             break
     }
 }

@@ -20,7 +20,14 @@
 
 #run_button{
     height: 30%;
-    width: 100%;
+    width: 50%;
+}
+
+#reset_button{
+    height: 30%;
+    width: 50%;
+    float: left;
+    background-color: gray;
 }
 
 /**
