@@ -46,11 +46,11 @@ class GameController{
             this.itemView.setOwned(this.item.owned);
             //this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.CAN_MOVE);
         }else{
-            alert("There is no item.")
+            // alert("There is no item.")
         }
 
         if(this.playerModel.numItem == this.numTarget){
-            alert("STAGE " + this.stageNumber + " CLEAR!!")
+            // alert("STAGE " + this.stageNumber + " CLEAR!!")
             this.playerModel.numItem = 0;
         }
     }
