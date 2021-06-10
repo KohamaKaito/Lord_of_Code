@@ -118,6 +118,7 @@ let j = 0;
 let i = 0;
 let direction = 0;
 
+
 app.ticker.add(animate);
 let amountTime = 0;
 
@@ -209,6 +210,7 @@ function gameControl(gameController,stage,goal){
             break;
     }
 }
+
 
 
 function onClick(workspace){
