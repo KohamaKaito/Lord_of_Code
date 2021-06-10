@@ -3,7 +3,7 @@ class Player{
     constructor(x, y, direction){
         this.x = x;
         this.y = y;
-        this.direction = direction; 
+        this.direction = direction;
         this.numItem = 0;
         /*
         directionはプレイヤーの向いている方向を表す
@@ -61,7 +61,7 @@ class Player{
                 break;
         }
     }
-    
+
     pickUpItem(){
         this.numItem += 1;
     }

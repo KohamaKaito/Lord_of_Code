@@ -10,19 +10,16 @@ class GameController{
         this.itemView = itemView;
         this.stageNumber
         this.numTarget
+
+        this.actionFlag = 0;
+        this.blockList;
+        this.listNum = 0;
+
     }
 
     setStageInfo(stageNumber, numTarget){
         this.stageNumber = stageNumber;
         this.numTarget = numTarget;
-    }
-
-    // すべてのViewerに描画を命令する関数
-    drawAll(){
-        /*
-        this.mapView.draw();
-        this.playerView.draw();
-        */
     }
 
     // ModelとViewに前進を命令する関数
@@ -38,33 +35,38 @@ class GameController{
     // ModelとViewに右折を命令する関数
     turnPlayer(){
         this.playerModel.turnRight();
-        this.playerView.turnRight(this.playerModel.getDirection());
+        // this.playerView.turnRight(this.playerModel.getDirection());
     }
 
+
     pickUpPlayer(){
-        if(this.mapModel.getState(playerModel.x, playerModel.y) == MAP_ITEM){
-            this.playerModel.pickUpItem();
+        if(this.mapModel.getState(this.playerModel.x, this.playerModel.y) == MAP_ITEM){
+            this.playerModel.pickUpItem()
             this.item.addOwned();
             this.itemView.setOwned(this.item.owned);
-            this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.mapState.state.CAN_MOVE);
+            //this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.CAN_MOVE);
         }else{
-            alert("There is no item.")
+            // alert("There is no item.")
         }
 
         if(this.playerModel.numItem == this.numTarget){
-            alert("STAGE " + this.stageNumber + " CLEAR!!")
+            // alert("STAGE " + this.stageNumber + " CLEAR!!")
             this.playerModel.numItem = 0;
         }
     }
 
     doCode(workspace){
+        // アクションフラグを立てる0->1
+        this.actionFlag = 1;
+        console.log("this.actionFlag = 1;");
+
         //blocklyからブロックリストを取得
-        var block_list = Blockly.JavaScript.workspaceToCode(workspace).split("\n");
-        
+        this.blockList = Blockly.JavaScript.workspaceToCode(workspace).split("\n");
+
         //ブロック毎にプログラムを実行
         try{
-            for(const block of block_list){
-            //ブロック毎に設定されたアクションはここに記述！！！！！！
+            for(const block of this.blockList){
+                //ブロック毎に設定されたアクションはここに記述！！！！！！
                 switch (block){
                     case "go_ahead":
                         //「まっすぐ進む」のアクション
@@ -89,44 +91,38 @@ class GameController{
     canMove(){
         switch (this.playerModel.getDirection()){
             case 0:
-                if(this.mapModel.getState(playerModel.x,playerModel.y-1) != MAP_CAN_MOVE){
+                if(this.mapModel.getState(this.playerModel.x,this.playerModel.y-1) != 2){
                     return true;
                 }
                 break;
             case 1:
-                if(this.mapModel.getState(playerModel.x+1,playerModel.y) != MAP_CAN_MOVE){
+                if(this.mapModel.getState(this.playerModel.x+1,this.playerModel.y) != 2){
                     return true;
                 }
                 break;
             case 2:
-                if(this.mapModel.getState(playerModel.x,playerModel.y+1) != MAP_CAN_MOVE){
+                if(this.mapModel.getState(this.playerModel.x,this.playerModel.y+1) != 2){
                     return true;
                 }
                 break;
             case 3:
-                if(this.mapModel.getState(playerModel.x-1,playerModel.y) != MAP_CAN_MOVE){
+                if(this.mapModel.getState(this.playerModel.x-1,this.playerModel.y) != 2){
                     return true;
                 }
                 break;
         }
     }
+
+    stageSet(stageNum){
+        switch (stageNum){
+            case 1:
+                playerView01.player.x
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
