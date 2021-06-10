@@ -10,16 +10,10 @@ class GameController{
         this.itemView = itemView;
         this.itemCount = itemCount;
         this.itemCountView = itemCountView;
-        this.stageNumber
 
         this.actionFlag = 0;
         this.blockList;
         this.listNum = 0;
-
-    }
-
-    setStageInfo(stageNumber){
-        this.stageNumber = stageNumber;
     }
 
     // ModelとViewに前進を命令する関数
