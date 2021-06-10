@@ -154,6 +154,7 @@ function gameControl(gameController,stage,goal){
                 gameController.playerView.goAhead();
                 j += 1;
             } else {
+                const test_int = 0;
                 j = 0;
                 gameController.listNum += 1;
             }
@@ -213,8 +214,68 @@ function gameControl(gameController,stage,goal){
     }
 }
 
+//現在実行中のアニメーションをコンテナから取り除く関数
+function resetAnimChild(stage, playerView) {
+    if(stage.children.includes(playerView.anim0)) {
+        stage.removeChild(playerView.anim0)
+    } else if(stage.children.includes(playerView.anim1)){
+        stage.removeChild(playerView.anim1) 
+    } else if(stage.children.includes(playerView.anim2)){
+        stage.removeChild(playerView.anim2) 
+    } else if(stage.children.includes(playerView.anim3)){
+        stage.removeChild(playerView.anim3) 
+    }    
+}
+
+/*
+全ステージで共通のリセットする関数
+goal（宝箱）はgameControllerの中に入れてすっきりさせたい
+
+ステージ毎の違いがある場合は引数を増やして対応
+*/
+function initializeStage(stage, gameController, goal){
+
+    //アニメーション中の騎士くんをコンテナ（stage）から取り除く
+    this.resetAnimChild(stage,gameController.playerView)
+
+    //ほか、立ち止まってる騎士くん、所持アイテム数表示、アイテムなどをコンテナから取り除く
+    stage.removeChild(gameController.playerView.player, gameController.itemView.owned_text, goal) 
 
 
+    //gameControllerの中で、初期化が必要なものを初期化
+    //ここの初期化値にステージ毎の違いがある場合は引数を増やすのもありかも
+    gameController.playerModel = new Player(3,4,0);
+    gameController.playerView = new PlayerView('images/player0_0.png', GameWindowWidth, GameWindowHeight);
+    gameController.item = new Item(0,1)
+
+
+    //上で取り除いた、立ち止まってる騎士くん、所持アイテム数表示、アイテムなどを改めて描画
+    //gameControllerを初期化した後のタイミングでこれをしないと、初期化前の座標でまた描画してしまう
+    stage.addChild(gameController.playerView.player, gameController.itemView.owned_text, goal);
+
+    //アニメーション処理に用いるlistNumとactionFlagを初期化
+    gameController.listNum = 0
+    gameController.actionFlag = 0
+}
+
+//リセットボタンを押した時の挙動
+function onClickReset(){
+    //k（アニメーション中か判断する変数？）とj（前進アニメーションの長さを制御する変数？）を初期化
+    k = 0;
+    j = 0;
+
+    switch (stageNum){
+        case 1:
+            initializeStage(stage01, gameController01, goal01)
+            break
+            
+        case 2:
+            initializeStage(stage02, gameController02, goal02);
+            break
+    }
+}
+
+//実行ボタンを押した時の挙動
 function onClickRun(workspace){
     switch (stageNum){
         case 1:
@@ -222,17 +283,6 @@ function onClickRun(workspace){
             break
         case 2:
             gameController02.doCode(workspace);
-            break
-    }
-}
-
-function onClickReset(){
-    switch (stageNum){
-        case 1:
-            gameController01 = new GameController(playerView01, playerModel01, mapView01, mapModel01, item01, itemView01);
-            break
-        case 2:
-            gameController02 = new GameController(playerView02, playerModel02, mapView02, mapModel02, item02, itemView02);
             break
     }
 }
