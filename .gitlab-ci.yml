@@ -4,7 +4,7 @@ stages:
 deploy:
   type: deploy
   script:
-    - cp -r -u * $PROJECT_DIR
+    - cp -r * $PROJECT_DIR
     - cd $PROJECT_DIR
     - docker-compose down
     - docker-compose build
