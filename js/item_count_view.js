@@ -1,4 +1,4 @@
-class ItemView {
+class ItemCountView {
     constructor(owned, needed) {
         this.textStyle = new PIXI.TextStyle({
             breakWords: true,

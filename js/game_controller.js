@@ -6,10 +6,9 @@ class GameController{
         this.playerModel = playerModel;
         this.mapView = mapView;
         this.mapModel = mapModel;
-        this.item = item;
-        this.itemView = itemView;
+        this.itemCount = itemCount;
+        this.itemCountView = itemCountView;
         this.stageNumber
-        this.numTarget
 
         this.actionFlag = 0;
         this.blockList;
@@ -17,9 +16,8 @@ class GameController{
 
     }
 
-    setStageInfo(stageNumber, numTarget){
+    setStageInfo(stageNumber){
         this.stageNumber = stageNumber;
-        this.numTarget = numTarget;
     }
 
     // ModelとViewに前進を命令する関数
@@ -47,11 +45,6 @@ class GameController{
             //this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.CAN_MOVE);
         }else{
             // alert("There is no item.")
-        }
-
-        if(this.playerModel.numItem == this.numTarget){
-            // alert("STAGE " + this.stageNumber + " CLEAR!!")
-            this.playerModel.numItem = 0;
         }
     }
 

@@ -54,11 +54,11 @@ let mapView01 = new MapView('images/map01.png', GameWindowWidth, GameWindowHeigh
 stage01.addChild(mapView01.map);
 let playerView01 = new PlayerView('images/player0_0.png', GameWindowWidth, GameWindowHeight);
 stage01.addChild(playerView01.player);
-let item01 = new Item(0, 1);
-let itemView01 = new ItemView(0,1);
-stage01.addChild(itemView01.needed_text)
-stage01.addChild(itemView01.owned_text)
-let gameController01 = new GameController(playerView01, playerModel01, mapView01, mapModel01, item01, itemView01);
+let itemCount01 = new Item(0, 1);
+let itemCountView01 = new ItemView(0,1);
+stage01.addChild(itemCount01.needed_text)
+stage01.addChild(itemCountView01.owned_text)
+let gameController01 = new GameController(playerView01, playerModel01, mapView01, mapModel01, itemCount01, itemCountView01);
 gameController01.setStageInfo(1, 1) //ステージ１、必要取得アイテム数１
 mapModel01.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
@@ -87,11 +87,11 @@ let mapView02 = new MapView('images/map02.png', GameWindowWidth, GameWindowHeigh
 stage02.addChild(mapView02.map);
 let playerView02 = new PlayerView('images/player0_0.png', GameWindowWidth, GameWindowHeight);
 stage02.addChild(playerView02.player);
-let item02 = new Item(0, 1);
-let itemView02 = new ItemView(0,1);
-stage02.addChild(itemView02.needed_text)
-stage02.addChild(itemView02.owned_text)
-let gameController02 = new GameController(playerView02, playerModel02, mapView02, mapModel02, item02, itemView02);
+let itemCount02 = new ItemCount(0, 1);
+let itemCountView02 = new ItemCountView(0,1);
+stage02.addChild(itemCountView02.needed_text)
+stage02.addChild(itemCountView02.owned_text)
+let gameController02 = new GameController(playerView02, playerModel02, mapView02, mapModel02, itemCount02, itemCountView02);
 gameController02.setStageInfo(1, 1) //ステージ１、必要取得アイテム数１
 mapModel02.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],

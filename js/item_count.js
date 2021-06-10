@@ -1,4 +1,4 @@
-class Item {
+class ItemCount {
     constructor(owned, needed) {
         this.owned = owned;
         this.needed = needed;
