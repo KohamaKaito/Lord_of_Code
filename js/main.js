@@ -16,6 +16,7 @@ let titleText = new PIXI.Text("タイトル \n \n START");
 titleText.interactive = true;
 titleText.buttonMode = true;
 titleText.on('click', toGame);
+titleText.on('touchstart', toGame) 
 titleText.x = GameWindowWidth/2 - titleText.width/2;
 titleText.y = GameWindowWidth/2 - titleText.height/2;
 titleScene.addChild(titleText);
@@ -35,6 +36,7 @@ clearText.buttonMode = true;
 clearText.x = GameWindowWidth/2 - titleText.width/2;
 clearText.y = GameWindowHeight/2 - titleText.height/2;
 clearText.on('click', toNext);
+clearText.on('touchstart', toNext);
 clearScene.addChild(clearText);
 function toNext(){
     app.stage.removeChild(clearScene);
