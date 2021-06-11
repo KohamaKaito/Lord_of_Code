@@ -41,11 +41,19 @@ clearScene.addChild(clearText);
 function toNext(){
     app.stage.removeChild(clearScene);
     if(stageNum == stageList.length){
+        //最後のステージならStageNumを初期化したあと、タイトル画面に遷移
         stageNum = 1;
         app.stage.addChild(titleScene);
+        //クリア画面用のテキストを初期化
+        clearText.text = "クリア！！ \n Next Stage"
     } else {
+        //次のステージへ遷移
         stageNum += 1;
         app.stage.addChild(stageList[stageNum - 1]);
+        if(stageNum == stageList.length){
+            //最終クリア画面用のテキストを設定
+            clearText.text = "完全制覇！！ \n Return to Title"
+        }
     }
 }
 
