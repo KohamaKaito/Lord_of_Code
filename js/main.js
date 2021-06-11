@@ -264,7 +264,7 @@ function initializeStage(stage, gameController){
 //要は全ステージでリセットボタン押すのと同じ
 //これがないと、再度ゲームを開始した際に、クリア時の進行状況のままになる
 function allInitialize(){
-    for(let num = 0; i < stageList.length; i++){
+    for(let num = 0; num < stageList.length; num++){
         initializeStage(stageList[num], gameControllerList[num])
     }
 }
