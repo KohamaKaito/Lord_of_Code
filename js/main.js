@@ -40,8 +40,22 @@ clearText.on('touchstart', toNext);
 clearScene.addChild(clearText);
 function toNext(){
     app.stage.removeChild(clearScene);
-    app.stage.addChild(stage02);
-    stageNum += 1;
+    if(stageNum == stageList.length){
+        //最後のステージならStageNumの初期化とゲーム進行状況をリセットし、タイトル画面に遷移
+        stageNum = 1;
+        allInitialize()
+        app.stage.addChild(titleScene);
+        //クリア画面用のテキストを初期化
+        clearText.text = "クリア！！ \n Next Stage"
+    } else {
+        //次のステージへ遷移
+        stageNum += 1;
+        app.stage.addChild(stageList[stageNum - 1]);
+        if(stageNum == stageList.length){
+            //最終クリア画面用のテキストを設定
+            clearText.text = "完全制覇！！ \n Return to Title"
+        }
+    }
 }
 
 
@@ -99,6 +113,8 @@ mapModel02.map =  [
 ]
 
 
+let stageList = [stage01, stage02]
+let gameControllerList = [gameController01, gameController02] 
 
 
 // メインループ
@@ -242,6 +258,15 @@ function initializeStage(stage, gameController){
     //アニメーション処理に用いるlistNumとactionFlagを初期化
     gameController.listNum = 0
     gameController.actionFlag = 0
+}
+
+//title画面に戻る時に用いる、全てのステージの進行状況をリセットする関数
+//要は全ステージでリセットボタン押すのと同じ
+//これがないと、再度ゲームを開始した際に、クリア時の進行状況のままになる
+function allInitialize(){
+    for(let num = 0; i < stageList.length; i++){
+        initializeStage(stageList[num], gameControllerList[num])
+    }
 }
 
 //リセットボタンを押した時の挙動
