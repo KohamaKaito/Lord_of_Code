@@ -40,8 +40,8 @@ clearText.on('touchstart', toNext);
 clearScene.addChild(clearText);
 function toNext(){
     app.stage.removeChild(clearScene);
-    app.stage.addChild(stage02);
     stageNum += 1;
+    app.stage.addChild(stageList[stageNum - 1]);
 }
 
 
@@ -99,6 +99,7 @@ mapModel02.map =  [
 ]
 
 
+let stageList = [stage01, stage02]
 
 
 // メインループ
