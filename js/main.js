@@ -217,29 +217,27 @@ function resetAnimChild(stage, playerView) {
 
 /*
 全ステージで共通のリセットする関数
-goal（宝箱）はgameControllerの中に入れてすっきりさせたい
-
-ステージ毎の違いがある場合は引数を増やして対応
+ステージ毎の違いがある場合は引数を増やして対応できそう
 */
-function initializeStage(stage, gameController, goal){
+function initializeStage(stage, gameController){
 
     //アニメーション中の騎士くんをコンテナ（stage）から取り除く
     this.resetAnimChild(stage,gameController.playerView)
 
     //ほか、立ち止まってる騎士くん、所持アイテム数表示、アイテムなどをコンテナから取り除く
-    stage.removeChild(gameController.playerView.player, gameController.itemView.owned_text, goal) 
+    stage.removeChild(gameController.playerView.player, gameController.itemCountView.owned_text, gameController.itemView.item) 
 
 
     //gameControllerの中で、初期化が必要なものを初期化
     //ここの初期化値にステージ毎の違いがある場合は引数を増やすのもありかも
     gameController.playerModel = new Player(3,4,0);
     gameController.playerView = new PlayerView('images/player0_0.png', GameWindowWidth, GameWindowHeight);
-    gameController.item = new Item(0,1)
+    gameController.itemCount = new ItemCount(0,1)
 
 
     //上で取り除いた、立ち止まってる騎士くん、所持アイテム数表示、アイテムなどを改めて描画
     //gameControllerを初期化した後のタイミングでこれをしないと、初期化前の座標でまた描画してしまう
-    stage.addChild(gameController.playerView.player, gameController.itemView.owned_text, goal);
+    stage.addChild(gameController.playerView.player, gameController.itemCountView.owned_text, gameController.itemView.item);
 
     //アニメーション処理に用いるlistNumとactionFlagを初期化
     gameController.listNum = 0
@@ -254,11 +252,11 @@ function onClickReset(){
 
     switch (stageNum){
         case 1:
-            initializeStage(stage01, gameController01, goal01)
+            initializeStage(stage01, gameController01)
             break
             
         case 2:
-            initializeStage(stage02, gameController02, goal02);
+            initializeStage(stage02, gameController02);
             break
     }
 }
