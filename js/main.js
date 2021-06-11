@@ -158,7 +158,6 @@ function gameControl(gameController,stage){
                 gameController.playerView.goAhead();
                 j += 1;
             } else {
-                const test_int = 0;
                 j = 0;
                 gameController.listNum += 1;
             }
@@ -216,6 +215,20 @@ function gameControl(gameController,stage){
             gameController.listNum += 1;
             break;
     }
+}
+
+//現在実行中のアニメーションを停止する関数(未使用)
+//modelとview統合後に使いたい
+function stopAnimChild(stage, playerView) {
+    if(stage.children.includes(playerView.anim0)) {
+        playerView.anim0.stop();
+    } else if(stage.children.includes(playerView.anim1)){
+        playerView.anim1.stop();
+    } else if(stage.children.includes(playerView.anim2)){
+        playerView.anim2.stop();
+    } else if(stage.children.includes(playerView.anim3)){
+        playerView.anim3.stop();
+    }    
 }
 
 //現在実行中のアニメーションをコンテナから取り除く関数
