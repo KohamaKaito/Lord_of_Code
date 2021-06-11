@@ -41,8 +41,9 @@ clearScene.addChild(clearText);
 function toNext(){
     app.stage.removeChild(clearScene);
     if(stageNum == stageList.length){
-        //最後のステージならStageNumを初期化したあと、タイトル画面に遷移
+        //最後のステージならStageNumの初期化とゲーム進行状況をリセットし、タイトル画面に遷移
         stageNum = 1;
+        allInitialize()
         app.stage.addChild(titleScene);
         //クリア画面用のテキストを初期化
         clearText.text = "クリア！！ \n Next Stage"
@@ -113,6 +114,7 @@ mapModel02.map =  [
 
 
 let stageList = [stage01, stage02]
+let gameControllerList = [gameController01, gameController02] 
 
 
 // メインループ
@@ -256,6 +258,15 @@ function initializeStage(stage, gameController){
     //アニメーション処理に用いるlistNumとactionFlagを初期化
     gameController.listNum = 0
     gameController.actionFlag = 0
+}
+
+//title画面に戻る時に用いる、全てのステージの進行状況をリセットする関数
+//要は全ステージでリセットボタン押すのと同じ
+//これがないと、再度ゲームを開始した際に、クリア時の進行状況のままになる
+function allInitialize(){
+    for(let num = 0; i < stageList.length; i++){
+        initializeStage(stageList[num], gameControllerList[num])
+    }
 }
 
 //リセットボタンを押した時の挙動
