@@ -249,6 +249,7 @@ function initializeStage(stage, gameController){
     gameController.playerModel = new Player(3,4,0);
     gameController.playerView = new PlayerView('images/player0_0.png', GameWindowWidth, GameWindowHeight);
     gameController.itemCount = new ItemCount(0,1)
+    gameController.itemCountView = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
 
 
     //上で取り除いた、立ち止まってる騎士くん、所持アイテム数表示、アイテムなどを改めて描画
