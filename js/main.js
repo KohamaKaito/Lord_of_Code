@@ -40,8 +40,13 @@ clearText.on('touchstart', toNext);
 clearScene.addChild(clearText);
 function toNext(){
     app.stage.removeChild(clearScene);
-    stageNum += 1;
-    app.stage.addChild(stageList[stageNum - 1]);
+    if(stageNum == stageList.length){
+        stageNum = 1;
+        app.stage.addChild(titleScene);
+    } else {
+        stageNum += 1;
+        app.stage.addChild(stageList[stageNum - 1]);
+    }
 }
 
 
