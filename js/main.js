@@ -119,103 +119,14 @@ let gameControllerList = [gameController01, gameController02]
 
 // メインループ
 let stageNum = 1;
-let k = 0;
-let j = 0;
-let i = 0;
+//let k = 0;
+//let j = 0;
+//let i = 0;
 let direction = 0;
 
 
-app.ticker.add(animate);
-let amountTime = 0;
 
-function animate(delta) {
-    if(gameController01.actionFlag == 1){
-        gameControl(gameController01, stage01);
-    }
 
-    if(gameController02.actionFlag == 1){
-        gameControl(gameController02, stage02);
-    }
-}
-
-function gameControl(gameController,stage){
-    if(k == 0){
-        // アニメーションをスタート(1回のみ実行)
-        stage.removeChild(gameController.playerView.player);
-        gameController.playerView.anim0.play();
-        gameController.playerView.anim0.x = gameController.playerView.playerX;
-        gameController.playerView.anim0.y = gameController.playerView.playerY;
-        stage.addChild(gameController.playerView.anim0);
-        k += 1;
-    }
-    // 宝箱を最前面にする
-    stage.removeChild(gameController.itemView.item);
-    stage.addChild(gameController.itemView.item);
-    // ブロックリストを1つずつ実行
-    switch (gameController.blockList[gameController.listNum]){
-        case "go_ahead":
-            if(j < 150){
-                gameController.playerView.goAhead();
-                j += 1;
-            } else {
-                j = 0;
-                gameController.listNum += 1;
-            }
-            break;
-
-        case "turn_right":
-            //gameController.playerView.turn_right(stage);
-            switch (gameController.playerView.direction){
-                case 0:
-                    gameController.playerView.direction = 1;
-                    stage.removeChild(gameController.playerView.anim0);
-                    gameController.playerView.anim1.x = gameController.playerView.playerX
-                    gameController.playerView.anim1.y = gameController.playerView.playerY
-                    gameController.playerView.anim1.play();
-                    stage.addChild(gameController.playerView.anim1);
-                    break;
-                case 1:
-                    gameController.playerView.direction = 2;
-                    stage.removeChild(gameController.playerView.anim1);
-                    gameController.playerView.anim2.x = gameController.playerView.playerX
-                    gameController.playerView.anim2.y = gameController.playerView.playerY
-                    gameController.playerView.anim2.play();
-                    stage.addChild(gameController.playerView.anim2);
-                    break;
-                case 2:
-                    gameController.playerView.direction = 3;
-                    stage.removeChild(gameController.playerView.anim2);
-                    gameController.playerView.anim3.x = gameController.playerView.playerX
-                    gameController.playerView.anim3.y = gameController.playerView.playerY
-                    gameController.playerView.anim3.play();
-                    stage.addChild(gameController.playerView.anim3);
-                    break;
-                case 3:
-                    gameController.playerView.direction = 0;
-                    stage.removeChild(gameController.playerView.anim3);
-                    gameController.playerView.anim0.x = gameController.playerView.playerX
-                    gameController.playerView.anim0.y = gameController.playerView.playerY
-                    gameController.playerView.anim0.play();
-                    stage.addChild(gameController.playerView.anim0);
-                    break;
-            }
-            gameController.listNum += 1;
-            break;
-
-        case "pick_up":
-            if(gameController.mapModel.getState(gameController.playerModel.x,gameController.playerModel.y) == 3){
-                //stage.removeChild(goal);
-                //stage.addChild(goalScene);
-                app.stage.removeChild(stage);
-                app.stage.addChild(clearScene);
-                gameController.actionFlag = 0;
-                k = 0;
-                i = 0;
-            }
-            gameController.listNum += 1;
-            break;
-    }
-}
 
 //現在実行中のアニメーションを停止する関数(未使用)
 //modelとview統合後に使いたい
@@ -286,7 +197,7 @@ function allInitialize(){
 //リセットボタンを押した時の挙動
 function onClickReset(){
     //k（アニメーション中か判断する変数？）とj（前進アニメーションの長さを制御する変数？）を初期化
-    k = 0;
+    // k = 0;
     j = 0;
 
     switch (stageNum){
@@ -304,10 +215,10 @@ function onClickReset(){
 function onClickRun(workspace){
     switch (stageNum){
         case 1:
-            gameController01.doCode(workspace);
+            gameController01.doCode(workspace,stage01);
             break
         case 2:
-            gameController02.doCode(workspace);
+            gameController02.doCode(workspace,stage02);
             break
     }
 }
