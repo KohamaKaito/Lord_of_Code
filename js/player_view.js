@@ -21,12 +21,13 @@ class PlayerView extends Object {
 
         this.direction = 0;
         this.countStep = 0;
+        this.goFinished = false;
     }
 
-    goAhead(){
+    goAhead(direction){
         console.log("countStep ="+this.countStep)
         if(this.countStep < 150){
-            switch (this.direction){
+            switch (direction){
                 case 0:
                     this.anim0.x -= this.anim0.width/14 * 0.02;
                     this.playerX -= this.anim0.width/14 * 0.02;
@@ -53,41 +54,36 @@ class PlayerView extends Object {
                     break
             }
             this.countStep += 1;
-            return 0;
         }else{
             this.countStep = 0;
-            return 1;
+            this.goFinished = true;
         }
     }
 
-    turnRight(stage){
-        switch (this.direction){
-            case 0:
-                this.direction = 1;
+    turnRight(direction, stage){
+        switch (direction){
+            case 1:
                 stage.removeChild(this.anim0);
                 this.anim1.x = this.playerX
                 this.anim1.y = this.playerY
                 this.anim1.play();
                 stage.addChild(this.anim1);
                 break;
-            case 1:
-                this.direction = 2;
+            case 2:
                 stage.removeChild(this.anim1);
                 this.anim2.x = this.playerX
                 this.anim2.y = this.playerY
                 this.anim2.play();
                 stage.addChild(this.anim2);
                 break;
-            case 2:
-                this.direction = 3;
+            case 3:
                 stage.removeChild(this.anim2);
                 this.anim3.x = this.playerX
                 this.anim3.y = this.playerY
                 this.anim3.play();
                 stage.addChild(this.anim3);
                 break;
-            case 3:
-                this.direction = 0;
+            case 0:
                 stage.removeChild(this.anim3);
                 this.anim0.x = this.playerX
                 this.anim0.y = this.playerY

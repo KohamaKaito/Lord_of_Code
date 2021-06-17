@@ -114,10 +114,7 @@ mapModel02.map =  [
 
 
 let stageList = [stage01, stage02]
-let gameControllerList = [gameController01, gameController02] 
-
-
-// メインループ
+let gameControllerList = [gameController01, gameController02]
 let stageNum = 1;
 //let k = 0;
 //let j = 0;

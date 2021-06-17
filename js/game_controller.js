@@ -15,21 +15,20 @@ class GameController{
         this.blockList;
         this.listNum = 0;
 
-        this.finishFlag = 0;
+        this.clearFlag = false;
     }
+
 
     doCode(workspace,stage){
         //blocklyからブロックリストを取得
         this.blockList = Blockly.JavaScript.workspaceToCode(workspace).split("\n");
 
-        // アニメーションをスタート(1回のみ実行)
+        // アニメーションをスタート
         stage.removeChild(this.playerView.player);
         this.playerView.anim0.play();
         this.playerView.anim0.x = this.playerView.playerX;
         this.playerView.anim0.y = this.playerView.playerY;
         stage.addChild(this.playerView.anim0);
-
-        //let j = 0
 
         // メインループが実行
         app.ticker.add(delta => {
@@ -40,67 +39,58 @@ class GameController{
 
             // ブロックリストを1つずつ実行
             switch (this.blockList[this.listNum]){
+
                 case "go_ahead":
-                    // playerView.goAhead が終了したら finishFlag に1が入る
-                    this.finishFlag = this.playerView.goAhead();
-                    if(this.finishFlag == 1){
+                    if(this.canMove()){
+                        this.goPlayer();
+                    }else {
                         this.listNum += 1;
-                        this.playerModel.goAhead();
-                        this.finishFlag = 0;
                     }
                     break;
 
                 case "turn_right":
-                    this.playerView.turnRight(stage);
-                    this.listNum += 1;
-                    this.playerModel.turnRight();
+                    this.turnPlayer(stage);
                     break;
 
                 case "pick_up":
-                    if(this.mapModel.getState(this.playerModel.x,this.playerModel.y) == 3){
-                        app.stage.removeChild(stage);
-                        app.stage.addChild(clearScene);
-                    }
-                    this.listNum += 1;
+                    this.pickUpPlayer(stage);
                     break;
+            }
+
+            if(this.clearFlag == true){
+                app.ticker.stop();
             }
         })
     }
 
+
     // ModelとViewに前進を命令する関数
     goPlayer(){
-        /**
-        if(this.canMove()){
+        this.playerView.goAhead(this.playerModel.direction);
+        if(this.playerView.goFinished == true){
             this.playerModel.goAhead();
-            this.playerView.goAhead(this.playerModel.getDirection());
-        }else {
-            console.log("その方向には進めません！！");
+            this.playerView.goFinished = false;
+            this.listNum += 1;
         }
-        **/
     }
+
 
     // ModelとViewに右折を命令する関数
-    turnPlayer(){
-        /**
+    turnPlayer(stage){
         this.playerModel.turnRight();
-        this.playerView.turnRight(this.playerModel.getDirection());
-         **/
+        this.playerView.turnRight(this.playerModel.direction, stage);
+        this.listNum += 1;
     }
 
 
-    pickUpPlayer(){
-        /**
-        if(this.mapModel.getState(this.playerModel.x, this.playerModel.y) == MAP_ITEM){
-            this.playerModel.pickUpItem()
-            this.itemCount.addOwned();
-            this.itemCountView.setOwned(this.itemCount.owned);
-            //this.mapModel.setState(this.playerModel.x, this.playerModel.y, this.mapModel.CAN_MOVE);
-        }else{
-            // alert("There is no item.")
+    // Modelの位置をもとに...
+    pickUpPlayer(stage){
+        if(this.mapModel.getState(this.playerModel.x,this.playerModel.y) == 3){
+            app.stage.removeChild(stage);
+            app.stage.addChild(clearScene);
         }
-         **/
+        this.listNum += 1;
     }
-
 
 
     // 一マス先が可動域ならtrueを返す
@@ -128,6 +118,7 @@ class GameController{
                 break;
         }
     }
+
 
     stageSet(stageNum){
         switch (stageNum){
