@@ -11,7 +11,7 @@ class GameController{
         this.itemCount = itemCount;
         this.itemCountView = itemCountView;
 
-        this.actionFlag = 0;
+        this.actionFlag = false;
         this.blockList;
         this.listNum = 0;
 
@@ -22,55 +22,29 @@ class GameController{
     doCode(workspace,stage){
         //blocklyからブロックリストを取得
         this.blockList = Blockly.JavaScript.workspaceToCode(workspace).split("\n");
-
-        // アニメーションをスタート
-        stage.removeChild(this.playerView.player);
-        this.playerView.anim0.play();
-        this.playerView.anim0.x = this.playerView.playerX;
-        this.playerView.anim0.y = this.playerView.playerY;
-        stage.addChild(this.playerView.anim0);
-
-        // メインループが実行
-        app.ticker.add(delta => {
-
-            // 宝箱を最前面にする
-            stage.removeChild(this.itemView.item);
-            stage.addChild(this.itemView.item);
-
-            // ブロックリストを1つずつ実行
-            switch (this.blockList[this.listNum]){
-
-                case "go_ahead":
-                    if(this.canMove()){
-                        this.goPlayer();
-                    }else {
-                        this.listNum += 1;
-                    }
-                    break;
-
-                case "turn_right":
-                    this.turnPlayer(stage);
-                    break;
-
-                case "pick_up":
-                    this.pickUpPlayer(stage);
-                    break;
-            }
-
-            if(this.clearFlag == true){
-                app.ticker.stop();
-            }
-        })
+        this.actionFlag = true;
     }
 
 
     // ModelとViewに前進を命令する関数
-    goPlayer(){
-        this.playerView.goAhead(this.playerModel.direction);
-        if(this.playerView.goFinished == true){
-            this.playerModel.goAhead();
-            this.playerView.goFinished = false;
-            this.listNum += 1;
+    goPlayer(stage){
+        if(this.canMove()){
+            this.playerView.goAhead(this.playerModel.direction, stage);
+            if(this.playerView.goFinished == true){
+                this.playerModel.goAhead();
+                this.playerView.goFinished = false;
+                this.listNum += 1;
+            }
+        }else {
+            this.playerView.deltaX = 0;
+            this.playerView.deltaY = 0;
+            this.playerView.goAhead(this.playerModel.direction, stage);
+            if(this.playerView.goFinished == true){
+                this.playerView.goFinished = false;
+                this.playerView.deltaX = GameWindowWidth/42 * 0.02;
+                this.playerView.deltaY = GameWindowHeight/84 * 0.02;
+                this.listNum += 1;
+            }
         }
     }
 
