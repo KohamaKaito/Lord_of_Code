@@ -7,11 +7,6 @@ class PlayerView extends Object {
         this.playerX = width / 2.5;
         this.playerY = height / 3.1;
 
-        this.player0 = this.createPlayer("images/player0_0.png",width,height);
-        this.player1 = this.createPlayer("images/player1_0.png",width,height);
-        this.player2 = this.createPlayer("images/player2_0.png",width,height);
-        this.player3 = this.createPlayer("images/player3_0.png",width,height);
-
         this.anim0 = this.createAnim(["images/player0_0.png","images/player0_1.png","images/player0_0.png","images/player0_2.png"],width,height);
         this.anim1 = this.createAnim(["images/player1_0.png","images/player1_1.png","images/player1_0.png","images/player1_2.png"],width,height);
         this.anim2 = this.createAnim(["images/player2_0.png","images/player2_1.png","images/player2_0.png","images/player2_2.png"],width,height);
@@ -33,28 +28,28 @@ class PlayerView extends Object {
         if(this.countStep < 150){
             switch (direction){
                 case 0:
-                    this.startAnim(stage, this.player0, this.anim0);
+                    this.startAnim(this.anim0);
                     this.playerX -= this.deltaX;
                     this.playerY += this.deltaY;
                     this.anim0.x = this.playerX;
                     this.anim0.y = this.playerY;
                     break;
                 case 1:
-                    this.startAnim(stage, this.player1, this.anim1);
+                    this.startAnim(this.anim1);
                     this.playerX -= this.deltaX;
                     this.playerY -= this.deltaY;
                     this.anim1.x = this.playerX;
                     this.anim1.y = this.playerY;
                     break;
                 case 2:
-                    this.startAnim(stage, this.player2, this.anim2);
+                    this.startAnim(this.anim2);
                     this.playerX += this.deltaX;
                     this.playerY -= this.deltaY;
                     this.anim2.x = this.playerX;
                     this.anim2.y = this.playerY;
                     break;
                 case 3:
-                    this.startAnim(stage, this.player3, this.anim3);
+                    this.startAnim(this.anim3);
                     this.playerX += this.deltaX;
                     this.playerY += this.deltaY;
                     this.anim2.x = this.playerX;
@@ -65,16 +60,16 @@ class PlayerView extends Object {
         }else{
             switch (direction){
                 case 0:
-                    this.stopAnim(stage, this.player0, this.anim0);
+                    this.anim0.stop();
                     break;
                 case 1:
-                    this.stopAnim(stage, this.player1, this.anim1);
+                    this.anim1.stop();
                     break;
                 case 2:
-                    this.stopAnim(stage, this.player2, this.anim2);
+                    this.anim2.stop();
                     break;
                 case 3:
-                    this.stopAnim(stage, this.player3, this.anim3);
+                    this.anim3.stop();
                     break;
             }
             this.firstTime = true;
@@ -88,46 +83,34 @@ class PlayerView extends Object {
     turnRight(direction, stage){
         switch (direction){
             case 1:
-                stage.removeChild(this.player0);
-                this.player1.x = this.playerX
-                this.player1.y = this.playerY
-                stage.addChild(this.player1);
+                stage.removeChild(this.anim0);
+                this.anim1.x = this.playerX
+                this.anim1.y = this.playerY
+                stage.addChild(this.anim1);
                 break;
             case 2:
-                stage.removeChild(this.player1);
-                this.player2.x = this.playerX
-                this.player2.y = this.playerY
-                stage.addChild(this.player2);
+                stage.removeChild(this.anim1);
+                this.anim2.x = this.playerX
+                this.anim2.y = this.playerY
+                stage.addChild(this.anim2);
                 break;
             case 3:
-                stage.removeChild(this.player2);
-                this.player3.x = this.playerX
-                this.player3.y = this.playerY
-                stage.addChild(this.player3);
+                stage.removeChild(this.anim2);
+                this.anim3.x = this.playerX
+                this.anim3.y = this.playerY
+                stage.addChild(this.anim3);
                 break;
             case 0:
-                stage.removeChild(this.player3);
-                this.player0.x = this.playerX
-                this.player0.y = this.playerY
-                stage.addChild(this.player0);
+                stage.removeChild(this.anim3);
+                this.anim0.x = this.playerX
+                this.anim0.y = this.playerY
+                stage.addChild(this.anim0);
                 break;
         }
     }
 
 
-    // プレイヤー(静的)を作成する関数
-    createPlayer(src, width, height){
-        let image = new PIXI.Texture.from(src);
-        let player = new PIXI.Sprite(image);
-        player.x = width / 2.5;
-        player.y = height / 3.1;
-        player.width = width/3;
-        player.height = height/3;
-        return player;
-    }
-
-
-    // プレイヤー(動的)を作成する関数
+    // animationを作成する関数
     createAnim(imgs, width, height) {
         const textureArray = [];
         for (let i = 0; i < imgs.length; i++) {
@@ -138,28 +121,17 @@ class PlayerView extends Object {
         animatedSprite.animationSpeed = 0.1;
         animatedSprite.height = height/3;
         animatedSprite.width = width/3;
+        animatedSprite.x = width / 2.5;
+        animatedSprite.y = height / 3.1;
         return animatedSprite;
     }
 
 
     // アニメーションを開始させる関数
-    startAnim(stage, player, anim){
+    startAnim(anim){
         if(this.firstTime){
-            stage.removeChild(player);
             anim.play();
-            anim.x = this.playerX;
-            anim.y = this.playerY;
-            stage.addChild(anim);
             this.firstTime = false;
         }
-    }
-
-
-    // アニメーションを終了させる関数
-    stopAnim(stage, player, anim){
-        stage.removeChild(anim);
-        player.x = this.playerX;
-        player.y = this.playerY;
-        stage.addChild(player);
     }
 }

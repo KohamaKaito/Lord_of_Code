@@ -67,7 +67,7 @@ let mapModel01 = new Map();
 let mapView01 = new MapView('images/map01.png', GameWindowWidth, GameWindowHeight);
 stage01.addChild(mapView01.map);
 let playerView01 = new PlayerView(GameWindowWidth, GameWindowHeight);
-stage01.addChild(playerView01.player0);
+stage01.addChild(playerView01.anim0);
 let itemCount01 = new ItemCount(0, 1);
 let itemCountView01 = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
 stage01.addChild(itemCountView01.needed_text)
@@ -94,7 +94,7 @@ let mapModel02 = new Map();
 let mapView02 = new MapView('images/map02.png', GameWindowWidth, GameWindowHeight);
 stage02.addChild(mapView02.map);
 let playerView02 = new PlayerView(GameWindowWidth, GameWindowHeight);
-stage02.addChild(playerView02.player0);
+stage02.addChild(playerView02.anim0);
 let itemCount02 = new ItemCount(0, 1);
 let itemCountView02 = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
 stage02.addChild(itemCountView02.needed_text)
@@ -192,7 +192,7 @@ function initializeStage(stage, gameController){
     this.resetAnimChild(stage,gameController.playerView)
 
     //ほか、立ち止まってる騎士くん、所持アイテム数表示、アイテムなどをコンテナから取り除く
-    stage.removeChild(gameController.playerView.player0, gameController.itemCountView.owned_text, gameController.itemView.item)
+    stage.removeChild(gameController.playerView.anim0, gameController.itemCountView.owned_text, gameController.itemView.item)
 
 
     //gameControllerの中で、初期化が必要なものを初期化
@@ -205,7 +205,7 @@ function initializeStage(stage, gameController){
 
     //上で取り除いた、立ち止まってる騎士くん、所持アイテム数表示、アイテムなどを改めて描画
     //gameControllerを初期化した後のタイミングでこれをしないと、初期化前の座標でまた描画してしまう
-    stage.addChild(gameController.playerView.player0, gameController.itemCountView.owned_text, gameController.itemView.item);
+    stage.addChild(gameController.playerView.anim0, gameController.itemCountView.owned_text, gameController.itemView.item);
 
     //アニメーション処理に用いるlistNumとactionFlagを初期化
     gameController.listNum = 0;

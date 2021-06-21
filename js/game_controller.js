@@ -91,18 +91,6 @@ class GameController{
     }
 
 
-    stageSet(stageNum){
-        switch (stageNum){
-            case 1:
-                playerView01.player.x
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-        }
-    }
-
 
     checkClear(stage){
         if(this.itemCount.isComplete()){
