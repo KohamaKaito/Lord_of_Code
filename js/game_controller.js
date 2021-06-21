@@ -6,16 +6,12 @@ class GameController{
         this.playerModel = playerModel;
         this.mapView = mapView;
         this.mapModel = mapModel;
-        //this.item = item;
         this.itemView = itemView;
         this.itemCount = itemCount;
         this.itemCountView = itemCountView;
-
         this.actionFlag = false;
-        this.blockList;
+        this.blockList = [];
         this.listNum = 0;
-
-        this.clearFlag = false;
     }
 
 
@@ -36,6 +32,7 @@ class GameController{
                 this.listNum += 1;
             }
         }else {
+            // 見えない壁
             this.playerView.deltaX = 0;
             this.playerView.deltaY = 0;
             this.playerView.goAhead(this.playerModel.direction, stage);
@@ -57,11 +54,11 @@ class GameController{
     }
 
 
-    // Modelの位置をもとに...
+    // 足元のアイテムを拾う関数
     pickUpPlayer(stage){
         if(this.mapModel.getState(this.playerModel.x,this.playerModel.y) == 3){
-            app.stage.removeChild(stage);
-            app.stage.addChild(clearScene);
+            this.itemCount.addOwned();
+            this.itemCountView.setOwned(this.itemCount.owned);
         }
         this.listNum += 1;
     }
@@ -103,6 +100,14 @@ class GameController{
                 break;
             case 3:
                 break;
+        }
+    }
+
+
+    checkClear(stage){
+        if(this.itemCount.isComplete()){
+            app.stage.removeChild(stage);
+            app.stage.addChild(clearScene);
         }
     }
 }

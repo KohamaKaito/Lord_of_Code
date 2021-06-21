@@ -116,11 +116,7 @@ mapModel02.map =  [
 let stageList = [stage01, stage02]
 let gameControllerList = [gameController01, gameController02]
 let stageNum = 1;
-//let k = 0;
-//let j = 0;
-//let i = 0;
 let direction = 0;
-let animStart = true
 
 app.ticker.add(main);
 
@@ -129,6 +125,9 @@ function main(delta){
     let stage = stageList[stageNum-1];
 
     if(gc.actionFlag){
+
+        // アイテム数が満たしてたらクリア遷移
+        gc.checkClear(stage);
 
         // 宝箱を最前面にする
         stage.removeChild(gc.itemView.item);
@@ -168,6 +167,7 @@ function stopAnimChild(stage, playerView) {
     }    
 }
 
+
 //現在実行中のアニメーションをコンテナから取り除く関数
 function resetAnimChild(stage, playerView) {
     if(stage.children.includes(playerView.anim0)) {
@@ -180,6 +180,7 @@ function resetAnimChild(stage, playerView) {
         stage.removeChild(playerView.anim3) 
     }    
 }
+
 
 /*
 全ステージで共通のリセットする関数
@@ -207,8 +208,8 @@ function initializeStage(stage, gameController){
     stage.addChild(gameController.playerView.player0, gameController.itemCountView.owned_text, gameController.itemView.item);
 
     //アニメーション処理に用いるlistNumとactionFlagを初期化
-    gameController.listNum = 0
-    gameController.actionFlag = 0
+    gameController.listNum = 0;
+    gameController.actionFlag = false;
 }
 
 //title画面に戻る時に用いる、全てのステージの進行状況をリセットする関数
@@ -220,24 +221,19 @@ function allInitialize(){
     }
 }
 
+
 //リセットボタンを押した時の挙動
 function onClickReset(){
-    // k（アニメーション中か判断する変数？）とj（前進アニメーションの長さを制御する変数？）を初期化
-    // k = 0;
-    // j = 0;
-    console.log("ticker.....");
-    app.ticker.remove(this);
-
     switch (stageNum){
         case 1:
             initializeStage(stage01, gameController01)
             break
-            
         case 2:
             initializeStage(stage02, gameController02);
             break
     }
 }
+
 
 //実行ボタンを押した時の挙動
 function onClickRun(workspace){

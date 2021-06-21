@@ -1,7 +1,7 @@
 Blockly.defineBlocksWithJsonArray(
     /* ここにJSONファイルの内容をコピー */
     [
-        /* まっすぐ進むボタン */
+        /* まっすぐ進むブロック */
         {
             "type": "go_ahead",
             "message0": "まっすぐ進む",
@@ -12,7 +12,7 @@ Blockly.defineBlocksWithJsonArray(
             "tooltip": "",
             "helpUrl": ""
         },
-        /* 右へ向くボタン */
+        /* 右へ向くブロック */
         {
             "type": "turn_right",
             "message0": "右へ向く",
@@ -23,7 +23,7 @@ Blockly.defineBlocksWithJsonArray(
             "tooltip": "",
             "helpUrl": ""
         },
-        /* 拾うボタン */
+        /* 拾うブロック */
         {
             "type": "pick_up",
             "message0": "ひろう",
@@ -31,6 +31,30 @@ Blockly.defineBlocksWithJsonArray(
             "previousStatement": null,
             "nextStatement": null,
             "colour": 45,
+            "tooltip": "",
+            "helpUrl": ""
+        },
+        /* forブロック */
+        {
+            "type": "for",
+            "message0": "%1 回繰り返す %2",
+            "args0": [
+                {
+                    "type": "field_number",
+                    "name": "回繰り返す",
+                    "value": 0,
+                    "min": 0,
+                    "max": 20
+                },
+                {
+                    "type": "input_statement",
+                    "name": "NAME"
+                }
+            ],
+            "inputsInline": true,
+            "previousStatement": null,
+            "nextStatement": null,
+            "colour": 20,
             "tooltip": "",
             "helpUrl": ""
         }
@@ -53,5 +77,12 @@ Blockly.JavaScript['turn_right'] =  function(block) {
 Blockly.JavaScript['pick_up'] =  function(block) {
     /* controllerのblock_listにブロックの名前を返す（拾うボタン） */
     let block_name = 'pick_up\n';
+    return block_name;
+}
+
+Blockly.JavaScript['for'] =  function(block) {
+    /* controllerのblock_listにブロックの名前を返す（forボタン） */
+    //console.log("value="+Blockly.JavaScript['for'].type)
+    let block_name = 'for\n';
     return block_name;
 }
