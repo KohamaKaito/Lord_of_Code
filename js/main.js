@@ -66,8 +66,8 @@ let playerModel01 = new Player(3,4,0);
 let mapModel01 = new Map();
 let mapView01 = new MapView('images/map01.png', GameWindowWidth, GameWindowHeight);
 stage01.addChild(mapView01.map);
-let playerView01 = new PlayerView('images/player0_0.png', GameWindowWidth, GameWindowHeight);
-stage01.addChild(playerView01.player);
+let playerView01 = new PlayerView(GameWindowWidth, GameWindowHeight);
+stage01.addChild(playerView01.anim0);
 let itemCount01 = new ItemCount(0, 1);
 let itemCountView01 = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
 stage01.addChild(itemCountView01.needed_text)
@@ -93,8 +93,8 @@ let playerModel02 = new Player(3,4,0);
 let mapModel02 = new Map();
 let mapView02 = new MapView('images/map02.png', GameWindowWidth, GameWindowHeight);
 stage02.addChild(mapView02.map);
-let playerView02 = new PlayerView('images/player0_0.png', GameWindowWidth, GameWindowHeight);
-stage02.addChild(playerView02.player);
+let playerView02 = new PlayerView(GameWindowWidth, GameWindowHeight);
+stage02.addChild(playerView02.anim0);
 let itemCount02 = new ItemCount(0, 1);
 let itemCountView02 = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
 stage02.addChild(itemCountView02.needed_text)
@@ -114,108 +114,44 @@ mapModel02.map =  [
 
 
 let stageList = [stage01, stage02]
-let gameControllerList = [gameController01, gameController02] 
-
-
-// メインループ
+let gameControllerList = [gameController01, gameController02]
 let stageNum = 1;
-let k = 0;
-let j = 0;
-let i = 0;
 let direction = 0;
 
+app.ticker.add(main);
 
-app.ticker.add(animate);
-let amountTime = 0;
+function main(delta){
+    let gc = gameControllerList[stageNum-1];
+    let stage = stageList[stageNum-1];
 
-function animate(delta) {
-    if(gameController01.actionFlag == 1){
-        gameControl(gameController01, stage01);
-    }
+    if(gc.actionFlag){
 
-    if(gameController02.actionFlag == 1){
-        gameControl(gameController02, stage02);
-    }
-}
+        // アイテム数が満たしてたらクリア遷移
+        gc.checkClear(stage);
 
-function gameControl(gameController,stage){
-    if(k == 0){
-        // アニメーションをスタート(1回のみ実行)
-        stage.removeChild(gameController.playerView.player);
-        gameController.playerView.anim0.play();
-        gameController.playerView.anim0.x = gameController.playerView.playerX;
-        gameController.playerView.anim0.y = gameController.playerView.playerY;
-        stage.addChild(gameController.playerView.anim0);
-        k += 1;
-    }
-    // 宝箱を最前面にする
-    stage.removeChild(gameController.itemView.item);
-    stage.addChild(gameController.itemView.item);
-    // ブロックリストを1つずつ実行
-    switch (gameController.blockList[gameController.listNum]){
-        case "go_ahead":
-            if(j < 150){
-                gameController.playerView.goAhead();
-                j += 1;
-            } else {
-                j = 0;
-                gameController.listNum += 1;
-            }
-            break;
+        // 宝箱を最前面にする
+        stage.removeChild(gc.itemView.item);
+        stage.addChild(gc.itemView.item);
 
-        case "turn_right":
-            //gameController.playerView.turn_right(stage);
-            switch (gameController.playerView.direction){
-                case 0:
-                    gameController.playerView.direction = 1;
-                    stage.removeChild(gameController.playerView.anim0);
-                    gameController.playerView.anim1.x = gameController.playerView.playerX
-                    gameController.playerView.anim1.y = gameController.playerView.playerY
-                    gameController.playerView.anim1.play();
-                    stage.addChild(gameController.playerView.anim1);
-                    break;
-                case 1:
-                    gameController.playerView.direction = 2;
-                    stage.removeChild(gameController.playerView.anim1);
-                    gameController.playerView.anim2.x = gameController.playerView.playerX
-                    gameController.playerView.anim2.y = gameController.playerView.playerY
-                    gameController.playerView.anim2.play();
-                    stage.addChild(gameController.playerView.anim2);
-                    break;
-                case 2:
-                    gameController.playerView.direction = 3;
-                    stage.removeChild(gameController.playerView.anim2);
-                    gameController.playerView.anim3.x = gameController.playerView.playerX
-                    gameController.playerView.anim3.y = gameController.playerView.playerY
-                    gameController.playerView.anim3.play();
-                    stage.addChild(gameController.playerView.anim3);
-                    break;
-                case 3:
-                    gameController.playerView.direction = 0;
-                    stage.removeChild(gameController.playerView.anim3);
-                    gameController.playerView.anim0.x = gameController.playerView.playerX
-                    gameController.playerView.anim0.y = gameController.playerView.playerY
-                    gameController.playerView.anim0.play();
-                    stage.addChild(gameController.playerView.anim0);
-                    break;
-            }
-            gameController.listNum += 1;
-            break;
+        // ブロックリストを1つずつ実行
+        switch (gc.blockList[gc.listNum]){
 
-        case "pick_up":
-            if(gameController.mapModel.getState(gameController.playerModel.x,gameController.playerModel.y) == 3){
-                //stage.removeChild(goal);
-                //stage.addChild(goalScene);
-                app.stage.removeChild(stage);
-                app.stage.addChild(clearScene);
-                gameController.actionFlag = 0;
-                k = 0;
-                i = 0;
-            }
-            gameController.listNum += 1;
-            break;
+            case "go_ahead":
+                gc.goPlayer(stage);
+                break;
+
+            case "turn_right":
+                gc.turnPlayer(stage);
+                break;
+
+            case "pick_up":
+                gc.pickUpPlayer(stage);
+                break;
+        }
     }
 }
+
+
 
 //現在実行中のアニメーションを停止する関数(未使用)
 //modelとview統合後に使いたい
@@ -231,6 +167,7 @@ function stopAnimChild(stage, playerView) {
     }    
 }
 
+
 //現在実行中のアニメーションをコンテナから取り除く関数
 function resetAnimChild(stage, playerView) {
     if(stage.children.includes(playerView.anim0)) {
@@ -244,6 +181,7 @@ function resetAnimChild(stage, playerView) {
     }    
 }
 
+
 /*
 全ステージで共通のリセットする関数
 ステージ毎の違いがある場合は引数を増やして対応できそう
@@ -254,24 +192,24 @@ function initializeStage(stage, gameController){
     this.resetAnimChild(stage,gameController.playerView)
 
     //ほか、立ち止まってる騎士くん、所持アイテム数表示、アイテムなどをコンテナから取り除く
-    stage.removeChild(gameController.playerView.player, gameController.itemCountView.owned_text, gameController.itemView.item) 
+    stage.removeChild(gameController.playerView.anim0, gameController.itemCountView.owned_text, gameController.itemView.item)
 
 
     //gameControllerの中で、初期化が必要なものを初期化
     //ここの初期化値にステージ毎の違いがある場合は引数を増やすのもありかも
     gameController.playerModel = new Player(3,4,0);
-    gameController.playerView = new PlayerView('images/player0_0.png', GameWindowWidth, GameWindowHeight);
+    gameController.playerView = new PlayerView(GameWindowWidth, GameWindowHeight);
     gameController.itemCount = new ItemCount(0,1)
     gameController.itemCountView = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
 
 
     //上で取り除いた、立ち止まってる騎士くん、所持アイテム数表示、アイテムなどを改めて描画
     //gameControllerを初期化した後のタイミングでこれをしないと、初期化前の座標でまた描画してしまう
-    stage.addChild(gameController.playerView.player, gameController.itemCountView.owned_text, gameController.itemView.item);
+    stage.addChild(gameController.playerView.anim0, gameController.itemCountView.owned_text, gameController.itemView.item);
 
     //アニメーション処理に用いるlistNumとactionFlagを初期化
-    gameController.listNum = 0
-    gameController.actionFlag = 0
+    gameController.listNum = 0;
+    gameController.actionFlag = false;
 }
 
 //title画面に戻る時に用いる、全てのステージの進行状況をリセットする関数
@@ -283,31 +221,28 @@ function allInitialize(){
     }
 }
 
+
 //リセットボタンを押した時の挙動
 function onClickReset(){
-    //k（アニメーション中か判断する変数？）とj（前進アニメーションの長さを制御する変数？）を初期化
-    k = 0;
-    j = 0;
-
     switch (stageNum){
         case 1:
             initializeStage(stage01, gameController01)
             break
-            
         case 2:
             initializeStage(stage02, gameController02);
             break
     }
 }
 
+
 //実行ボタンを押した時の挙動
 function onClickRun(workspace){
     switch (stageNum){
         case 1:
-            gameController01.doCode(workspace);
+            gameController01.doCode(workspace,stage01);
             break
         case 2:
-            gameController02.doCode(workspace);
+            gameController02.doCode(workspace,stage02);
             break
     }
 }
