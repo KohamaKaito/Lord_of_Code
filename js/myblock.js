@@ -62,26 +62,26 @@ Blockly.defineBlocksWithJsonArray(
 );
 
 Blockly.JavaScript['go_ahead'] =  function(block) {
-    /* controllerのblock_listにブロックの名前を返す（まっすぐボタン） */
+    /* controllerのblock_listにブロックの名前を返す（まっすぐ） */
     var block_name = 'go_ahead\n';
     return block_name;
     
 }
 
 Blockly.JavaScript['turn_right'] =  function(block) {
-    /* controllerのblock_listにブロックの名前を返す（右向くボタン） */
+    /* controllerのblock_listにブロックの名前を返す（右向く） */
     var block_name = 'turn_right\n';
     return block_name;
 }
 
 Blockly.JavaScript['pick_up'] =  function(block) {
-    /* controllerのblock_listにブロックの名前を返す（拾うボタン） */
+    /* controllerのblock_listにブロックの名前を返す（拾う） */
     let block_name = 'pick_up\n';
     return block_name;
 }
 
 Blockly.JavaScript['for'] =  function(block) {
-    /* controllerのblock_listにブロックの名前を返す（forボタン） */
+    /* controllerのblock_listにブロックの名前を返す（for） */
     //console.log("value="+Blockly.JavaScript['for'].type)
     let block_name = 'for\n';
     return block_name;
