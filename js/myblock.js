@@ -41,14 +41,12 @@ Blockly.defineBlocksWithJsonArray(
             "args0": [
                 {
                     "type": "field_number",
-                    "name": "回繰り返す",
-                    "value": 0,
-                    "min": 0,
-                    "max": 20
+                    "name": "number",
+                    "value": 0
                 },
                 {
                     "type": "input_statement",
-                    "name": "NAME"
+                    "name": "input"
                 }
             ],
             "inputsInline": true,
@@ -70,7 +68,7 @@ Blockly.JavaScript['go_ahead'] =  function(block) {
 
 Blockly.JavaScript['turn_right'] =  function(block) {
     /* controllerのblock_listにブロックの名前を返す（右向く） */
-    var block_name = 'turn_right\n';
+    let block_name = 'turn_right\n';
     return block_name;
 }
 
@@ -80,9 +78,13 @@ Blockly.JavaScript['pick_up'] =  function(block) {
     return block_name;
 }
 
-Blockly.JavaScript['for'] =  function(block) {
-    /* controllerのblock_listにブロックの名前を返す（for） */
-    //console.log("value="+Blockly.JavaScript['for'].type)
-    let block_name = 'for\n';
+Blockly.JavaScript['for'] = function(block) {
+    var number_number = block.getFieldValue('number');
+    var statements_input = Blockly.JavaScript.statementToCode(block, 'input');
+    var block_name ="";
+    for(let i=0; i<number_number; i++){
+        block_name += statements_input.trim() + "\n";
+    }
+    block_name = block_name.replace(/ /g, "");
     return block_name;
 }

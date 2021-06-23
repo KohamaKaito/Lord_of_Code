@@ -18,6 +18,8 @@ class GameController{
     doCode(workspace,stage){
         //blocklyからブロックリストを取得
         this.blockList = Blockly.JavaScript.workspaceToCode(workspace).split("\n");
+        console.log("this.blockList");
+        console.log(this.blockList[0]);
         this.actionFlag = true;
     }
 
