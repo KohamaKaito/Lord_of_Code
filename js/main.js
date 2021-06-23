@@ -275,31 +275,11 @@ function allInitialize(){
 
 //リセットボタンを押した時の挙動
 function onClickReset(){
-    switch (stageNum){
-        case 1:
-            initializeStage(stage01, gameController01)
-            break
-        case 2:
-            initializeStage(stage02, gameController02);
-            break
-        case 3:
-            initializeStage(stage03, gameController03);
-            break
-    }
+    initializeStage(stageList[stageNum - 1], gameControllerList[stageNum - 1])
 }
 
 
 //実行ボタンを押した時の挙動
 function onClickRun(workspace){
-    switch (stageNum){
-        case 1:
-            gameController01.doCode(workspace,stage01);
-            break
-        case 2:
-            gameController02.doCode(workspace,stage02);
-            break
-        case 3:
-            gameController03.doCode(workspace,stage03);
-            break
-    }
+    gameControllerList[stageNum - 1].doCode(workspace,stageList[stageNum - 1]);
 }
