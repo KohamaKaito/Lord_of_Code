@@ -20,6 +20,16 @@ titleText.on('touchstart', toGame);
 titleText.x = GameWindowWidth/2 - titleText.width/2;
 titleText.y = GameWindowWidth/2 - titleText.height/2;
 titleScene.addChild(titleText);
+// あとで消す----------✂︎
+let to3 = new PIXI.Text("stage3");
+to3.interactive = true;
+to3.buttonMode = true;
+to3.on('click', toStage3);
+to3.on('touchstart', toStage3);
+to3.x = GameWindowWidth/1.3;
+to3.y = GameWindowWidth/2 + GameWindowWidth/2;
+titleScene.addChild(to3);
+// -------------------
 app.stage.addChild(titleScene);
 function toGame(){
     app.stage.removeChild(titleScene);
@@ -27,6 +37,13 @@ function toGame(){
     //app.stage.addChild(stage03);
     //stageNum = 3;
 }
+// あとで消す----------✂︎
+function toStage3(){
+    stageNum = 3;
+    app.stage.removeChild(titleScene);
+    app.stage.addChild(stage03);
+}
+// -------------------
 
 
 
