@@ -41,14 +41,12 @@ Blockly.defineBlocksWithJsonArray(
             "args0": [
                 {
                     "type": "field_number",
-                    "name": "回繰り返す",
-                    "value": 0,
-                    "min": 0,
-                    "max": 20
+                    "name": "number",
+                    "value": 0
                 },
                 {
                     "type": "input_statement",
-                    "name": "NAME"
+                    "name": "input"
                 }
             ],
             "inputsInline": true,
@@ -62,27 +60,31 @@ Blockly.defineBlocksWithJsonArray(
 );
 
 Blockly.JavaScript['go_ahead'] =  function(block) {
-    /* controllerのblock_listにブロックの名前を返す（まっすぐボタン） */
+    /* controllerのblock_listにブロックの名前を返す（まっすぐ） */
     var block_name = 'go_ahead\n';
     return block_name;
     
 }
 
 Blockly.JavaScript['turn_right'] =  function(block) {
-    /* controllerのblock_listにブロックの名前を返す（右向くボタン） */
-    var block_name = 'turn_right\n';
+    /* controllerのblock_listにブロックの名前を返す（右向く） */
+    let block_name = 'turn_right\n';
     return block_name;
 }
 
 Blockly.JavaScript['pick_up'] =  function(block) {
-    /* controllerのblock_listにブロックの名前を返す（拾うボタン） */
+    /* controllerのblock_listにブロックの名前を返す（拾う） */
     let block_name = 'pick_up\n';
     return block_name;
 }
 
-Blockly.JavaScript['for'] =  function(block) {
-    /* controllerのblock_listにブロックの名前を返す（forボタン） */
-    //console.log("value="+Blockly.JavaScript['for'].type)
-    let block_name = 'for\n';
+Blockly.JavaScript['for'] = function(block) {
+    var number_number = block.getFieldValue('number');
+    var statements_input = Blockly.JavaScript.statementToCode(block, 'input');
+    var block_name ="";
+    for(let i=0; i<number_number; i++){
+        block_name += statements_input.trim() + "\n";
+    }
+    block_name = block_name.replace(/ /g, "");
     return block_name;
 }

@@ -24,6 +24,8 @@ app.stage.addChild(titleScene);
 function toGame(){
     app.stage.removeChild(titleScene);
     app.stage.addChild(stage01);
+    //app.stage.addChild(stage03);
+    //stageNum = 3;
 }
 
 
@@ -113,8 +115,38 @@ mapModel02.map =  [
 ]
 
 
-let stageList = [stage01, stage02]
-let gameControllerList = [gameController01, gameController02]
+
+// ステージ3の設定
+const stage03 = new PIXI.Container();
+let playerModel03 = new Player(3,4,0);
+let mapModel03 = new Map();
+let mapView03 = new MapView('images/map03.png', GameWindowWidth, GameWindowHeight);
+stage03.addChild(mapView03.map);
+let playerView03 = new PlayerView(GameWindowWidth, GameWindowHeight);
+//stage03.addChild(playerView03.anim0);
+let itemCount03 = new ItemCount(0, 1);
+let itemCountView03 = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
+stage03.addChild(itemCountView03.needed_text)
+stage03.addChild(itemCountView03.owned_text)
+let itemView03 = new ItemView('images/goal.png', GameWindowWidth, GameWindowHeight,2.8,2.4);
+stage03.addChild(itemView03.item);
+stage03.addChild(playerView03.anim0);
+let gameController03 = new GameController(playerView03, playerModel03, mapView03, mapModel03, itemView03, itemCount03, itemCountView03);
+mapModel03.map =  [
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_ITEM,        MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+]
+
+
+
+
+let stageList = [stage01, stage02, stage03]
+let gameControllerList = [gameController01, gameController02, gameController03]
 let stageNum = 1;
 let direction = 0;
 
@@ -130,8 +162,10 @@ function main(delta){
         gc.checkClear(stage);
 
         // 宝箱を最前面にする
-        stage.removeChild(gc.itemView.item);
-        stage.addChild(gc.itemView.item);
+        if(stageNum == 1 || stageNum == 2){
+            stage.removeChild(gc.itemView.item);
+            stage.addChild(gc.itemView.item);
+        }
 
         // ブロックリストを1つずつ実行
         switch (gc.blockList[gc.listNum]){
@@ -231,6 +265,9 @@ function onClickReset(){
         case 2:
             initializeStage(stage02, gameController02);
             break
+        case 3:
+            initializeStage(stage03, gameController03);
+            break
     }
 }
 
@@ -243,6 +280,9 @@ function onClickRun(workspace){
             break
         case 2:
             gameController02.doCode(workspace,stage02);
+            break
+        case 3:
+            gameController03.doCode(workspace,stage03);
             break
     }
 }
