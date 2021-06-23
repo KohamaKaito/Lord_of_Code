@@ -15,8 +15,7 @@ const titleScene = new PIXI.Container();
 let titleText = new PIXI.Text("タイトル \n \n START");
 titleText.interactive = true;
 titleText.buttonMode = true;
-titleText.on('click', toGame);
-titleText.on('touchstart', toGame);
+titleText.on('pointertap', toGame);
 titleText.x = GameWindowWidth/2 - titleText.width/2;
 titleText.y = GameWindowWidth/2 - titleText.height/2;
 titleScene.addChild(titleText);
@@ -24,8 +23,7 @@ titleScene.addChild(titleText);
 let to3 = new PIXI.Text("stage3");
 to3.interactive = true;
 to3.buttonMode = true;
-to3.on('click', toStage3);
-to3.on('touchstart', toStage3);
+to3.on('pointertap', toStage3);
 to3.x = GameWindowWidth/1.3;
 to3.y = GameWindowWidth/2 + GameWindowWidth/2;
 titleScene.addChild(to3);
@@ -45,6 +43,13 @@ function toStage3(){
 }
 // -------------------
 
+//ステージ３のショートカットの改善およびステージセレクト機能用の関数
+function selectStage(destNum){
+    stageNum = destNum;
+    app.stage.removeChild(titleScene);
+    app.stage.addChild(stageList[stageNum - 1]);
+}
+
 
 
 // クリア画面の設定
@@ -54,8 +59,7 @@ clearText.interactive = true;
 clearText.buttonMode = true;
 clearText.x = GameWindowWidth/2 - titleText.width/2;
 clearText.y = GameWindowHeight/2 - titleText.height/2;
-clearText.on('click', toNext);
-clearText.on('touchstart', toNext);
+clearText.on('pointertap', toNext);
 clearScene.addChild(clearText);
 function toNext(){
     app.stage.removeChild(clearScene);
