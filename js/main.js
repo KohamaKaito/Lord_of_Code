@@ -8,7 +8,7 @@ let app = new PIXI.Application({
     backgroundColor: 0x1099bb,});
 gameWindow.appendChild(app.view);
 
-
+//ここからステージの記述
 // ステージ１の設定
 const stage01 = new PIXI.Container();
 let playerModel01 = new Player(3,4,0);
@@ -97,6 +97,7 @@ let gameControllerList = [gameController01, gameController02, gameController03]
 let stageNum = 1;
 
 
+//　画面の記述
 // タイトル画面の設定
 const titleScene = new PIXI.Container();
 let titleText = new PIXI.Text("タイトル \n \n START");
@@ -111,7 +112,7 @@ titleScene.addChild(titleText);
 let toStageSelect = new PIXI.Text("StageSelect");
 toStageSelect.interactive = true;
 toStageSelect.buttonMode = true;
-toStageSelect.on('click', toStageSelectScene);
+toStageSelect.on('click', titleToStageSelect);
 toStageSelect.x = titleText.x - 25;
 toStageSelect.y = titleText.y + 150;
 titleScene.addChild(toStageSelect);
@@ -123,7 +124,7 @@ function toGame(){
     app.stage.addChild(stage01);
 }
 
-function toStageSelectScene(){
+function titleToStageSelect(){
     app.stage.removeChild(titleScene);
     app.stage.addChild(stageSelectScene);
 }
@@ -181,31 +182,54 @@ function selectStage(destNum){
 
 // クリア画面の設定
 const clearScene = new PIXI.Container();
-let clearText = new PIXI.Text("クリア！！ \n Next Stage");
-clearText.interactive = true;
-clearText.buttonMode = true;
-clearText.x = GameWindowWidth/2 - titleText.width/2;
-clearText.y = GameWindowHeight/2 - titleText.height/2;
-clearText.on('pointertap', toNext);
-clearScene.addChild(clearText);
+//「クリア！」の表示
+let gratzText = new PIXI.Text("Congratulation！！"); //gratz→congratulationの略らしい
+gratzText.x = GameWindowWidth/2 - titleText.width/2;
+gratzText.y = GameWindowHeight/2 - titleText.height/2;
+clearScene.addChild(gratzText);
+//「Next Stage」の表示
+let nextStageText = new PIXI.Text("Next Stage");
+nextStageText.interactive = true;
+nextStageText.buttonMode = true;
+nextStageText.x = GameWindowWidth/2 - titleText.width/2;
+nextStageText.y = gratzText.y + 50;
+nextStageText.on('pointertap', toNext);
+clearScene.addChild(nextStageText);
+//「Return to Title」の表示
+let toTitleText = new PIXI.Text("Return to Title");
+toTitleText.interactive = true;
+toTitleText.buttonMode = true;
+toTitleText.x = GameWindowWidth/2 - titleText.width/2;
+toTitleText.y = nextStageText.y + 50;
+toTitleText.on('pointertap', toTitle);
+clearScene.addChild(toTitleText);
+//「Stage Select」の表示
+let returnToStageSelectText = new PIXI.Text("Stage Select");
+returnToStageSelectText.interactive = true;
+returnToStageSelectText.buttonMode = true;
+returnToStageSelectText.x = GameWindowWidth/2 - titleText.width/2;
+returnToStageSelectText.y = toTitleText.y + 50;
+returnToStageSelectText.on('pointertap', clearSceneToStageSelect);
+clearScene.addChild(returnToStageSelectText);
+
 function toNext(){
     app.stage.removeChild(clearScene);
-    if(stageNum == stageList.length){
-        //最後のステージならStageNumの初期化とゲーム進行状況をリセットし、タイトル画面に遷移
-        stageNum = 1;
-        allInitialize()
-        app.stage.addChild(titleScene);
-        //クリア画面用のテキストを初期化
-        clearText.text = "クリア！！ \n Next Stage"
-    } else {
-        //次のステージへ遷移
-        stageNum += 1;
-        app.stage.addChild(stageList[stageNum - 1]);
-        if(stageNum == stageList.length){
-            //最終クリア画面用のテキストを設定
-            clearText.text = "完全制覇！！ \n Return to Title"
-        }
-    }
+    stageNum += 1;
+    app.stage.addChild(stageList[stageNum - 1]);
+}
+
+function toTitle(){
+    app.stage.removeChild(clearScene);
+    stageNum = 1;
+    allInitialize()
+    app.stage.addChild(titleScene);
+}
+
+function clearSceneToStageSelect(){
+    app.stage.removeChild(clearScene);
+    stageNum = 1;
+    allInitialize()
+    app.stage.addChild(stageSelectScene);
 }
 
 

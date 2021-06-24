@@ -96,6 +96,11 @@ class GameController{
         if(this.itemCount.isComplete()){
             app.stage.removeChild(stage);
             app.stage.addChild(clearScene);
+            if(stageNum == stageList.length){
+                clearScene.removeChild(nextStageText);
+            }else{
+                clearScene.addChild(nextStageText);
+            }
         }
     }
 }
