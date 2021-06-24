@@ -173,6 +173,10 @@ function selectStage(destNum){
     stageNum = destNum;
     app.stage.removeChild(stageSelectScene);
     app.stage.addChild(stageList[stageNum - 1]);
+    if(stageNum == stageList.length){
+        //最終クリア画面用のテキストを設定
+        clearText.text = "完全制覇！！ \n Return to Title"
+    }
 }
 
 // クリア画面の設定
