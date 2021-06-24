@@ -5,7 +5,7 @@ let GameWindowWidth = window.innerWidth/2;
 let app = new PIXI.Application({
     width: GameWindowWidth,
     height: GameWindowHeight,
-    backgroundColor: 0x1099bb,});
+    backgroundColor: 0xFFFFFF,});
 gameWindow.appendChild(app.view);
 
 //ここからステージの記述
@@ -62,21 +62,29 @@ let stageNum = 1;
 //　画面の記述
 // タイトル画面の設定
 const titleScene = new PIXI.Container();
-let titleText = new PIXI.Text("タイトル \n \n START");
-titleText.interactive = true;
-titleText.buttonMode = true;
-titleText.on('pointertap', toGame);
-titleText.x = GameWindowWidth/2 - titleText.width/2;
-titleText.y = GameWindowWidth/2 - titleText.height/2;
-titleScene.addChild(titleText);
+let startText = new PIXI.Text("START");
+startText.interactive = true;
+startText.buttonMode = true;
+startText.on('pointertap', toGame);
+startText.x = GameWindowWidth/2 - startText.width/2;
+startText.y = GameWindowWidth/2 - startText.height/2;
+titleScene.addChild(startText);
+
+let titleImage = new PIXI.Texture.from("images/title_logo.png");
+let titleLogo = new PIXI.Sprite(titleImage);
+titleLogo.width = GameWindowWidth/1.1;
+titleLogo.height = titleLogo.width*0.208007812;
+titleLogo.x = GameWindowWidth/2 - titleLogo.width/2;
+titleLogo.y = startText.y - 150;
+titleScene.addChild(titleLogo);
 
 
 let toStageSelect = new PIXI.Text("StageSelect");
 toStageSelect.interactive = true;
 toStageSelect.buttonMode = true;
 toStageSelect.on('pointertap', titleToStageSelect);
-toStageSelect.x = titleText.x - 25;
-toStageSelect.y = titleText.y + 150;
+toStageSelect.x = startText.x - 25;
+toStageSelect.y = startText.y + 150;
 titleScene.addChild(toStageSelect);
 
 app.stage.addChild(titleScene);
@@ -99,9 +107,9 @@ for(let i = 1; i <= stageList.length; i++){
     textStageList[i-1] = stageNameText;
     textStageList[i-1].interactive = true;
     textStageList[i-1].buttonMode = true;
-    textStageList[i-1].x = GameWindowWidth/2 - titleText.width/2;
+    textStageList[i-1].x = GameWindowWidth/2 - textStageList[i-1].width/2;
     if(i == 1){
-        textStageList[i-1].y = GameWindowHeight/2 - titleText.height/2;
+        textStageList[i-1].y = GameWindowHeight/2 - textStageList[i-1].height/2;
     }else{
         textStageList[i-1].y = textStageList[i-2].y + 50;
     }
@@ -136,24 +144,20 @@ function selectStage(destNum){
     stageNum = destNum;
     app.stage.removeChild(stageSelectScene);
     app.stage.addChild(stageList[stageNum - 1].stageContainer);
-    if(stageNum == stageList.length){
-        //最終クリア画面用のテキストを設定
-        clearText.text = "完全制覇！！ \n Return to Title"
-    }
 }
 
 // クリア画面の設定
 const clearScene = new PIXI.Container();
 //「クリア！」の表示
 let gratzText = new PIXI.Text("Congratulation！！"); //gratz→congratulationの略らしい
-gratzText.x = GameWindowWidth/2 - titleText.width/2;
-gratzText.y = GameWindowHeight/2 - titleText.height/2;
+gratzText.x = GameWindowWidth/2 - gratzText.width/2;
+gratzText.y = GameWindowHeight/2 - gratzText.height/2;
 clearScene.addChild(gratzText);
 //「Next Stage」の表示
 let nextStageText = new PIXI.Text("Next Stage");
 nextStageText.interactive = true;
 nextStageText.buttonMode = true;
-nextStageText.x = GameWindowWidth/2 - titleText.width/2;
+nextStageText.x = GameWindowWidth/2 - nextStageText.width/2;
 nextStageText.y = gratzText.y + 50;
 nextStageText.on('pointertap', toNext);
 clearScene.addChild(nextStageText);
@@ -161,7 +165,7 @@ clearScene.addChild(nextStageText);
 let toTitleText = new PIXI.Text("Return to Title");
 toTitleText.interactive = true;
 toTitleText.buttonMode = true;
-toTitleText.x = GameWindowWidth/2 - titleText.width/2;
+toTitleText.x = GameWindowWidth/2 - toTitleText.width/2;
 toTitleText.y = nextStageText.y + 50;
 toTitleText.on('pointertap', toTitle);
 clearScene.addChild(toTitleText);
@@ -169,7 +173,7 @@ clearScene.addChild(toTitleText);
 let returnToStageSelectText = new PIXI.Text("Stage Select");
 returnToStageSelectText.interactive = true;
 returnToStageSelectText.buttonMode = true;
-returnToStageSelectText.x = GameWindowWidth/2 - titleText.width/2;
+returnToStageSelectText.x = GameWindowWidth/2 - returnToStageSelectText.width/2;
 returnToStageSelectText.y = toTitleText.y + 50;
 returnToStageSelectText.on('pointertap', clearSceneToStageSelect);
 clearScene.addChild(returnToStageSelectText);
