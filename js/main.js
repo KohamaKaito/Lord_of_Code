@@ -8,81 +8,7 @@ let app = new PIXI.Application({
     backgroundColor: 0x1099bb,});
 gameWindow.appendChild(app.view);
 
-
-
-// タイトル画面の設定
-const titleScene = new PIXI.Container();
-let titleText = new PIXI.Text("タイトル \n \n START");
-titleText.interactive = true;
-titleText.buttonMode = true;
-titleText.on('pointertap', toGame);
-titleText.x = GameWindowWidth/2 - titleText.width/2;
-titleText.y = GameWindowWidth/2 - titleText.height/2;
-titleScene.addChild(titleText);
-// あとで消す----------✂︎
-let to3 = new PIXI.Text("stage3");
-to3.interactive = true;
-to3.buttonMode = true;
-to3.on('pointertap', toStage3);
-to3.x = GameWindowWidth/1.3;
-to3.y = GameWindowWidth/2 + GameWindowWidth/2;
-titleScene.addChild(to3);
-// -------------------
-app.stage.addChild(titleScene);
-function toGame(){
-    app.stage.removeChild(titleScene);
-    app.stage.addChild(stage01);
-    //app.stage.addChild(stage03);
-    //stageNum = 3;
-}
-// あとで消す----------✂︎
-function toStage3(){
-    stageNum = 3;
-    app.stage.removeChild(titleScene);
-    app.stage.addChild(stage03);
-}
-// -------------------
-
-//ステージ３のショートカットの改善およびステージセレクト機能用の関数
-function selectStage(destNum){
-    stageNum = destNum;
-    app.stage.removeChild(titleScene);
-    app.stage.addChild(stageList[stageNum - 1]);
-}
-
-
-
-// クリア画面の設定
-const clearScene = new PIXI.Container();
-let clearText = new PIXI.Text("クリア！！ \n Next Stage");
-clearText.interactive = true;
-clearText.buttonMode = true;
-clearText.x = GameWindowWidth/2 - titleText.width/2;
-clearText.y = GameWindowHeight/2 - titleText.height/2;
-clearText.on('pointertap', toNext);
-clearScene.addChild(clearText);
-function toNext(){
-    app.stage.removeChild(clearScene);
-    if(stageNum == stageList.length){
-        //最後のステージならStageNumの初期化とゲーム進行状況をリセットし、タイトル画面に遷移
-        stageNum = 1;
-        allInitialize()
-        app.stage.addChild(titleScene);
-        //クリア画面用のテキストを初期化
-        clearText.text = "クリア！！ \n Next Stage"
-    } else {
-        //次のステージへ遷移
-        stageNum += 1;
-        app.stage.addChild(stageList[stageNum - 1]);
-        if(stageNum == stageList.length){
-            //最終クリア画面用のテキストを設定
-            clearText.text = "完全制覇！！ \n Return to Title"
-        }
-    }
-}
-
-
-
+//ここからステージの記述
 // ステージ１の設定
 const stage01 = new PIXI.Container();
 let playerModel01 = new Player(3,4,0);
@@ -169,6 +95,145 @@ mapModel03.map =  [
 let stageList = [stage01, stage02, stage03]
 let gameControllerList = [gameController01, gameController02, gameController03]
 let stageNum = 1;
+
+
+//　画面の記述
+// タイトル画面の設定
+const titleScene = new PIXI.Container();
+let titleText = new PIXI.Text("タイトル \n \n START");
+titleText.interactive = true;
+titleText.buttonMode = true;
+titleText.on('pointertap', toGame);
+titleText.x = GameWindowWidth/2 - titleText.width/2;
+titleText.y = GameWindowWidth/2 - titleText.height/2;
+titleScene.addChild(titleText);
+
+
+let toStageSelect = new PIXI.Text("StageSelect");
+toStageSelect.interactive = true;
+toStageSelect.buttonMode = true;
+toStageSelect.on('click', titleToStageSelect);
+toStageSelect.x = titleText.x - 25;
+toStageSelect.y = titleText.y + 150;
+titleScene.addChild(toStageSelect);
+
+app.stage.addChild(titleScene);
+
+function toGame(){
+    app.stage.removeChild(titleScene);
+    app.stage.addChild(stage01);
+}
+
+function titleToStageSelect(){
+    app.stage.removeChild(titleScene);
+    app.stage.addChild(stageSelectScene);
+}
+
+//ステージセレクト画面の設定
+const stageSelectScene = new PIXI.Container();
+let textStageList = [];
+for(let i = 1; i <= stageList.length; i++){
+    let stageNameText = new PIXI.Text("stage"+i);
+    textStageList[i-1] = stageNameText;
+    textStageList[i-1].interactive = true;
+    textStageList[i-1].buttonMode = true;
+    textStageList[i-1].x = GameWindowWidth/2 - titleText.width/2;
+    if(i == 1){
+        textStageList[i-1].y = GameWindowHeight/2 - titleText.height/2;
+    }else{
+        textStageList[i-1].y = textStageList[i-2].y + 50;
+    }
+    switch(i){
+        case 1:
+            textStageList[i-1].on('pointertap', toStage1);
+            break;
+        case 2:
+            textStageList[i-1].on('pointertap', toStage2);
+            break;
+        case 3:
+            textStageList[i-1].on('pointertap', toStage3);
+            break;
+    }
+    stageSelectScene.addChild(textStageList[i-1]);
+}
+
+function toStage1(){
+    selectStage(1)
+}
+
+function toStage2(){
+    selectStage(2)
+}
+
+function toStage3(){
+    selectStage(3)
+}
+
+//引数にあたえた番号のステージに遷移する関数
+function selectStage(destNum){
+    stageNum = destNum;
+    app.stage.removeChild(stageSelectScene);
+    app.stage.addChild(stageList[stageNum - 1]);
+    if(stageNum == stageList.length){
+        //最終クリア画面用のテキストを設定
+        clearText.text = "完全制覇！！ \n Return to Title"
+    }
+}
+
+// クリア画面の設定
+const clearScene = new PIXI.Container();
+//「クリア！」の表示
+let gratzText = new PIXI.Text("Congratulation！！"); //gratz→congratulationの略らしい
+gratzText.x = GameWindowWidth/2 - titleText.width/2;
+gratzText.y = GameWindowHeight/2 - titleText.height/2;
+clearScene.addChild(gratzText);
+//「Next Stage」の表示
+let nextStageText = new PIXI.Text("Next Stage");
+nextStageText.interactive = true;
+nextStageText.buttonMode = true;
+nextStageText.x = GameWindowWidth/2 - titleText.width/2;
+nextStageText.y = gratzText.y + 50;
+nextStageText.on('pointertap', toNext);
+clearScene.addChild(nextStageText);
+//「Return to Title」の表示
+let toTitleText = new PIXI.Text("Return to Title");
+toTitleText.interactive = true;
+toTitleText.buttonMode = true;
+toTitleText.x = GameWindowWidth/2 - titleText.width/2;
+toTitleText.y = nextStageText.y + 50;
+toTitleText.on('pointertap', toTitle);
+clearScene.addChild(toTitleText);
+//「Stage Select」の表示
+let returnToStageSelectText = new PIXI.Text("Stage Select");
+returnToStageSelectText.interactive = true;
+returnToStageSelectText.buttonMode = true;
+returnToStageSelectText.x = GameWindowWidth/2 - titleText.width/2;
+returnToStageSelectText.y = toTitleText.y + 50;
+returnToStageSelectText.on('pointertap', clearSceneToStageSelect);
+clearScene.addChild(returnToStageSelectText);
+
+function toNext(){
+    app.stage.removeChild(clearScene);
+    stageNum += 1;
+    app.stage.addChild(stageList[stageNum - 1]);
+}
+
+function toTitle(){
+    app.stage.removeChild(clearScene);
+    stageNum = 1;
+    allInitialize()
+    app.stage.addChild(titleScene);
+}
+
+function clearSceneToStageSelect(){
+    app.stage.removeChild(clearScene);
+    stageNum = 1;
+    allInitialize()
+    app.stage.addChild(stageSelectScene);
+}
+
+
+
 let direction = 0;
 
 app.ticker.add(main);
