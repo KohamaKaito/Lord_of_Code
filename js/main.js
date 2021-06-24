@@ -112,7 +112,7 @@ titleScene.addChild(titleText);
 let toStageSelect = new PIXI.Text("StageSelect");
 toStageSelect.interactive = true;
 toStageSelect.buttonMode = true;
-toStageSelect.on('click', titleToStageSelect);
+toStageSelect.on('pointertap', titleToStageSelect);
 toStageSelect.x = titleText.x - 25;
 toStageSelect.y = titleText.y + 150;
 titleScene.addChild(toStageSelect);
