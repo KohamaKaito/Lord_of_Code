@@ -10,20 +10,7 @@ gameWindow.appendChild(app.view);
 
 //ここからステージの記述
 // ステージ１の設定
-const stage01 = new PIXI.Container();
-let playerModel01 = new Player(3,4,0);
 let mapModel01 = new Map();
-let mapView01 = new MapView('images/map01.png', GameWindowWidth, GameWindowHeight);
-stage01.addChild(mapView01.map);
-let playerView01 = new PlayerView(GameWindowWidth, GameWindowHeight);
-stage01.addChild(playerView01.anim0);
-let itemCount01 = new ItemCount(0, 1);
-let itemCountView01 = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
-stage01.addChild(itemCountView01.needed_text)
-stage01.addChild(itemCountView01.owned_text)
-let itemView01 = new ItemView("images/goal.png", GameWindowWidth, GameWindowHeight, 2.85, 1.75);
-stage01.addChild(itemView01.item);
-let gameController01 = new GameController(playerView01, playerModel01, mapView01, mapModel01, itemView01, itemCount01, itemCountView01);
 mapModel01.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
@@ -34,23 +21,10 @@ mapModel01.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
 ]
 
-
+let stage01 = new Stage(1, 0, 1, 3, 4, 0, 2.85, 1.75, mapModel01)
 
 // ステージ２の設定
-const stage02 = new PIXI.Container();
-let playerModel02 = new Player(3,4,0);
 let mapModel02 = new Map();
-let mapView02 = new MapView('images/map02.png', GameWindowWidth, GameWindowHeight);
-stage02.addChild(mapView02.map);
-let playerView02 = new PlayerView(GameWindowWidth, GameWindowHeight);
-stage02.addChild(playerView02.anim0);
-let itemCount02 = new ItemCount(0, 1);
-let itemCountView02 = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
-stage02.addChild(itemCountView02.needed_text)
-stage02.addChild(itemCountView02.owned_text)
-let itemView02 = new ItemView('images/goal.png', GameWindowWidth, GameWindowHeight,6.5,1.9);
-stage02.addChild(itemView02.item);
-let gameController02 = new GameController(playerView02, playerModel02, mapView02, mapModel02, itemView02, itemCount02, itemCountView02);
 mapModel02.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM,        MAP_CAN_NOT_MOVE],
@@ -61,24 +35,11 @@ mapModel02.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
 ]
 
+let stage02 = new Stage(2, 0, 1, 3, 4, 0, 6.5, 1.9, mapModel02)
 
 
 // ステージ3の設定
-const stage03 = new PIXI.Container();
-let playerModel03 = new Player(3,4,0);
 let mapModel03 = new Map();
-let mapView03 = new MapView('images/map03.png', GameWindowWidth, GameWindowHeight);
-stage03.addChild(mapView03.map);
-let playerView03 = new PlayerView(GameWindowWidth, GameWindowHeight);
-//stage03.addChild(playerView03.anim0);
-let itemCount03 = new ItemCount(0, 1);
-let itemCountView03 = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
-stage03.addChild(itemCountView03.needed_text)
-stage03.addChild(itemCountView03.owned_text)
-let itemView03 = new ItemView('images/goal.png', GameWindowWidth, GameWindowHeight,2.8,2.4);
-stage03.addChild(itemView03.item);
-stage03.addChild(playerView03.anim0);
-let gameController03 = new GameController(playerView03, playerModel03, mapView03, mapModel03, itemView03, itemCount03, itemCountView03);
 mapModel03.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
@@ -89,11 +50,12 @@ mapModel03.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
 ]
 
+let stage03 = new Stage(3, 0, 1, 3, 4, 0, 2.8, 2.4, mapModel03)
 
 
 
 let stageList = [stage01, stage02, stage03]
-let gameControllerList = [gameController01, gameController02, gameController03]
+let gameControllerList = [stage01.gameController, stage02.gameController, stage03.gameController]
 let stageNum = 1;
 
 
@@ -121,7 +83,7 @@ app.stage.addChild(titleScene);
 
 function toGame(){
     app.stage.removeChild(titleScene);
-    app.stage.addChild(stage01);
+    app.stage.addChild(stage01.stageContainer);
 }
 
 function titleToStageSelect(){
@@ -173,7 +135,7 @@ function toStage3(){
 function selectStage(destNum){
     stageNum = destNum;
     app.stage.removeChild(stageSelectScene);
-    app.stage.addChild(stageList[stageNum - 1]);
+    app.stage.addChild(stageList[stageNum - 1].stageContainer);
     if(stageNum == stageList.length){
         //最終クリア画面用のテキストを設定
         clearText.text = "完全制覇！！ \n Return to Title"
@@ -215,7 +177,7 @@ clearScene.addChild(returnToStageSelectText);
 function toNext(){
     app.stage.removeChild(clearScene);
     stageNum += 1;
-    app.stage.addChild(stageList[stageNum - 1]);
+    app.stage.addChild(stageList[stageNum - 1].stageContainer);
 }
 
 function toTitle(){
@@ -240,7 +202,7 @@ app.ticker.add(main);
 
 function main(delta){
     let gc = gameControllerList[stageNum-1];
-    let stage = stageList[stageNum-1];
+    let stage = stageList[stageNum-1].stageContainer;
 
     if(gc.actionFlag){
 
@@ -337,18 +299,18 @@ function initializeStage(stage, gameController){
 //これがないと、再度ゲームを開始した際に、クリア時の進行状況のままになる
 function allInitialize(){
     for(let num = 0; num < stageList.length; num++){
-        initializeStage(stageList[num], gameControllerList[num])
+        initializeStage(stageList[num].stageContainer, gameControllerList[num])
     }
 }
 
 
 //リセットボタンを押した時の挙動
 function onClickReset(){
-    initializeStage(stageList[stageNum - 1], gameControllerList[stageNum - 1])
+    initializeStage(stageList[stageNum - 1].stageContainer, gameControllerList[stageNum - 1])
 }
 
 
 //実行ボタンを押した時の挙動
 function onClickRun(workspace){
-    gameControllerList[stageNum - 1].doCode(workspace,stageList[stageNum - 1]);
+    gameControllerList[stageNum - 1].doCode(workspace,stageList[stageNum - 1].stageContainer);
 }
