@@ -70,6 +70,7 @@ startText.x = GameWindowWidth/2 - startText.width/2;
 startText.y = GameWindowWidth/2 - startText.height/2;
 titleScene.addChild(startText);
 
+//タイトルロゴ
 let titleImage = new PIXI.Texture.from("images/title_logo.png");
 let titleLogo = new PIXI.Sprite(titleImage);
 titleLogo.width = GameWindowWidth/1.1;
@@ -83,8 +84,8 @@ let toStageSelect = new PIXI.Text("StageSelect");
 toStageSelect.interactive = true;
 toStageSelect.buttonMode = true;
 toStageSelect.on('pointertap', titleToStageSelect);
-toStageSelect.x = startText.x - 25;
-toStageSelect.y = startText.y + 150;
+toStageSelect.x = GameWindowWidth/2 - toStageSelect.width/2;;
+toStageSelect.y = startText.y + 75;
 titleScene.addChild(toStageSelect);
 
 app.stage.addChild(titleScene);
