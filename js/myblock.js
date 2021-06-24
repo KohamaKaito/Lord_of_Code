@@ -61,7 +61,7 @@ Blockly.defineBlocksWithJsonArray(
 
 Blockly.JavaScript['go_ahead'] =  function(block) {
     /* controllerのblock_listにブロックの名前を返す（まっすぐ） */
-    var block_name = 'go_ahead\n';
+    let block_name = 'go_ahead\n';
     return block_name;
     
 }
@@ -79,9 +79,9 @@ Blockly.JavaScript['pick_up'] =  function(block) {
 }
 
 Blockly.JavaScript['for'] = function(block) {
-    var number_number = block.getFieldValue('number');
-    var statements_input = Blockly.JavaScript.statementToCode(block, 'input');
-    var block_name ="";
+    let number_number = block.getFieldValue('number');
+    let statements_input = Blockly.JavaScript.statementToCode(block, 'input');
+    let block_name = "";
     for(let i=0; i<number_number; i++){
         block_name += statements_input.trim() + "\n";
     }

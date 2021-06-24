@@ -116,7 +116,7 @@ class PlayerView extends Object {
         for (let i = 0; i < imgs.length; i++) {
             let texture = PIXI.Texture.from(imgs[i]);
             textureArray.push(texture);
-        };
+        }
         const animatedSprite = new PIXI.AnimatedSprite(textureArray);
         animatedSprite.animationSpeed = 0.1;
         animatedSprite.height = height/3;
