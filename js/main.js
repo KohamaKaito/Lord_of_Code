@@ -62,27 +62,30 @@ let stageNum = 1;
 //　画面の記述
 // タイトル画面の設定
 const titleScene = new PIXI.Container();
-let startText = new PIXI.Text("START");
+let startText = new PIXI.Sprite(new PIXI.Texture.from("images/menu/start.PNG"));
 startText.interactive = true;
 startText.buttonMode = true;
+startText.width = GameWindowWidth/4;
+startText.height = startText.width*0.240468227;
 startText.on('pointertap', toGame);
 startText.x = GameWindowWidth/2 - startText.width/2;
 startText.y = GameWindowWidth/2 - startText.height/2;
 titleScene.addChild(startText);
 
 //タイトルロゴ
-let titleImage = new PIXI.Texture.from("images/title_logo.png");
-let titleLogo = new PIXI.Sprite(titleImage);
+let titleLogo = new PIXI.Sprite(new PIXI.Texture.from("images/title_logo.png"));
 titleLogo.width = GameWindowWidth/1.1;
 titleLogo.height = titleLogo.width*0.208007812;
 titleLogo.x = GameWindowWidth/2 - titleLogo.width/2;
-titleLogo.y = startText.y - 150;
+titleLogo.y = startText.y - 200;
 titleScene.addChild(titleLogo);
 
 
-let toStageSelect = new PIXI.Text("StageSelect");
+let toStageSelect = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage_select.PNG"));
 toStageSelect.interactive = true;
 toStageSelect.buttonMode = true;
+toStageSelect.height = startText.height * 0.9;
+toStageSelect.width = toStageSelect.height * 10.50165016;
 toStageSelect.on('pointertap', titleToStageSelect);
 toStageSelect.x = GameWindowWidth/2 - toStageSelect.width/2;;
 toStageSelect.y = startText.y + 75;
