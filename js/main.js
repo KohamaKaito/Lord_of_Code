@@ -157,32 +157,40 @@ function selectStage(destNum){
 // クリア画面の設定
 const clearScene = new PIXI.Container();
 //「クリア！」の表示
-let gratzText = new PIXI.Text("Congratulation！！"); //gratz→congratulationの略らしい
+let gratzText = new PIXI.Sprite(new PIXI.Texture.from("images/logo/stage_clear.PNG")); //gratz→congratulationの略らしい
+gratzText.width = GameWindowWidth / 3;
+gratzText.height = gratzText.width * 0.407022106;
 gratzText.x = GameWindowWidth/2 - gratzText.width/2;
-gratzText.y = GameWindowHeight/2 - gratzText.height/2;
+gratzText.y = GameWindowHeight/2 - gratzText.height/2 - 80;
 clearScene.addChild(gratzText);
 //「Next Stage」の表示
-let nextStageText = new PIXI.Text("Next Stage");
+let nextStageText = new PIXI.Sprite(new PIXI.Texture.from("images/menu/next_stage.PNG"));
 nextStageText.interactive = true;
 nextStageText.buttonMode = true;
+nextStageText.height = toStageSelect.height;
+nextStageText.width = nextStageText.height * 8.679153094;
 nextStageText.x = GameWindowWidth/2 - nextStageText.width/2;
-nextStageText.y = gratzText.y + 50;
+nextStageText.y = gratzText.y + 150;
 nextStageText.on('pointertap', toNext);
 clearScene.addChild(nextStageText);
 //「Return to Title」の表示
-let toTitleText = new PIXI.Text("Return to Title");
+let toTitleText = new PIXI.Sprite(new PIXI.Texture.from("images/menu/back_to_title.PNG"));
 toTitleText.interactive = true;
 toTitleText.buttonMode = true;
+toTitleText.height = toStageSelect.height;
+toTitleText.width = toTitleText.height * 11.26575809;
 toTitleText.x = GameWindowWidth/2 - toTitleText.width/2;
-toTitleText.y = nextStageText.y + 50;
+toTitleText.y = nextStageText.y + 80;
 toTitleText.on('pointertap', toTitle);
 clearScene.addChild(toTitleText);
 //「Stage Select」の表示
-let returnToStageSelectText = new PIXI.Text("Stage Select");
+let returnToStageSelectText = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage_select.PNG"));
 returnToStageSelectText.interactive = true;
 returnToStageSelectText.buttonMode = true;
+returnToStageSelectText.height = toStageSelect.height;
+returnToStageSelectText.width = toStageSelect.width;
 returnToStageSelectText.x = GameWindowWidth/2 - returnToStageSelectText.width/2;
-returnToStageSelectText.y = toTitleText.y + 50;
+returnToStageSelectText.y = toTitleText.y + 80;
 returnToStageSelectText.on('pointertap', clearSceneToStageSelect);
 clearScene.addChild(returnToStageSelectText);
 
