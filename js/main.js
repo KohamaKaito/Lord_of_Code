@@ -84,7 +84,7 @@ titleScene.addChild(titleLogo);
 let toStageSelect = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage_select.PNG"));
 toStageSelect.interactive = true;
 toStageSelect.buttonMode = true;
-toStageSelect.height = startText.height * 0.9;
+toStageSelect.height = startText.height * 0.85;
 toStageSelect.width = toStageSelect.height * 10.50165016;
 toStageSelect.on('pointertap', titleToStageSelect);
 toStageSelect.x = GameWindowWidth/2 - toStageSelect.width/2;;
@@ -107,26 +107,30 @@ function titleToStageSelect(){
 const stageSelectScene = new PIXI.Container();
 let textStageList = [];
 for(let i = 1; i <= stageList.length; i++){
-    let stageNameText = new PIXI.Text("stage"+i);
-    textStageList[i-1] = stageNameText;
-    textStageList[i-1].interactive = true;
-    textStageList[i-1].buttonMode = true;
-    textStageList[i-1].x = GameWindowWidth/2 - textStageList[i-1].width/2;
-    if(i == 1){
-        textStageList[i-1].y = GameWindowHeight/2 - textStageList[i-1].height/2;
-    }else{
-        textStageList[i-1].y = textStageList[i-2].y + 50;
-    }
     switch(i){
         case 1:
+            textStageList[i-1] = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage1.PNG"));
             textStageList[i-1].on('pointertap', toStage1);
             break;
         case 2:
+            textStageList[i-1] = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage2.PNG"));
             textStageList[i-1].on('pointertap', toStage2);
             break;
         case 3:
+            textStageList[i-1] = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage3.PNG"));
             textStageList[i-1].on('pointertap', toStage3);
             break;
+    }
+    textStageList[i-1].interactive = true;
+    textStageList[i-1].buttonMode = true;
+    textStageList[i-1].height = startText.height * 0.9;
+    textStageList[i-1].width = textStageList[i-1].height * 5.73333;
+    textStageList[i-1].x = GameWindowWidth/2 - textStageList[i-1].width/2;
+    if(i == 1){
+        //ステージ選択の座標制御　要改善！！！（ステージ総数を把握して、自動的に座標調整とか）
+        textStageList[i-1].y = GameWindowHeight/2 - textStageList[i-1].height * 6;
+    }else{
+        textStageList[i-1].y = textStageList[i-2].y + 80;
     }
     stageSelectScene.addChild(textStageList[i-1]);
 }
