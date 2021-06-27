@@ -247,9 +247,7 @@ function main(delta){
     let stage = stageList[stageNum-1].stageContainer;
 
     if(gc.actionFlag){
-
-        console.log(gc.listNum);
-
+        
         // アイテム数が満たしてたらクリア遷移
         gc.checkClear(stage);
 
