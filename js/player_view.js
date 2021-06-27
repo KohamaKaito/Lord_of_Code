@@ -4,8 +4,8 @@ class PlayerView extends Object {
     player;
     constructor(width, height) {
         super();
-        this.playerX = width / 2.5;
-        this.playerY = height / 3.1;
+        this.playerX = width*3 / 7;
+        this.playerY = width*4 / 7;
 
         this.anim0 = this.createAnim(["images/player0_0.png","images/player0_1.png","images/player0_0.png","images/player0_2.png"],width,height);
         this.anim1 = this.createAnim(["images/player1_0.png","images/player1_1.png","images/player1_0.png","images/player1_2.png"],width,height);
@@ -17,8 +17,8 @@ class PlayerView extends Object {
         // goAhead()の実行回数を記憶する変数
         this.countStep = 0;
         // 1回のgoAhead()で進む距離
-        this.deltaX = width/42 * 0.02;
-        this.deltaY = height/84 * 0.02;
+        this.deltaX = width/1050;
+        this.deltaY = width/1050;
         // goAhead()が完了したことを他のクラスに知らせる
         this.goFinished = false;
     }
@@ -29,31 +29,23 @@ class PlayerView extends Object {
             switch (direction){
                 case 0:
                     this.startAnim(this.anim0);
-                    this.playerX -= this.deltaX;
-                    this.playerY += this.deltaY;
-                    this.anim0.x = this.playerX;
+                    this.playerY -= this.deltaY;
                     this.anim0.y = this.playerY;
                     break;
                 case 1:
                     this.startAnim(this.anim1);
-                    this.playerX -= this.deltaX;
-                    this.playerY -= this.deltaY;
+                    this.playerX += this.deltaX;
                     this.anim1.x = this.playerX;
-                    this.anim1.y = this.playerY;
                     break;
                 case 2:
                     this.startAnim(this.anim2);
-                    this.playerX += this.deltaX;
-                    this.playerY -= this.deltaY;
-                    this.anim2.x = this.playerX;
+                    this.playerY += this.deltaY;
                     this.anim2.y = this.playerY;
                     break;
                 case 3:
                     this.startAnim(this.anim3);
-                    this.playerX += this.deltaX;
-                    this.playerY += this.deltaY;
-                    this.anim2.x = this.playerX;
-                    this.anim2.y = this.playerY;
+                    this.playerX -= this.deltaX;
+                    this.anim3.x = this.playerX;
                     break;
             }
             this.countStep += 1;
@@ -119,10 +111,10 @@ class PlayerView extends Object {
         }
         const animatedSprite = new PIXI.AnimatedSprite(textureArray);
         animatedSprite.animationSpeed = 0.1;
-        animatedSprite.height = height/3;
-        animatedSprite.width = width/3;
-        animatedSprite.x = width / 2.5;
-        animatedSprite.y = height / 3.1;
+        animatedSprite.width = width/7;
+        animatedSprite.height = width/7;
+        animatedSprite.x = width*3/7;
+        animatedSprite.y = width*4/7;
         return animatedSprite;
     }
 

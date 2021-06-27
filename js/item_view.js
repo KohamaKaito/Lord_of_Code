@@ -4,9 +4,9 @@ class ItemView extends Object {
         super();
         let image = new PIXI.Texture.from(src);
         this.item = new PIXI.Sprite(image);
-        this.item.x = width / x;
-        this.item.y = height / y;
-        this.item.width = width/8;
-        this.item.height = height/8;
+        this.item.x = width/7 * x;
+        this.item.y = width/7 * y;
+        this.item.width = width/7;
+        this.item.height = width/7;
     }
 }

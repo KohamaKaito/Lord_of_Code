@@ -38,8 +38,8 @@ class GameController{
             this.playerView.goAhead(this.playerModel.direction, stage);
             if(this.playerView.goFinished == true){
                 this.playerView.goFinished = false;
-                this.playerView.deltaX = GameWindowWidth/42 * 0.02;
-                this.playerView.deltaY = GameWindowHeight/84 * 0.02;
+                this.playerView.deltaX = GameWindowWidth/1050;
+                this.playerView.deltaY = GameWindowWidth/1050;
                 this.listNum += 1;
             }
         }
