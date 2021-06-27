@@ -3,7 +3,7 @@ class Stage{
         this.stageContainer = new PIXI.Container();
         this.stageNumber = stageNumber;
         let mapView;
-        if(stageNumber == 1){
+        if(stageNumber == 1 || stageNumber == 2){
             mapView = new MapView(GameWindowWidth,GameWindowHeight,mapModel.map,"images/map1_1.png","images/map1_3.png");
         }else {
             mapView = new MapView(GameWindowWidth,GameWindowHeight,mapModel.map,"images/map2_1.png","images/map2_3.png");

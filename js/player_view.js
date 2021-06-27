@@ -17,15 +17,15 @@ class PlayerView extends Object {
         // goAhead()の実行回数を記憶する変数
         this.countStep = 0;
         // 1回のgoAhead()で進む距離
-        this.deltaX = width/1050;
-        this.deltaY = width/1050;
+        this.deltaX = width/700;
+        this.deltaY = width/700;
         // goAhead()が完了したことを他のクラスに知らせる
         this.goFinished = false;
     }
 
     // 「前進」を命令する関数
     goAhead(direction,stage){
-        if(this.countStep < 150){
+        if(this.countStep < 100){
             switch (direction){
                 case 0:
                     this.startAnim(this.anim0);
