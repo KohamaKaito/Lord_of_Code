@@ -248,6 +248,8 @@ function main(delta){
 
     if(gc.actionFlag){
 
+        console.log(gc.listNum);
+
         // アイテム数が満たしてたらクリア遷移
         gc.checkClear(stage);
 

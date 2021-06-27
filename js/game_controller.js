@@ -30,9 +30,9 @@ class GameController{
     goPlayer(stage){
         if(this.canMove()){
             this.playerView.goAhead(this.playerModel.direction, stage);
-            if(this.playerView.goFinished == true){
+            if(this.playerView.animFinished == true){
                 this.playerModel.goAhead();
-                this.playerView.goFinished = false;
+                this.playerView.animFinished = false;
                 this.listNum += 1;
             }
         }else {
@@ -40,8 +40,8 @@ class GameController{
             this.playerView.deltaX = 0;
             this.playerView.deltaY = 0;
             this.playerView.goAhead(this.playerModel.direction, stage);
-            if(this.playerView.goFinished == true){
-                this.playerView.goFinished = false;
+            if(this.playerView.animFinished == true){
+                this.playerView.animFinished = false;
                 this.playerView.deltaX = GameWindowWidth/700;
                 this.playerView.deltaY = GameWindowWidth/700;
                 this.listNum += 1;
@@ -63,6 +63,7 @@ class GameController{
         if(this.mapModel.getState(this.playerModel.x,this.playerModel.y) == 3){
             this.itemCount.addOwned();
             this.itemCountView.setOwned(this.itemCount.owned);
+            stage.removeChild(this.itemView.item);
         }
         this.listNum += 1;
     }
@@ -98,12 +99,18 @@ class GameController{
 
     checkClear(stage){
         if(this.itemCount.isComplete()){
-            app.stage.removeChild(stage);
-            app.stage.addChild(clearScene);
-            if(stageNum == stageList.length){
-                clearScene.removeChild(nextStageText);
-            }else{
-                clearScene.addChild(nextStageText);
+            this.listNum = -1
+            this.playerView.clearAnimation(stage);
+            if(this.playerView.animFinished == true){
+                // アニメーション終わった後の処理
+                this.playerView.animFinished = false;
+                app.stage.removeChild(stage);
+                app.stage.addChild(clearScene);
+                if(stageNum == stageList.length){
+                    clearScene.removeChild(nextStageText);
+                }else{
+                    clearScene.addChild(nextStageText);
+                }
             }
         }
     }
