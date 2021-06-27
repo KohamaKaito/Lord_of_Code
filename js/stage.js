@@ -18,7 +18,7 @@ class Stage{
         let itemView = new ItemView("images/item.png", GameWindowWidth, GameWindowHeight, itemX, itemY);
         this.stageContainer.addChild(itemView.item);
 
-        let playerView = new PlayerView(GameWindowWidth, GameWindowHeight);
+        let playerView = new PlayerView(GameWindowWidth, GameWindowHeight, playerX, playerY);
         this.stageContainer.addChild(playerView.anim0);
 
         let itemCountView = new ItemCountView(owned,needed, GameWindowWidth, GameWindowHeight);

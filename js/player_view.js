@@ -2,10 +2,10 @@ class PlayerView extends Object {
 
     // コンストラクタ
     player;
-    constructor(width, height) {
+    constructor(width, height, playerX, playerY) {
         super();
-        this.playerX = width*3 / 7;
-        this.playerY = width*4 / 7;
+        this.playerX = width * playerX / 7;
+        this.playerY = width * playerY / 7;
 
         this.anim0 = this.createAnim(["images/player0_0.png","images/player0_1.png","images/player0_0.png","images/player0_2.png"],width,height);
         this.anim1 = this.createAnim(["images/player1_0.png","images/player1_1.png","images/player1_0.png","images/player1_2.png"],width,height);
@@ -113,8 +113,8 @@ class PlayerView extends Object {
         animatedSprite.animationSpeed = 0.1;
         animatedSprite.width = width/7;
         animatedSprite.height = width/7;
-        animatedSprite.x = width*3/7;
-        animatedSprite.y = width*4/7;
+        animatedSprite.x = this.playerX;
+        animatedSprite.y = this.playerY;
         return animatedSprite;
     }
 

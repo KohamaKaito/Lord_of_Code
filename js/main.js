@@ -43,19 +43,33 @@ let mapModel03 = new Map();
 mapModel03.map =  [
     [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1],
     [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1],
-    [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE1],
-    [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE1,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE1],
-    [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE1,MAP_ITEM,        MAP_CAN_NOT_MOVE1],
+    [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_MOVE,     MAP_CAN_MOVE,     MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1],
+    [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE1,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1],
+    [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE1,MAP_ITEM,         MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1],
     [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1],
     [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1],
 ]
 
-let stage03 = new Stage(3, 0, 1, 3, 4, 0, 5, 4, mapModel03)
+let stage03 = new Stage(3, 0, 1, 2, 4, 0, 4, 4, mapModel03)
 
 
+// ステージ3の設定
+let mapModel04 = new Map();
+mapModel04.map =  [
+    [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1],
+    [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1],
+    [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_MOVE,     MAP_CAN_MOVE,     MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1],
+    [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE1,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1],
+    [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE1,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1],
+    [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_ITEM,         MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1],
+    [MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1,MAP_CAN_NOT_MOVE1],
+]
 
-let stageList = [stage01, stage02, stage03]
-let gameControllerList = [stage01.gameController, stage02.gameController, stage03.gameController]
+let stage04 = new Stage(3, 0, 1, 2, 4, 0, 3, 5, mapModel04)
+
+
+let stageList = [stage01, stage02, stage03, stage04]
+let gameControllerList = [stage01.gameController, stage02.gameController, stage03.gameController, stage04.gameController]
 let stageNum = 1;
 
 
@@ -111,15 +125,19 @@ for(let i = 1; i <= stageList.length; i++){
         case 1:
             textStageList[i-1] = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage1.PNG"));
             textStageList[i-1].on('pointertap', toStage1);
-            break;
+            break
         case 2:
             textStageList[i-1] = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage2.PNG"));
             textStageList[i-1].on('pointertap', toStage2);
-            break;
+            break
         case 3:
             textStageList[i-1] = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage3.PNG"));
             textStageList[i-1].on('pointertap', toStage3);
-            break;
+            break
+        case 4:
+            textStageList[i-1] = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage4.PNG"));
+            textStageList[i-1].on('pointertap', toStage4);
+            break
     }
     textStageList[i-1].interactive = true;
     textStageList[i-1].buttonMode = true;
@@ -145,6 +163,10 @@ function toStage2(){
 
 function toStage3(){
     selectStage(3)
+}
+
+function toStage4(){
+    selectStage(4)
 }
 
 //引数にあたえた番号のステージに遷移する関数
@@ -229,12 +251,6 @@ function main(delta){
         // アイテム数が満たしてたらクリア遷移
         gc.checkClear(stage);
 
-        // 宝箱を最前面にする
-        //if(stageNum == 1 || stageNum == 2){
-        //    stage.removeChild(gc.itemView.item);
-        //    stage.addChild(gc.itemView.item);
-        //}
-
         // ブロックリストを1つずつ実行
         switch (gc.blockList[gc.listNum]){
 
@@ -251,25 +267,17 @@ function main(delta){
                 break
 
             case "if0":
-                if(gc.canMove()){
-                    gc.listNum += 2;
-                }else {
-                    console.log(Number(gc.blockList[gc.listNum+1])+2)
-                    gc.listNum += Number(gc.blockList[gc.listNum+1])+4;
-                }
+                // もし前に進めるなら...
+                gc.if0();
                 break
 
-
             case "if1":
-                if(gc.mapModel.getState(gc.playerModel.x,gc.playerModel.y) == 3){
-                    gc.listNum += 2;
-                }else {
-                    console.log(Number(gc.blockList[gc.listNum+1])+2)
-                    gc.listNum += Number(gc.blockList[gc.listNum+1])+4;
-                }
+                // もし足元に宝箱があるなら...
+                gc.if1();
                 break
 
             case "jump":
+                // ifが実行した際にelse文の中身をスキップ
                 gc.listNum += Number(gc.blockList[gc.listNum+1])+2;
                 break
 
@@ -320,14 +328,12 @@ function initializeStage(stage, gameController){
     //ほか、立ち止まってる騎士くん、所持アイテム数表示、アイテムなどをコンテナから取り除く
     stage.removeChild(gameController.playerView.anim0, gameController.itemCountView.owned_text, gameController.itemView.item)
 
-
     //gameControllerの中で、初期化が必要なものを初期化
     //ここの初期化値にステージ毎の違いがある場合は引数を増やすのもありかも
-    gameController.playerModel = new Player(3,4,0);
-    gameController.playerView = new PlayerView(GameWindowWidth, GameWindowHeight);
+    gameController.playerModel = new Player(gameController.x0,gameController.y0,0);
+    gameController.playerView = new PlayerView(GameWindowWidth, GameWindowHeight,gameController.playerModel.x ,gameController.playerModel.y);
     gameController.itemCount = new ItemCount(0,1)
     gameController.itemCountView = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
-
 
     //上で取り除いた、立ち止まってる騎士くん、所持アイテム数表示、アイテムなどを改めて描画
     //gameControllerを初期化した後のタイミングでこれをしないと、初期化前の座標でまた描画してしまう

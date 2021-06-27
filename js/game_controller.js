@@ -12,6 +12,10 @@ class GameController{
         this.actionFlag = false;
         this.blockList = [];
         this.listNum = 0;
+
+        // プレイヤーの初期値
+        this.x0 = this.playerModel.x;
+        this.y0 = this.playerModel.y;
     }
 
 
@@ -101,6 +105,24 @@ class GameController{
             }else{
                 clearScene.addChild(nextStageText);
             }
+        }
+    }
+
+    // もし前に進めるなら...
+    if0(){
+        if(this.canMove()){
+            this.listNum += 2;
+        }else {
+            this.listNum += Number(this.blockList[this.listNum+1])+4;
+        }
+    }
+
+    // もし足元に宝箱があるなら...
+    if1(){
+        if(this.mapModel.getState(this.playerModel.x,this.playerModel.y) == 3){
+            this.listNum += 2;
+        }else {
+            this.listNum += Number(this.blockList[this.listNum+1])+4;
         }
     }
 }

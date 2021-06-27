@@ -20,7 +20,7 @@ class MapView extends Object {
 
     }
 
-    createMap(mapInfo, src1, src2, src3){
+    createMap(mapInfo, src1, src2){
         let image;
         for(let i=0; i<7; i++){
             for(let j=0; j<7; j++){
@@ -34,9 +34,9 @@ class MapView extends Object {
                     case 3:
                         image = new PIXI.Texture.from(src1);
                         break
-                    case 4:
-                        image = new PIXI.Texture.from(src2);
-                        break
+                    //case 4:
+                        //image = new PIXI.Texture.from(src2);
+                        //break
                 }
                 this.map[i][j] = new PIXI.Sprite(image);
                 this.map[i][j].x = this.ww*j/7;

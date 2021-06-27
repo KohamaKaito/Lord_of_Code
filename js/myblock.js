@@ -97,12 +97,13 @@ Blockly.defineBlocksWithJsonArray(
     ]
 );
 
+
 Blockly.JavaScript['go_ahead'] =  function(block) {
     /* controllerのblock_listにブロックの名前を返す（まっすぐ） */
     let block_name = 'go_ahead\n';
     return block_name;
-    
 }
+
 
 Blockly.JavaScript['turn_right'] =  function(block) {
     /* controllerのblock_listにブロックの名前を返す（右向く） */
@@ -110,11 +111,13 @@ Blockly.JavaScript['turn_right'] =  function(block) {
     return block_name;
 }
 
+
 Blockly.JavaScript['pick_up'] =  function(block) {
     /* controllerのblock_listにブロックの名前を返す（拾う） */
     let block_name = 'pick_up\n';
     return block_name;
 }
+
 
 Blockly.JavaScript['for'] = function(block) {
     let number_number = block.getFieldValue('number');
@@ -127,12 +130,12 @@ Blockly.JavaScript['for'] = function(block) {
     return block_name;
 }
 
+
 Blockly.JavaScript['if'] = function(block) {
     let dropdown_num = block.getFieldValue('num');
     let statements_if = Blockly.JavaScript.statementToCode(block, 'if');
     var statements_else = Blockly.JavaScript.statementToCode(block, 'else');
     let block_name = "";
-    console.log(dropdown_num)
     switch (dropdown_num){
         case "0":
             block_name += "if0" + "\n"
@@ -151,7 +154,6 @@ Blockly.JavaScript['if'] = function(block) {
     }
     block_name += count + "\n";
     block_name += statements_if.trim() + "\n";
-
     count = 0;
     arr = statements_else.match(ex);
     if (arr == null){
@@ -163,6 +165,5 @@ Blockly.JavaScript['if'] = function(block) {
     block_name += count + "\n";
     block_name += statements_else.trim() + "\n";
     block_name = block_name.replace(/ /g, "");
-    console.log("block_name="+block_name)
     return block_name;
 };
