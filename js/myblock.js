@@ -130,7 +130,13 @@ Blockly.JavaScript['for'] = function(block) {
     return block_name;
 }
 
-
+// 戻り値
+// 1. "ifCanGo"/"ifOnItem"のいずれか
+// 2. ifブロックの中のブロック数
+// 3. ifブロックの中のブロック名
+// 4. 文字列"jump"
+// 5. elseブロックの中のブロック数
+// 6. elseブロックの中のブロック名
 Blockly.JavaScript['if'] = function(block) {
     let dropdown_num = block.getFieldValue('num');
     let statements_if = Blockly.JavaScript.statementToCode(block, 'if');
@@ -138,10 +144,10 @@ Blockly.JavaScript['if'] = function(block) {
     let block_name = "";
     switch (dropdown_num){
         case "0":
-            block_name += "if0" + "\n"
+            block_name += "ifCanGo" + "\n"
             break
         case "1":
-            block_name += "if1" + "\n"
+            block_name += "ifOnItem" + "\n"
             break
     }
     let count = 0;

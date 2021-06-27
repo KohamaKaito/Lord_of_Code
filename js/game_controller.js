@@ -109,7 +109,7 @@ class GameController{
     }
 
     // もし前に進めるなら...
-    if0(){
+    ifCanGo(){
         if(this.canMove()){
             this.listNum += 2;
         }else {
@@ -118,7 +118,7 @@ class GameController{
     }
 
     // もし足元に宝箱があるなら...
-    if1(){
+    ifOnItem(){
         if(this.mapModel.getState(this.playerModel.x,this.playerModel.y) == 3){
             this.listNum += 2;
         }else {

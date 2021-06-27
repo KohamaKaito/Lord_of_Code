@@ -35,7 +35,7 @@ class MapView extends Object {
                         image = new PIXI.Texture.from(src1);
                         break
                     //case 4:
-                        //image = new PIXI.Texture.from(src2);
+                        //image = new PIXI.Texture.from(src3);
                         //break
                 }
                 this.map[i][j] = new PIXI.Sprite(image);
