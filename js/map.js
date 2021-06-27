@@ -2,6 +2,8 @@ const MAP_CAN_MOVE = 1;
 const MAP_CAN_NOT_MOVE = 2;
 const MAP_ITEM = 3;
 
+
+
 class Map{
     constructor() {
         this.map = [
