@@ -4,22 +4,18 @@ stages:
 develop-deploy:
   type: deploy
   script:
-    - cp -r * $PROJECT_DIR_DEVELOP
-    - cd $PROJECT_DIR_DEVELOP
-    - docker-compose -f docker-compose-develop.yml down
-    - docker-compose -f docker-compose-develop.yml build
-    - docker-compose -f docker-compose-develop.yml up -d
+    - echo "${PROJECT_DIR}/develop"
+    - mkdir -p "${PROJECT_DIR}/develop"
+    - cp -r * "${PROJECT_DIR}/develop/"
   only:
     - develop
 
 master-deploy:
   type: deploy
   script:
-    - cp -r * $PROJECT_DIR_MASTER
-    - cd $PROJECT_DIR_MASTER
-    - docker-compose -f docker-compose-master.yml down
-    - docker-compose -f docker-compose-master.yml build
-    - docker-compose -f docker-compose-master.yml up -d
+    - echo "${PROJECT_DIR}/master"
+    - mkdir -p "${PROJECT_DIR}/master"
+    - cp -r * "${PROJECT_DIR}/master/"
   only:
     - master
 
