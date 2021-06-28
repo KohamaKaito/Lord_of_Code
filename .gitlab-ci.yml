@@ -22,3 +22,12 @@ master-deploy:
     - docker-compose -f docker-compose-master.yml up -d
   only:
     - master
+
+merge-request-deploy:
+  type: deploy
+  script:
+    - mkdir -p "${PROJECT_DIR}/${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}"
+    - cp -r * "${PROJECT_DIR}/${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}/"
+    - cd "${PROJECT_DIR}/${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}"
+  only:
+    - merge_requests
