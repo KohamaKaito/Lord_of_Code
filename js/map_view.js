@@ -24,19 +24,10 @@ class MapView extends Object {
         let image;
         for(let i=0; i<7; i++){
             for(let j=0; j<7; j++){
-                switch (mapInfo[i][j]){
-                    case 1:
-                        image = new PIXI.Texture.from(src1);
-                        break
-                    case 2:
-                        image = new PIXI.Texture.from(src2);
-                        break
-                    case 3:
-                        image = new PIXI.Texture.from(src1);
-                        break
-                    //case 4:
-                        //image = new PIXI.Texture.from(src3);
-                        //break
+                if(mapInfo[i][j] == 2){
+                    image = new PIXI.Texture.from(src2);
+                }else {
+                    image = new PIXI.Texture.from(src1);
                 }
                 this.map[i][j] = new PIXI.Sprite(image);
                 this.map[i][j].x = this.ww*j/7;
