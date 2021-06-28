@@ -4,7 +4,6 @@ stages:
 develop-deploy:
   type: deploy
   script:
-    - echo "${PROJECT_DIR}/develop"
     - mkdir -p "${PROJECT_DIR}/develop"
     - cp -r * "${PROJECT_DIR}/develop/"
   only:
@@ -13,7 +12,6 @@ develop-deploy:
 master-deploy:
   type: deploy
   script:
-    - echo "${PROJECT_DIR}/master"
     - mkdir -p "${PROJECT_DIR}/master"
     - cp -r * "${PROJECT_DIR}/master/"
   only:
@@ -22,7 +20,6 @@ master-deploy:
 merge-request-deploy:
   type: deploy
   script:
-    - echo "${PROJECT_DIR}/${CI_MERGE_REQUEST_IID}"
     - mkdir -p "${PROJECT_DIR}/${CI_MERGE_REQUEST_IID}"
     - cp -r * "${PROJECT_DIR}/${CI_MERGE_REQUEST_IID}/"
     - deploy_url="${URL}/${CI_MERGE_REQUEST_IID}"
