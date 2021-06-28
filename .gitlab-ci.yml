@@ -26,6 +26,7 @@ master-deploy:
 merge-request-deploy:
   type: deploy
   script:
+    - echo "${PROJECT_DIR}/${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}"
     - mkdir -p "${PROJECT_DIR}/${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}"
     - cp -r * "${PROJECT_DIR}/${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}/"
     - cd "${PROJECT_DIR}/${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}"
