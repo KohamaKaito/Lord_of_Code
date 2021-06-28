@@ -23,6 +23,6 @@ merge-request-deploy:
     - mkdir -p "${PROJECT_DIR}/${CI_MERGE_REQUEST_IID}"
     - cp -r * "${PROJECT_DIR}/${CI_MERGE_REQUEST_IID}/"
     - deploy_url="${URL}/${CI_MERGE_REQUEST_IID}"
-    - curl -H "Content-Type: application/json" -d '{"username": "GitLabRunner", "content": "'"${deploy_url}"'"}' "${WEBHOOK}"
+    - "curl -H \"Content-Type: application/json\" -d '{\"username\": \"GitLabRunner\", \"content\": \"'\"${deploy_url}\"'\"}' \"${WEBHOOK}\""
   only:
     - merge_requests
