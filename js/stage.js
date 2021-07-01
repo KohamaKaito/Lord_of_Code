@@ -20,6 +20,10 @@ class Stage{
                 mapView = new MapView(GameWindowWidth,GameWindowHeight,mapModel.map,
                     "images/materials/material02.png","images/materials/material17.png");
                 break
+            case 5:
+                mapView = new MapView(GameWindowWidth,GameWindowHeight,mapModel.map,
+                    "images/materials/material03.png","images/materials/material14.png");
+                break
         }
 
         for(let i=0;i<7;i++){
