@@ -5,7 +5,7 @@ develop-deploy:
   type: deploy
   script:
     - mkdir -p "${PROJECT_DIR}/develop"
-    - cp -r * "${PROJECT_DIR}/develop/"
+    - cp -r index.html images js javascript_compressed.js stylesheet.css "${PROJECT_DIR}/develop/"
   only:
     - develop
 
@@ -13,7 +13,7 @@ master-deploy:
   type: deploy
   script:
     - mkdir -p "${PROJECT_DIR}/master"
-    - cp -r * "${PROJECT_DIR}/master/"
+    - cp -r index.html images js javascript_compressed.js stylesheet.css "${PROJECT_DIR}/master/"
   only:
     - master
 
