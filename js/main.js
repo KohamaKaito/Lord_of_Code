@@ -65,7 +65,7 @@ mapModel04.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
 ]
 
-let stage04 = new Stage(3, 0, 1, 2, 4, 0, 3, 5, mapModel04)
+let stage04 = new Stage(4, 0, 1, 2, 4, 0, 3, 5, mapModel04)
 
 
 let stageList = [stage01, stage02, stage03, stage04]
