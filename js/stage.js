@@ -3,10 +3,23 @@ class Stage{
         this.stageContainer = new PIXI.Container();
         this.stageNumber = stageNumber;
         let mapView;
-        if(stageNumber == 1 || stageNumber == 2){
-            mapView = new MapView(GameWindowWidth,GameWindowHeight,mapModel.map,"images/map1_1.png","images/map1_3.png");
-        }else {
-            mapView = new MapView(GameWindowWidth,GameWindowHeight,mapModel.map,"images/map2_1.png","images/map2_3.png");
+        switch (stageNumber){
+            case 1:
+                mapView = new MapView(GameWindowWidth,GameWindowHeight,mapModel.map,
+                    "images/materials/material01.png","images/materials/material13.png");
+                break
+            case 2:
+                mapView = new MapView(GameWindowWidth,GameWindowHeight,mapModel.map,
+                    "images/materials/material01.png","images/materials/material07.png");
+                break
+            case 3:
+                mapView = new MapView(GameWindowWidth,GameWindowHeight,mapModel.map,
+                    "images/materials/material05.png","images/materials/material15.png");
+                break
+            case 4:
+                mapView = new MapView(GameWindowWidth,GameWindowHeight,mapModel.map,
+                    "images/materials/material02.png","images/materials/material17.png");
+                break
         }
 
         for(let i=0;i<7;i++){
