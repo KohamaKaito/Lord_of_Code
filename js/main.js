@@ -84,15 +84,14 @@ startText.height = startText.width*0.240468227;
 startText.on('pointertap', toGame);
 startText.x = GameWindowWidth/2 - startText.width/2;
 startText.y = GameWindowWidth/2 - startText.height/2;
-titleScene.addChild(startText);
+
 
 //タイトルロゴ
 let titleLogo = new PIXI.Sprite(new PIXI.Texture.from("images/logo/title_logo.PNG"));
 titleLogo.width = GameWindowWidth/1.1;
 titleLogo.height = titleLogo.width*0.208007812;
 titleLogo.x = GameWindowWidth/2 - titleLogo.width/2;
-titleLogo.y = startText.y - 200;
-titleScene.addChild(titleLogo);
+titleLogo.y = 0;
 
 
 let toStageSelect = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage_select.PNG"));
@@ -103,9 +102,23 @@ toStageSelect.width = toStageSelect.height * 10.50165016;
 toStageSelect.on('pointertap', titleToStageSelect);
 toStageSelect.x = GameWindowWidth/2 - toStageSelect.width/2;;
 toStageSelect.y = startText.y + 75;
-titleScene.addChild(toStageSelect);
 
 app.stage.addChild(titleScene);
+
+//audio.play()
+titleScene.addChild(titleLogo);
+app.ticker.add(titleAnimation);
+
+
+
+function titleAnimation(){
+    titleLogo.y += GameWindowHeight/700;
+    if(titleLogo.y >= (startText.y - 200)){
+        app.ticker.remove(titleAnimation);
+        titleScene.addChild(startText);
+        titleScene.addChild(toStageSelect);
+    }
+}
 
 function toGame(){
     app.stage.removeChild(titleScene);
