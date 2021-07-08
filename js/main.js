@@ -72,7 +72,7 @@ let stage04 = new Stage(4, 0, 1, 2, 4, 0, 3, 5, mapModel04)
 let mapModel05 = new Map();
 mapModel05.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_ITEM,        MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_ITEM,        MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE],
@@ -80,7 +80,7 @@ mapModel05.map =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
 ]
 
-let stage05 = new Stage(5, 0, 1, 1, 5, 0, 3, 3, mapModel05)
+let stage05 = new Stage(5, 0, 2, 1, 5, 0, 3, 3, mapModel05)
 
 
 
@@ -318,7 +318,7 @@ function stopAnimChild(stage, playerView) {
         playerView.anim2.stop();
     } else if(stage.children.includes(playerView.anim3)){
         playerView.anim3.stop();
-    }    
+    }
 }
 
 
@@ -327,12 +327,12 @@ function resetAnimChild(stage, playerView) {
     if(stage.children.includes(playerView.anim0)) {
         stage.removeChild(playerView.anim0)
     } else if(stage.children.includes(playerView.anim1)){
-        stage.removeChild(playerView.anim1) 
+        stage.removeChild(playerView.anim1)
     } else if(stage.children.includes(playerView.anim2)){
-        stage.removeChild(playerView.anim2) 
+        stage.removeChild(playerView.anim2)
     } else if(stage.children.includes(playerView.anim3)){
-        stage.removeChild(playerView.anim3) 
-    }    
+        stage.removeChild(playerView.anim3)
+    }
 }
 
 

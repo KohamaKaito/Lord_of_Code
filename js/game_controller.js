@@ -61,9 +61,19 @@ class GameController{
     // 足元のアイテムを拾う関数
     pickUpPlayer(stage){
         if(this.mapModel.getState(this.playerModel.x,this.playerModel.y) == 3){
+            this.mapModel.setState(this.playerModel.x,this.playerModel.y,MAP_CAN_MOVE);
             this.itemCount.addOwned();
             this.itemCountView.setOwned(this.itemCount.owned);
-            stage.removeChild(this.itemView.item);
+            // 所得後，ユーザーから宝箱を見えなくする
+            let image;
+            image = new PIXI.Texture.from(this.mapView.src1);
+            this.mapView.map[this.playerModel.x][this.playerModel.y] = new PIXI.Sprite(image);
+            this.mapView.map[this.playerModel.x][this.playerModel.y].x = this.mapView.ww*this.playerModel.x/7;
+            this.mapView.map[this.playerModel.x][this.playerModel.y].y = this.mapView.ww*this.playerModel.y/7;
+            this.mapView.map[this.playerModel.x][this.playerModel.y].width = this.mapView.ww/7;
+            this.mapView.map[this.playerModel.x][this.playerModel.y].height = this.mapView.ww/7;
+            //stage.removeChild(this.mapView.map[this.playerModel.x][this.playerModel.y]);
+            stage.addChild(this.mapView.map[this.playerModel.x][this.playerModel.y]);
         }
         this.listNum += 1;
     }
