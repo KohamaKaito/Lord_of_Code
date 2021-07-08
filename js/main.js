@@ -105,8 +105,9 @@ toStageSelect.y = startText.y + 75;
 
 app.stage.addChild(titleScene);
 
-//audio.play()
+let titleBGM = new Audio("music/title.mp3");
 titleScene.addChild(titleLogo);
+titleBGM.play();
 app.ticker.add(titleAnimation);
 
 
