@@ -91,7 +91,6 @@ let titleLogo = new PIXI.Sprite(new PIXI.Texture.from("images/logo/title_logo.PN
 titleLogo.width = GameWindowWidth/1.1;
 titleLogo.height = titleLogo.width*0.208007812;
 titleLogo.x = GameWindowWidth/2 - titleLogo.width/2;
-titleLogo.y = 0;
 
 
 let toStageSelect = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage_select.PNG"));
@@ -106,16 +105,25 @@ toStageSelect.y = startText.y + 75;
 app.stage.addChild(titleScene);
 
 let titleBGM = new Audio("music/title.mp3");
-titleScene.addChild(titleLogo);
-titleBGM.play();
-app.ticker.add(titleAnimation);
+startTitle()
 
+//タイトル画面が開かれた時の動作関数
+function startTitle(){
+    //初期化
+    titleLogo.y = 0;
+    titleScene.removeChild(startText);
+    titleScene.removeChild(toStageSelect);
+    titleScene.addChild(titleLogo);
+    //アニメーションとBGMの再生
+    titleBGM.play();
+    app.ticker.add(titleLogoFallenAnime);
+}
 
-
-function titleAnimation(){
+//タイトルロゴが下に下がっていくアニメーション関数
+function titleLogoFallenAnime(){
     titleLogo.y += GameWindowHeight/700;
     if(titleLogo.y >= (startText.y - 200)){
-        app.ticker.remove(titleAnimation);
+        app.ticker.remove(titleLogoFallenAnime);
         titleScene.addChild(startText);
         titleScene.addChild(toStageSelect);
     }
@@ -124,6 +132,8 @@ function titleAnimation(){
 function toGame(){
     app.stage.removeChild(titleScene);
     app.stage.addChild(stage01.stageContainer);
+    titleBGM.pause();
+    titleBGM.currentTime=0;
 }
 
 function titleToStageSelect(){
@@ -188,6 +198,8 @@ function selectStage(destNum){
     stageNum = destNum;
     app.stage.removeChild(stageSelectScene);
     app.stage.addChild(stageList[stageNum - 1].stageContainer);
+    titleBGM.pause();
+    titleBGM.currentTime=0;
 }
 
 // クリア画面の設定
@@ -241,6 +253,7 @@ function toTitle(){
     stageNum = 1;
     allInitialize()
     app.stage.addChild(titleScene);
+    startTitle()
 }
 
 function clearSceneToStageSelect(){
