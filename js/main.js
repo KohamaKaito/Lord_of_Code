@@ -213,7 +213,7 @@ function startTitle(){
 //タイトルロゴが下に下がっていくアニメーション関数
 function titleLogoFallenAnime(){
     titleLogo.y += GameWindowHeight/700;
-    if(titleLogo.y >= (startText.y - 200)){
+    if(titleLogo.y >= (startText.y - GameWindowHeight/3)){
         app.ticker.remove(titleLogoFallenAnime);
         titleScene.addChild(startText);
         titleScene.addChild(toStageSelect);
