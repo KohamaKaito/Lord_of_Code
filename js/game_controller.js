@@ -1,12 +1,12 @@
 class GameController{
 
     // コンストラクタ
-    constructor(playerView, playerModel, mapView, mapModel, itemView, itemCount, itemCountView) {
+    constructor(playerView, playerModel, mapView, mapModel, itemCount, itemCountView) {
         this.playerView = playerView;
         this.playerModel = playerModel;
         this.mapView = mapView;
         this.mapModel = mapModel;
-        this.itemView = itemView;
+        //this.itemView = itemView;
         this.itemCount = itemCount;
         this.itemCountView = itemCountView;
         this.actionFlag = false;
@@ -74,6 +74,16 @@ class GameController{
             this.mapView.map[this.playerModel.x][this.playerModel.y].height = this.mapView.ww/7;
             //stage.removeChild(this.mapView.map[this.playerModel.x][this.playerModel.y]);
             stage.addChild(this.mapView.map[this.playerModel.x][this.playerModel.y]);
+
+            if(stage.children.includes(this.playerView.anim0)) {
+                stage.addChild(this.playerView.anim0);
+            } else if(stage.children.includes(this.playerView.anim1)){
+                stage.addChild(this.playerView.anim1);
+            } else if(stage.children.includes(this.playerView.anim2)){
+                stage.addChild(this.playerView.anim2);
+            } else if(stage.children.includes(this.playerView.anim3)){
+                stage.addChild(this.playerView.anim3);
+            }
         }
         this.listNum += 1;
     }
