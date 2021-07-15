@@ -144,6 +144,7 @@ let stageNum = 1;
 //　画面の記述
 // タイトル画面の設定
 const titleScene = new PIXI.Container();
+
 let startText = new PIXI.Sprite(new PIXI.Texture.from("images/menu/start.PNG"));
 startText.interactive = true;
 startText.buttonMode = true;
@@ -152,7 +153,6 @@ startText.height = startText.width*0.240468227;
 startText.on('pointertap', toGame);
 startText.x = GameWindowWidth/2 - startText.width/2;
 startText.y = GameWindowWidth/2 - startText.height/2;
-
 
 //タイトルロゴ
 let titleLogo = new PIXI.Sprite(new PIXI.Texture.from("images/logo/title_logo.PNG"));
@@ -170,33 +170,39 @@ toStageSelect.on('pointertap', titleToStageSelect);
 toStageSelect.x = GameWindowWidth/2 - toStageSelect.width/2;;
 toStageSelect.y = startText.y + 75;
 
+
 //タイトル画面に移る前のワンクッション画面用
 let gameStartPreTitle = new PIXI.Text("ゲーム スタート");
 gameStartPreTitle.interactive = true;
 gameStartPreTitle.buttonMode = true;
 gameStartPreTitle.x = GameWindowWidth/2 - gameStartPreTitle.width/2;
-gameStartPreTitle.y = GameWindowHeight/2 - gameStartPreTitle/2;
+gameStartPreTitle.y = GameWindowHeight/2 - gameStartPreTitle.height/2;
 gameStartPreTitle.on('pointertap', startTitle);
-titleScene.addChild(gameStartPreTitle);
+titleScene.addChild(gameStartPreTitle);    
 
-let cautionPreTitle = new PIXI.Text("※音声が流れます！スピーカー音量に注意してください", {fill: 0xFF0000});
-cautionPreTitle.interactive = true;
-cautionPreTitle.buttonMode = true;
-cautionPreTitle.x = GameWindowWidth/2 - cautionPreTitle.width/2;
-cautionPreTitle.y = gameStartPreTitle.y + GameWindowHeight/100;
-titleScene.addChild(cautionPreTitle);
+let cautionPreTitleVolume = new PIXI.Text("音声が流れます！　\n スピーカー音量に注意してください", {fill: 0xFF0000});
+cautionPreTitleVolume.x = GameWindowWidth/2 - cautionPreTitleVolume.width/2;
+cautionPreTitleVolume.y = gameStartPreTitle.y + GameWindowHeight/10;
+titleScene.addChild(cautionPreTitleVolume);
+
+let cautionPreTitleAdviseDoHorizontal = new PIXI.Text("スマートフォンでプレイする場合、\n 横持ちにしてブラウザを更新することで快適にプレイできます。");
+cautionPreTitleAdviseDoHorizontal.x = GameWindowWidth/2 - cautionPreTitleAdviseDoHorizontal.width/2;
+cautionPreTitleAdviseDoHorizontal.y = cautionPreTitleVolume.y + GameWindowHeight/10;
+titleScene.addChild(cautionPreTitleAdviseDoHorizontal);
+
+app.stage.addChild(titleScene);
 
 //タイトルBGM
 let titleBGM = new Audio("music/title.mp3");
-app.stage.addChild(titleScene);
 
 //タイトル画面が開かれた時の動作関数
 function startTitle(){
     //初期化
     titleLogo.y = 0;
-    titleScene.removeChild(startText);
-    titleScene.removeChild(toStageSelect);
-    titleScene.removeChild(cautionPreTitle);
+    titleScene.addChild(toStageSelect);
+    titleScene.addChild(startText);
+    titleScene.removeChild(cautionPreTitleVolume);
+    titleScene.removeChild(cautionPreTitleAdviseDoHorizontal);
     titleScene.removeChild(gameStartPreTitle);    
     //アニメーションとBGMの再生
     titleScene.addChild(titleLogo);
