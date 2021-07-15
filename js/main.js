@@ -144,6 +144,7 @@ let stageNum = 1;
 //　画面の記述
 // タイトル画面の設定
 const titleScene = new PIXI.Container();
+
 let startText = new PIXI.Sprite(new PIXI.Texture.from("images/menu/start.PNG"));
 startText.interactive = true;
 startText.buttonMode = true;
@@ -152,15 +153,12 @@ startText.height = startText.width*0.240468227;
 startText.on('pointertap', toGame);
 startText.x = GameWindowWidth/2 - startText.width/2;
 startText.y = GameWindowWidth/2 - startText.height/2;
-titleScene.addChild(startText);
 
 //タイトルロゴ
 let titleLogo = new PIXI.Sprite(new PIXI.Texture.from("images/logo/title_logo.PNG"));
 titleLogo.width = GameWindowWidth/1.1;
 titleLogo.height = titleLogo.width*0.208007812;
 titleLogo.x = GameWindowWidth/2 - titleLogo.width/2;
-titleLogo.y = startText.y - 200;
-titleScene.addChild(titleLogo);
 
 
 let toStageSelect = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage_select.PNG"));
@@ -171,14 +169,63 @@ toStageSelect.width = toStageSelect.height * 10.50165016;
 toStageSelect.on('pointertap', titleToStageSelect);
 toStageSelect.x = GameWindowWidth/2 - toStageSelect.width/2;;
 toStageSelect.y = startText.y + 75;
-titleScene.addChild(toStageSelect);
+
+
+//タイトル画面に移る前のワンクッション画面用
+let gameStartPreTitle = new PIXI.Text("ゲーム スタート", {fontSize : 30, fontWeight: "bold"});
+gameStartPreTitle.interactive = true;
+gameStartPreTitle.buttonMode = true;
+gameStartPreTitle.x = GameWindowWidth/2 - gameStartPreTitle.width/2;
+gameStartPreTitle.y = GameWindowHeight/2 - gameStartPreTitle.height/2;
+gameStartPreTitle.on('pointertap', startTitle);
+titleScene.addChild(gameStartPreTitle);    
+
+let cautionPreTitleVolume = new PIXI.Text("音声が流れます！　\n スピーカー音量に注意してください", {fill: 0xFF0000,  align : 'center'});
+cautionPreTitleVolume.x = GameWindowWidth/2 - cautionPreTitleVolume.width/2;
+cautionPreTitleVolume.y = gameStartPreTitle.y + GameWindowHeight/10;
+titleScene.addChild(cautionPreTitleVolume);
+
+let cautionPreTitleAdviseDoHorizontal = new PIXI.Text("スマートフォンでプレイする場合、\n 横持ちにしてブラウザを更新することで \n 快適にプレイできます。", {align : 'center'});
+cautionPreTitleAdviseDoHorizontal.x = GameWindowWidth/2 - cautionPreTitleAdviseDoHorizontal.width/2;
+cautionPreTitleAdviseDoHorizontal.y = cautionPreTitleVolume.y + GameWindowHeight/7;
+titleScene.addChild(cautionPreTitleAdviseDoHorizontal);
 
 app.stage.addChild(titleScene);
+
+//タイトルBGM
+let titleBGM = new Audio("music/title.mp3");
+
+//タイトル画面が開かれた時の動作関数
+function startTitle(){
+    //初期化
+    titleLogo.y = 0;
+    titleScene.addChild(toStageSelect);
+    titleScene.addChild(startText);
+    titleScene.removeChild(cautionPreTitleVolume);
+    titleScene.removeChild(cautionPreTitleAdviseDoHorizontal);
+    titleScene.removeChild(gameStartPreTitle);    
+    //アニメーションとBGMの再生
+    titleScene.addChild(titleLogo);
+    titleBGM.play();
+    app.ticker.add(titleLogoFallenAnime);
+}
+
+//タイトルロゴが下に下がっていくアニメーション関数
+function titleLogoFallenAnime(){
+    titleLogo.y += GameWindowHeight/700;
+    if(titleLogo.y >= (startText.y - GameWindowHeight/3)){
+        app.ticker.remove(titleLogoFallenAnime);
+        titleScene.addChild(startText);
+        titleScene.addChild(toStageSelect);
+    }
+}
 
 function toGame(){
     stageNum = 1;
     app.stage.removeChild(titleScene);
     app.stage.addChild(stage01.stageContainer);
+    titleBGM.pause();
+    titleBGM.currentTime=0;
 }
 
 function titleToStageSelect(){
@@ -275,6 +322,8 @@ function selectStage(destNum){
     stageNum = destNum;
     app.stage.removeChild(stageSelectScene);
     app.stage.addChild(stageList[stageNum - 1].stageContainer);
+    titleBGM.pause();
+    titleBGM.currentTime=0;
     initializeStage(stageList[stageNum - 1].stageContainer, gameControllerList[stageNum - 1]);
 }
 
@@ -330,6 +379,7 @@ function toTitle(){
     stageNum = 1;
     allInitialize()
     app.stage.addChild(titleScene);
+    startTitle()
 }
 
 function clearSceneToStageSelect(){
