@@ -1,12 +1,12 @@
 class GameController{
 
     // コンストラクタ
-    constructor(playerView, playerModel, mapView, mapModel, itemView, itemCount, itemCountView) {
+    constructor(playerView, playerModel, mapView, mapModel, itemCount, itemCountView) {
         this.playerView = playerView;
         this.playerModel = playerModel;
         this.mapView = mapView;
         this.mapModel = mapModel;
-        this.itemView = itemView;
+        //this.itemView = itemView;
         this.itemCount = itemCount;
         this.itemCountView = itemCountView;
         this.actionFlag = false;
@@ -61,9 +61,29 @@ class GameController{
     // 足元のアイテムを拾う関数
     pickUpPlayer(stage){
         if(this.mapModel.getState(this.playerModel.x,this.playerModel.y) == 3){
+            this.mapModel.setState(this.playerModel.x,this.playerModel.y,MAP_CAN_MOVE);
             this.itemCount.addOwned();
             this.itemCountView.setOwned(this.itemCount.owned);
-            stage.removeChild(this.itemView.item);
+            // 所得後，ユーザーから宝箱を見えなくする
+            let image;
+            image = new PIXI.Texture.from(this.mapView.src1);
+            this.mapView.map[this.playerModel.x][this.playerModel.y] = new PIXI.Sprite(image);
+            this.mapView.map[this.playerModel.x][this.playerModel.y].x = this.mapView.ww*this.playerModel.x/7;
+            this.mapView.map[this.playerModel.x][this.playerModel.y].y = this.mapView.ww*this.playerModel.y/7;
+            this.mapView.map[this.playerModel.x][this.playerModel.y].width = this.mapView.ww/7;
+            this.mapView.map[this.playerModel.x][this.playerModel.y].height = this.mapView.ww/7;
+            //stage.removeChild(this.mapView.map[this.playerModel.x][this.playerModel.y]);
+            stage.addChild(this.mapView.map[this.playerModel.x][this.playerModel.y]);
+
+            if(stage.children.includes(this.playerView.anim0)) {
+                stage.addChild(this.playerView.anim0);
+            } else if(stage.children.includes(this.playerView.anim1)){
+                stage.addChild(this.playerView.anim1);
+            } else if(stage.children.includes(this.playerView.anim2)){
+                stage.addChild(this.playerView.anim2);
+            } else if(stage.children.includes(this.playerView.anim3)){
+                stage.addChild(this.playerView.anim3);
+            }
         }
         this.listNum += 1;
     }
