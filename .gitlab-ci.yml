@@ -5,7 +5,7 @@ develop-deploy:
   type: deploy
   script:
     - mkdir -p "${PROJECT_DIR}/develop"
-    - cp -r * "${PROJECT_DIR}/develop/"
+    - cp -r index.html images js music javascript_compressed.js stylesheet.css "${PROJECT_DIR}/develop/"
   only:
     - develop
 
@@ -13,7 +13,7 @@ master-deploy:
   type: deploy
   script:
     - mkdir -p "${PROJECT_DIR}/master"
-    - cp -r * "${PROJECT_DIR}/master/"
+    - cp -r index.html images js music javascript_compressed.js stylesheet.css "${PROJECT_DIR}/master/"
   only:
     - master
 
@@ -21,7 +21,7 @@ merge-request-deploy:
   type: deploy
   script:
     - mkdir -p "${PROJECT_DIR}/${CI_MERGE_REQUEST_IID}"
-    - cp -r * "${PROJECT_DIR}/${CI_MERGE_REQUEST_IID}/"
+    - cp -r index.html images js music javascript_compressed.js stylesheet.css  "${PROJECT_DIR}/${CI_MERGE_REQUEST_IID}/"
     - deploy_url="${URL}/${CI_MERGE_REQUEST_IID}"
     - "curl -H \"Content-Type: application/json\" -d '{\"username\": \"GitLabRunner\", \"content\": \"'\"${deploy_url}\"'\"}' \"${WEBHOOK}\""
   only:

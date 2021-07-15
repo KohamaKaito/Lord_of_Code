@@ -8,68 +8,136 @@ let app = new PIXI.Application({
     backgroundColor: 0xFFFFFF,});
 gameWindow.appendChild(app.view);
 
-//ここからステージの記述
+
 // ステージ１の設定
-let mapModel01 = new Map();
-mapModel01.map =  [
+let map01 =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM,         MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM,        MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
 ]
-
-let stage01 = new Stage(1, 0, 1, 3, 4, 0, 3, 2, mapModel01)
+let mapModel01 = new Map(map01);
+let stage01 = new Stage(1, 0, 1, 3, 4, 0, mapModel01)
 
 // ステージ２の設定
-let mapModel02 = new Map();
-mapModel02.map =  [
+let map02 =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM,         MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,     MAP_CAN_MOVE,     MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
 ]
-
-let stage02 = new Stage(2, 0, 1, 3, 4, 0, 5, 1, mapModel02)
+let mapModel02 = new Map(map02);
+let stage02 = new Stage(2, 0, 1, 2, 4, 0, mapModel02)
 
 
 // ステージ3の設定
-let mapModel03 = new Map();
-mapModel03.map =  [
+let map03 =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,     MAP_CAN_MOVE,     MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE,MAP_ITEM,         MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
 ]
-
-let stage03 = new Stage(3, 0, 1, 2, 4, 0, 4, 4, mapModel03)
+let mapModel03 = new Map(map03);
+let stage03 = new Stage(3, 0, 1, 3, 5, 0, mapModel03)
 
 
 // ステージ4の設定
-let mapModel04 = new Map();
-mapModel04.map =  [
+let map04 =  [
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,     MAP_CAN_MOVE,     MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
-    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM,         MAP_CAN_MOVE,     MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_ITEM,        MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
     [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
 ]
+let mapModel04 = new Map(map04);
+let stage04 = new Stage(4, 0, 1, 2, 4, 0, mapModel04)
 
-let stage04 = new Stage(4, 0, 1, 2, 4, 0, 3, 5, mapModel04)
+
+// ステージ5の設定
+let map05 =  [
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM,        MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+]
+let mapModel05 = new Map(map05);
+let stage05 = new Stage(5, 0, 1, 2, 4, 0, mapModel05)
 
 
-let stageList = [stage01, stage02, stage03, stage04]
-let gameControllerList = [stage01.gameController, stage02.gameController, stage03.gameController, stage04.gameController]
+// ステージ6の設定
+let map06 =  [
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+]
+let mapModel06 = new Map(map06);
+let stage06 = new Stage(5, 0, 2, 3, 5, 0, mapModel06)
+
+
+// ステージ7の設定
+let map07 =  [
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+]
+let mapModel07 = new Map(map07);
+let stage07 = new Stage(5, 0, 3, 3, 5, 0, mapModel07)
+
+
+// ステージ8の設定
+let map08 =  [
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+]
+let mapModel08 = new Map(map08);
+let stage08 = new Stage(5, 0, 1, 1, 5, 0, mapModel08)
+
+
+// ステージ9の設定
+let map09 =  [
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_ITEM        ,MAP_CAN_MOVE    ,MAP_ITEM        ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+    [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+]
+let mapModel09 = new Map(map09);
+let stage09 = new Stage(5, 0, 24, 3, 3, 0, mapModel09)
+
+
+let stageList = [stage01, stage02, stage03, stage04, stage05, stage06, stage07, stage08, stage09]
+let gameControllerList = [stage01.gameController, stage02.gameController, stage03.gameController,
+    stage04.gameController, stage05.gameController, stage06.gameController, stage07.gameController,
+    stage08.gameController, stage09.gameController]
 let stageNum = 1;
 
 
@@ -147,6 +215,7 @@ function titleLogoFallenAnime(){
 }
 
 function toGame(){
+    stageNum = 1;
     app.stage.removeChild(titleScene);
     app.stage.addChild(stage01.stageContainer);
     titleBGM.pause();
@@ -179,17 +248,37 @@ for(let i = 1; i <= stageList.length; i++){
             textStageList[i-1] = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage4.PNG"));
             textStageList[i-1].on('pointertap', toStage4);
             break
+        case 5:
+            textStageList[i-1] = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage5.PNG"));
+            textStageList[i-1].on('pointertap', toStage5);
+            break
+        case 6:
+            textStageList[i-1] = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage6.PNG"));
+            textStageList[i-1].on('pointertap', toStage6);
+            break
+        case 7:
+            textStageList[i-1] = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage7.PNG"));
+            textStageList[i-1].on('pointertap', toStage7);
+            break
+        case 8:
+            textStageList[i-1] = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage8.PNG"));
+            textStageList[i-1].on('pointertap', toStage8);
+            break
+        case 9:
+            textStageList[i-1] = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage9.PNG"));
+            textStageList[i-1].on('pointertap', toStage9);
+            break
     }
     textStageList[i-1].interactive = true;
     textStageList[i-1].buttonMode = true;
-    textStageList[i-1].height = startText.height * 0.9;
+    textStageList[i-1].height = startText.height * 0.5;
     textStageList[i-1].width = textStageList[i-1].height * 5.73333;
     textStageList[i-1].x = GameWindowWidth/2 - textStageList[i-1].width/2;
     if(i == 1){
         //ステージ選択の座標制御　要改善！！！（ステージ総数を把握して、自動的に座標調整とか）
-        textStageList[i-1].y = GameWindowHeight/2 - textStageList[i-1].height * 6;
+        textStageList[i-1].y = GameWindowHeight/2 - textStageList[i-1].height * 10;
     }else{
-        textStageList[i-1].y = textStageList[i-2].y + 80;
+        textStageList[i-1].y = textStageList[i-2].y + 50;
     }
     stageSelectScene.addChild(textStageList[i-1]);
 }
@@ -197,17 +286,29 @@ for(let i = 1; i <= stageList.length; i++){
 function toStage1(){
     selectStage(1)
 }
-
 function toStage2(){
     selectStage(2)
 }
-
 function toStage3(){
     selectStage(3)
 }
-
 function toStage4(){
     selectStage(4)
+}
+function toStage5(){
+    selectStage(5)
+}
+function toStage6(){
+    selectStage(6)
+}
+function toStage7(){
+    selectStage(7)
+}
+function toStage8(){
+    selectStage(8)
+}
+function toStage9(){
+    selectStage(9)
 }
 
 //引数にあたえた番号のステージに遷移する関数
@@ -217,6 +318,7 @@ function selectStage(destNum){
     app.stage.addChild(stageList[stageNum - 1].stageContainer);
     titleBGM.pause();
     titleBGM.currentTime=0;
+    initializeStage(stageList[stageNum - 1].stageContainer, gameControllerList[stageNum - 1]);
 }
 
 // クリア画面の設定
@@ -263,6 +365,7 @@ function toNext(){
     app.stage.removeChild(clearScene);
     stageNum += 1;
     app.stage.addChild(stageList[stageNum - 1].stageContainer);
+    initializeStage(stageList[stageNum - 1].stageContainer, gameControllerList[stageNum - 1]);
 }
 
 function toTitle(){
@@ -342,7 +445,7 @@ function stopAnimChild(stage, playerView) {
         playerView.anim2.stop();
     } else if(stage.children.includes(playerView.anim3)){
         playerView.anim3.stop();
-    }    
+    }
 }
 
 
@@ -351,12 +454,12 @@ function resetAnimChild(stage, playerView) {
     if(stage.children.includes(playerView.anim0)) {
         stage.removeChild(playerView.anim0)
     } else if(stage.children.includes(playerView.anim1)){
-        stage.removeChild(playerView.anim1) 
+        stage.removeChild(playerView.anim1)
     } else if(stage.children.includes(playerView.anim2)){
-        stage.removeChild(playerView.anim2) 
+        stage.removeChild(playerView.anim2)
     } else if(stage.children.includes(playerView.anim3)){
-        stage.removeChild(playerView.anim3) 
-    }    
+        stage.removeChild(playerView.anim3)
+    }
 }
 
 
@@ -370,18 +473,165 @@ function initializeStage(stage, gameController){
     this.resetAnimChild(stage,gameController.playerView)
 
     //ほか、立ち止まってる騎士くん、所持アイテム数表示、アイテムなどをコンテナから取り除く
-    stage.removeChild(gameController.playerView.anim0, gameController.itemCountView.owned_text, gameController.itemView.item)
+    stage.removeChild(gameController.playerView.anim0, gameController.itemCountView.owned_text)
 
     //gameControllerの中で、初期化が必要なものを初期化
     //ここの初期化値にステージ毎の違いがある場合は引数を増やすのもありかも
     gameController.playerModel = new Player(gameController.x0,gameController.y0,0);
     gameController.playerView = new PlayerView(GameWindowWidth, GameWindowHeight,gameController.playerModel.x ,gameController.playerModel.y);
-    gameController.itemCount = new ItemCount(0,1)
-    gameController.itemCountView = new ItemCountView(0,1, GameWindowWidth, GameWindowHeight);
+    gameController.itemCount = new ItemCount(0,gameController.itemCount.needed)
+    gameController.itemCountView = new ItemCountView(0,gameController.itemCount.needed, GameWindowWidth, GameWindowHeight);
+
+    // ステージの更新
+    for(let i=0;i<7;i++) {
+        for (let j = 0; j < 7; j++) {
+            stage.removeChild(gameController.mapView.map[i][j]);
+        }
+    }
+    let mapView;
+    switch (stageNum){
+        case 1:
+            let map01 =  [
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM,        MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+            ]
+            gameController.mapModel = new Map(map01);
+            gameController.mapView = new MapView(GameWindowWidth,GameWindowHeight,gameController.mapModel.map,
+                "images/materials/material01.png","images/materials/material13.png");
+            break
+        case 2:
+            let map02 =  [
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+            ]
+            gameController.mapModel = new Map(map02);
+            gameController.mapView = new MapView(GameWindowWidth,GameWindowHeight,gameController.mapModel.map,
+                "images/materials/material05.png","images/materials/material15.png");
+            break
+        case 3:
+            let map03 =  [
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+            ]
+            gameController.mapModel = new Map(map03);
+            gameController.mapView = new MapView(GameWindowWidth,GameWindowHeight,gameController.mapModel.map,
+                "images/materials/material20.png","images/materials/material21.png");
+            break
+        case 4:
+            let map04 =  [
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_ITEM,        MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+            ]
+            gameController.mapModel = new Map(map04);
+            gameController.mapView = new MapView(GameWindowWidth,GameWindowHeight,gameController.mapModel.map,
+                "images/materials/material05.png","images/materials/material22.png");
+            break
+        case 5:
+            let map05 =  [
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM,        MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+            ]
+            console.log(map05)
+            gameController.mapModel = new Map(map05);
+            gameController.mapView = new MapView(GameWindowWidth,GameWindowHeight,gameController.mapModel.map,
+                "images/materials/material03.png","images/materials/material14.png");
+            break
+        case 6:
+            let map06 =  [
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+            ]
+            console.log(map06)
+            gameController.mapModel = new Map(map06);
+            gameController.mapView = new MapView(GameWindowWidth,GameWindowHeight,gameController.mapModel.map,
+                "images/materials/material04.png","images/materials/material16.png");
+            break
+        case 7:
+            let map07 =  [
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+            ]
+            console.log(map07)
+            gameController.mapModel = new Map(map07);
+            gameController.mapView = new MapView(GameWindowWidth,GameWindowHeight,gameController.mapModel.map,
+                "images/materials/material02.png","images/materials/material23.png");
+            break
+        case 8:
+            let map08 =  [
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+            ]
+            console.log(map08)
+            gameController.mapModel = new Map(map08);
+            gameController.mapView = new MapView(GameWindowWidth,GameWindowHeight,gameController.mapModel.map,
+                "images/materials/material06.png","images/materials/material10.png");
+            break
+        case 9:
+            let map09 =  [
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_ITEM        ,MAP_CAN_MOVE    ,MAP_ITEM        ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
+                [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
+            ]
+            console.log(map09)
+            gameController.mapModel = new Map(map09);
+            gameController.mapView = new MapView(GameWindowWidth,GameWindowHeight,gameController.mapModel.map,
+                "images/materials/material06.png","images/materials/material12.png");
+            break
+    }
+    for(let i=0;i<7;i++){
+        for(let j=0;j<7;j++){
+            stage.addChild(gameController.mapView.map[i][j]);
+        }
+    }
+
 
     //上で取り除いた、立ち止まってる騎士くん、所持アイテム数表示、アイテムなどを改めて描画
     //gameControllerを初期化した後のタイミングでこれをしないと、初期化前の座標でまた描画してしまう
-    stage.addChild(gameController.itemCountView.owned_text, gameController.itemView.item, gameController.playerView.anim0);
+    stage.addChild(gameController.itemCountView.owned_text,gameController.itemCountView.needed_text, gameController.playerView.anim0);
 
     //アニメーション処理に用いるlistNumとactionFlagを初期化
     gameController.listNum = 0;
