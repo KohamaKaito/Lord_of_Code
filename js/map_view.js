@@ -10,7 +10,11 @@ class MapView extends Object {
             [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]];
-        this.createMap(mapInfo, src1, src2);
+        // canMove
+        this.src1 = src1;
+        // canNotMove
+        this.src2 = src2;
+        this.createMap(mapInfo, this.src1, this.src2);
     }
 
 
@@ -24,11 +28,18 @@ class MapView extends Object {
         let image;
         for(let i=0; i<7; i++){
             for(let j=0; j<7; j++){
-                if(mapInfo[i][j] == 2){
-                    image = new PIXI.Texture.from(src2);
-                }else {
-                    image = new PIXI.Texture.from(src1);
+                switch (mapInfo[i][j]){
+                    case 1:
+                        image = new PIXI.Texture.from(src1);
+                        break
+                    case 2:
+                        image = new PIXI.Texture.from(src2);
+                        break
+                    case 3:
+                        image = new PIXI.Texture.from("images/item.png");
+                        break
                 }
+
                 this.map[i][j] = new PIXI.Sprite(image);
                 this.map[i][j].x = this.ww*j/7;
                 this.map[i][j].y = this.ww*i/7;
