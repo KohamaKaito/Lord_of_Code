@@ -638,7 +638,9 @@ function initializeStage(stage, gameController){
     //上で取り除いた、立ち止まってる騎士くん、所持アイテム数表示、アイテムなどを改めて描画
     //gameControllerを初期化した後のタイミングでこれをしないと、初期化前の座標でまた描画してしまう
     stage.addChild(gameController.itemCountView.owned_text,gameController.itemCountView.needed_text, gameController.playerView.anim0);
-
+    stage.addChild(gameController.itemCountView.itemCountView);
+    stage.addChild(gameController.itemCountView.needed_text);
+    stage.addChild(gameController.itemCountView.owned_text);
     //アニメーション処理に用いるlistNumとactionFlagを初期化
     gameController.listNum = 0;
     gameController.actionFlag = false;

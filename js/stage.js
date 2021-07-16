@@ -55,6 +55,7 @@ class Stage{
         this.stageContainer.addChild(playerView.anim0);
 
         let itemCountView = new ItemCountView(owned,needed, GameWindowWidth, GameWindowHeight);
+        this.stageContainer.addChild(itemCountView.itemCountView)
         this.stageContainer.addChild(itemCountView.needed_text)
         this.stageContainer.addChild(itemCountView.owned_text)
 
