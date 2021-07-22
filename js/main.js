@@ -174,7 +174,7 @@ toStageSelect.y = startText.y + 75;
 //タイトル画面に移る前のワンクッション画面用(俺は勝手に「プレタイトル」って呼んだりする)
 const preTitleScene = new PIXI.Container();
 let cautionPreTitleVolume = new PIXI.Text("音声が流れます！　\n 端末の音量に注意してください", {fill: 0xFF0000,  align : 'center'});
-cautionPreTitleVolume.style.fontSize = GameWindowHeight/30;
+cautionPreTitleVolume.style.fontSize = GameWindowWidth/17;
 cautionPreTitleVolume.x = GameWindowWidth/2 - cautionPreTitleVolume.width/2;
 cautionPreTitleVolume.y = GameWindowHeight/2 - cautionPreTitleVolume.height/2;
 preTitleScene.addChild(cautionPreTitleVolume);
@@ -182,14 +182,14 @@ preTitleScene.addChild(cautionPreTitleVolume);
 let gameStartPreTitle = new PIXI.Text("ゲーム スタート", {fontSize : 30, fontWeight: "bold"});
 gameStartPreTitle.interactive = true;
 gameStartPreTitle.buttonMode = true;
-gameStartPreTitle.style.fontSize = GameWindowHeight/20;
+gameStartPreTitle.style.fontSize = GameWindowWidth/10;
 gameStartPreTitle.x = GameWindowWidth/2 - gameStartPreTitle.width/2;
 gameStartPreTitle.y = cautionPreTitleVolume.y - GameWindowHeight/7;
 gameStartPreTitle.on('pointertap', startTitle);
 preTitleScene.addChild(gameStartPreTitle);    
 
 let cautionPreTitleAdviseDoHorizontal = new PIXI.Text("スマートフォンでプレイする場合、\n 横持ちにしてブラウザを更新することで \n 快適にプレイできます。", {align : 'center'});
-cautionPreTitleAdviseDoHorizontal.style.fontSize = GameWindowHeight/33;
+cautionPreTitleAdviseDoHorizontal.style.fontSize = GameWindowWidth/20;
 cautionPreTitleAdviseDoHorizontal.x = GameWindowWidth/2 - cautionPreTitleAdviseDoHorizontal.width/2;
 cautionPreTitleAdviseDoHorizontal.y = cautionPreTitleVolume.y + GameWindowHeight/6;
 preTitleScene.addChild(cautionPreTitleAdviseDoHorizontal);
