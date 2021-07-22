@@ -4,8 +4,21 @@ class PlayerView extends Object {
     player;
     constructor(width, height, playerX, playerY) {
         super();
-        this.playerX = width * playerX / 7;
-        this.playerY = width * playerY / 7;
+        this.ww = width;
+        this.wh = height;
+        if(this.ww > this.wh){
+            this.playerX = this.wh * playerX / 7;
+            this.playerY = this.wh * playerY / 7;
+            // 1回のgoAhead()で進む距離
+            this.deltaX = this.wh/700;
+            this.deltaY = this.wh/700;
+        }else {
+            this.playerX = this.ww * playerX / 7;
+            this.playerY = this.ww * playerY / 7;
+            // 1回のgoAhead()で進む距離
+            this.deltaX = this.ww/700;
+            this.deltaY = this.ww/700;
+        }
 
         this.anim0 = this.createAnim(["images/player0_0.png","images/player0_1.png","images/player0_0.png","images/player0_2.png"],width,height);
         this.anim1 = this.createAnim(["images/player1_0.png","images/player1_1.png","images/player1_0.png","images/player1_2.png"],width,height);
@@ -18,9 +31,7 @@ class PlayerView extends Object {
         this.firstTime = true;
         // アニメーションのコマを記憶する変数
         this.count = 0;
-        // 1回のgoAhead()で進む距離
-        this.deltaX = width/700;
-        this.deltaY = width/700;
+
         // goAhead()が完了したことを他のクラスに知らせる
         this.animFinished = false;
     }
@@ -113,8 +124,13 @@ class PlayerView extends Object {
         }
         const animatedSprite = new PIXI.AnimatedSprite(textureArray);
         animatedSprite.animationSpeed = 0.1;
-        animatedSprite.width = width/7;
-        animatedSprite.height = width/7;
+        if(this.ww > this.wh){
+            animatedSprite.width = this.wh/7;
+            animatedSprite.height = this.wh/7;
+        }else {
+            animatedSprite.width = this.ww/7;
+            animatedSprite.height = this.ww/7;
+        }
         animatedSprite.x = this.playerX;
         animatedSprite.y = this.playerY;
         return animatedSprite;

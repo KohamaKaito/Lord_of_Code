@@ -42,8 +42,13 @@ class GameController{
             this.playerView.goAhead(this.playerModel.direction, stage);
             if(this.playerView.animFinished == true){
                 this.playerView.animFinished = false;
-                this.playerView.deltaX = GameWindowWidth/700;
-                this.playerView.deltaY = GameWindowWidth/700;
+                if(GameWindowWidth > GameWindowHeight){
+                    this.playerView.deltaX = GameWindowHeight/700;
+                    this.playerView.deltaY = GameWindowHeight/700;
+                }else {
+                    this.playerView.deltaX = GameWindowWidth/700;
+                    this.playerView.deltaY = GameWindowWidth/700;
+                }
                 this.listNum += 1;
             }
         }
@@ -68,10 +73,17 @@ class GameController{
             let image;
             image = new PIXI.Texture.from(this.mapView.src1);
             this.mapView.map[this.playerModel.x][this.playerModel.y] = new PIXI.Sprite(image);
-            this.mapView.map[this.playerModel.x][this.playerModel.y].x = this.mapView.ww*this.playerModel.x/7;
-            this.mapView.map[this.playerModel.x][this.playerModel.y].y = this.mapView.ww*this.playerModel.y/7;
-            this.mapView.map[this.playerModel.x][this.playerModel.y].width = this.mapView.ww/7;
-            this.mapView.map[this.playerModel.x][this.playerModel.y].height = this.mapView.ww/7;
+            if(GameWindowWidth > GameWindowHeight){
+                this.mapView.map[this.playerModel.x][this.playerModel.y].x = this.mapView.wh*this.playerModel.x/7;
+                this.mapView.map[this.playerModel.x][this.playerModel.y].y = this.mapView.wh*this.playerModel.y/7;
+                this.mapView.map[this.playerModel.x][this.playerModel.y].width = this.mapView.wh/7;
+                this.mapView.map[this.playerModel.x][this.playerModel.y].height = this.mapView.wh/7;
+            }else {
+                this.mapView.map[this.playerModel.x][this.playerModel.y].x = this.mapView.ww*this.playerModel.x/7;
+                this.mapView.map[this.playerModel.x][this.playerModel.y].y = this.mapView.ww*this.playerModel.y/7;
+                this.mapView.map[this.playerModel.x][this.playerModel.y].width = this.mapView.ww/7;
+                this.mapView.map[this.playerModel.x][this.playerModel.y].height = this.mapView.ww/7;
+            }
             //stage.removeChild(this.mapView.map[this.playerModel.x][this.playerModel.y]);
             stage.addChild(this.mapView.map[this.playerModel.x][this.playerModel.y]);
 

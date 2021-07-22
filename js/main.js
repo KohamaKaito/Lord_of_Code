@@ -1,7 +1,7 @@
 // window の設定
 let gameWindow = document.getElementById("game_window");
 let GameWindowHeight = window.innerHeight;
-let GameWindowWidth = window.innerWidth/2;
+let GameWindowWidth = window.innerWidth*(3/10);
 let app = new PIXI.Application({
     width: GameWindowWidth,
     height: GameWindowHeight,
@@ -171,26 +171,30 @@ toStageSelect.x = GameWindowWidth/2 - toStageSelect.width/2;;
 toStageSelect.y = startText.y + 75;
 
 
-//タイトル画面に移る前のワンクッション画面用
+//タイトル画面に移る前のワンクッション画面用(俺は勝手に「プレタイトル」って呼んだりする)
+const preTitleScene = new PIXI.Container();
+let cautionPreTitleVolume = new PIXI.Text("音声が流れます！　\n 端末の音量に注意してください", {fill: 0xFF0000,  align : 'center'});
+cautionPreTitleVolume.style.fontSize = GameWindowWidth/17;
+cautionPreTitleVolume.x = GameWindowWidth/2 - cautionPreTitleVolume.width/2;
+cautionPreTitleVolume.y = GameWindowHeight/2 - cautionPreTitleVolume.height/2;
+preTitleScene.addChild(cautionPreTitleVolume);
+
 let gameStartPreTitle = new PIXI.Text("ゲーム スタート", {fontSize : 30, fontWeight: "bold"});
 gameStartPreTitle.interactive = true;
 gameStartPreTitle.buttonMode = true;
+gameStartPreTitle.style.fontSize = GameWindowWidth/10;
 gameStartPreTitle.x = GameWindowWidth/2 - gameStartPreTitle.width/2;
-gameStartPreTitle.y = GameWindowHeight/2 - gameStartPreTitle.height/2;
+gameStartPreTitle.y = cautionPreTitleVolume.y - GameWindowHeight/7;
 gameStartPreTitle.on('pointertap', startTitle);
-titleScene.addChild(gameStartPreTitle);    
-
-let cautionPreTitleVolume = new PIXI.Text("音声が流れます！　\n スピーカー音量に注意してください", {fill: 0xFF0000,  align : 'center'});
-cautionPreTitleVolume.x = GameWindowWidth/2 - cautionPreTitleVolume.width/2;
-cautionPreTitleVolume.y = gameStartPreTitle.y + GameWindowHeight/10;
-titleScene.addChild(cautionPreTitleVolume);
+preTitleScene.addChild(gameStartPreTitle);    
 
 let cautionPreTitleAdviseDoHorizontal = new PIXI.Text("スマートフォンでプレイする場合、\n 横持ちにしてブラウザを更新することで \n 快適にプレイできます。", {align : 'center'});
+cautionPreTitleAdviseDoHorizontal.style.fontSize = GameWindowWidth/20;
 cautionPreTitleAdviseDoHorizontal.x = GameWindowWidth/2 - cautionPreTitleAdviseDoHorizontal.width/2;
-cautionPreTitleAdviseDoHorizontal.y = cautionPreTitleVolume.y + GameWindowHeight/7;
-titleScene.addChild(cautionPreTitleAdviseDoHorizontal);
+cautionPreTitleAdviseDoHorizontal.y = cautionPreTitleVolume.y + GameWindowHeight/6;
+preTitleScene.addChild(cautionPreTitleAdviseDoHorizontal);
 
-app.stage.addChild(titleScene);
+app.stage.addChild(preTitleScene);
 
 //タイトルBGM
 let titleBGM = new Audio("music/title.mp3");
@@ -199,11 +203,8 @@ let titleBGM = new Audio("music/title.mp3");
 function startTitle(){
     //初期化
     titleLogo.y = 0;
-    titleScene.addChild(toStageSelect);
-    titleScene.addChild(startText);
-    titleScene.removeChild(cautionPreTitleVolume);
-    titleScene.removeChild(cautionPreTitleAdviseDoHorizontal);
-    titleScene.removeChild(gameStartPreTitle);    
+    app.stage.removeChild(preTitleScene); 
+    app.stage.addChild(titleScene); 
     //アニメーションとBGMの再生
     titleScene.addChild(titleLogo);
     titleBGM.play();
@@ -213,7 +214,7 @@ function startTitle(){
 //タイトルロゴが下に下がっていくアニメーション関数
 function titleLogoFallenAnime(){
     titleLogo.y += GameWindowHeight/700;
-    if(titleLogo.y >= (startText.y - GameWindowHeight/3)){
+    if(titleLogo.y >= GameWindowHeight/7){
         app.ticker.remove(titleLogoFallenAnime);
         titleScene.addChild(startText);
         titleScene.addChild(toStageSelect);
@@ -279,12 +280,16 @@ for(let i = 1; i <= stageList.length; i++){
     textStageList[i-1].buttonMode = true;
     textStageList[i-1].height = startText.height * 0.5;
     textStageList[i-1].width = textStageList[i-1].height * 5.73333;
-    textStageList[i-1].x = GameWindowWidth/2 - textStageList[i-1].width/2;
     if(i == 1){
-        //ステージ選択の座標制御　要改善！！！（ステージ総数を把握して、自動的に座標調整とか）
+        //ステージ選択の座標制御　並び順の真ん中に位置するステージの表示をウィンドウの真ん中にできるとより良いかも
+        textStageList[i-1].x = GameWindowWidth/4 - textStageList[i-1].width/2;
         textStageList[i-1].y = GameWindowHeight/2 - textStageList[i-1].height * 10;
+    }else if(i >= stageList.length/2 + 1 && i < (stageList.length/2 + 2)){
+        textStageList[i-1].x = GameWindowWidth * 3/4 - textStageList[i-1].width/2;
+        textStageList[i-1].y = textStageList[0].y;
     }else{
-        textStageList[i-1].y = textStageList[i-2].y + 50;
+        textStageList[i-1].x = textStageList[i-2].x;
+        textStageList[i-1].y = textStageList[i-2].y + GameWindowHeight/10;
     }
     stageSelectScene.addChild(textStageList[i-1]);
 }
