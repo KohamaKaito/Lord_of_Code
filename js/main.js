@@ -278,7 +278,7 @@ for(let i = 1; i <= stageList.length; i++){
     textStageList[i-1].height = startText.height * 0.5;
     textStageList[i-1].width = textStageList[i-1].height * 5.73333;
     if(i == 1){
-        //ステージ選択の座標制御　要改善！！！（ステージ総数を把握して、自動的に座標調整とか）
+        //ステージ選択の座標制御　並び順の真ん中に位置するステージの表示をウィンドウの真ん中にできるとより良いかも
         textStageList[i-1].x = GameWindowWidth/4 - textStageList[i-1].width/2;
         textStageList[i-1].y = GameWindowHeight/2 - textStageList[i-1].height * 10;
     }else if(i >= stageList.length/2 + 1 && i < (stageList.length/2 + 2)){
@@ -286,7 +286,7 @@ for(let i = 1; i <= stageList.length; i++){
         textStageList[i-1].y = textStageList[0].y;
     }else{
         textStageList[i-1].x = textStageList[i-2].x;
-        textStageList[i-1].y = textStageList[i-2].y + 50;
+        textStageList[i-1].y = textStageList[i-2].y + GameWindowHeight/10;
     }
     stageSelectScene.addChild(textStageList[i-1]);
 }
