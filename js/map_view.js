@@ -39,12 +39,19 @@ class MapView extends Object {
                         image = new PIXI.Texture.from("images/item.png");
                         break
                 }
-
                 this.map[i][j] = new PIXI.Sprite(image);
-                this.map[i][j].x = this.ww*j/7;
-                this.map[i][j].y = this.ww*i/7;
-                this.map[i][j].width = this.ww/7;
-                this.map[i][j].height = this.ww/7;
+                if(this.ww > this.wh){
+                    this.map[i][j].x = this.wh*j/7;
+                    this.map[i][j].y = this.wh*i/7;
+                    this.map[i][j].width = this.wh/7;
+                    this.map[i][j].height = this.wh/7;
+                }else {
+                    this.map[i][j].x = this.ww*j/7;
+                    this.map[i][j].y = this.ww*i/7;
+                    this.map[i][j].width = this.ww/7;
+                    this.map[i][j].height = this.ww/7;
+                }
+
             }
         }
     }
