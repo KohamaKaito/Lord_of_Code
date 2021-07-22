@@ -188,7 +188,7 @@ preTitleScene.addChild(gameStartPreTitle);
 
 let cautionPreTitleAdviseDoHorizontal = new PIXI.Text("スマートフォンでプレイする場合、\n 横持ちにしてブラウザを更新することで \n 快適にプレイできます。", {align : 'center'});
 cautionPreTitleAdviseDoHorizontal.x = GameWindowWidth/2 - cautionPreTitleAdviseDoHorizontal.width/2;
-cautionPreTitleAdviseDoHorizontal.y = cautionPreTitleVolume.y + GameWindowHeight/7;
+cautionPreTitleAdviseDoHorizontal.y = cautionPreTitleVolume.y + GameWindowHeight/6;
 preTitleScene.addChild(cautionPreTitleAdviseDoHorizontal);
 
 app.stage.addChild(preTitleScene);
