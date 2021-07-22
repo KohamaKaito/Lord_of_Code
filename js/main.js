@@ -1,7 +1,7 @@
 // window の設定
 let gameWindow = document.getElementById("game_window");
 let GameWindowHeight = window.innerHeight;
-let GameWindowWidth = window.innerWidth/2;
+let GameWindowWidth = window.innerWidth*(3/10);
 let app = new PIXI.Application({
     width: GameWindowWidth,
     height: GameWindowHeight,
