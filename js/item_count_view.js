@@ -1,6 +1,6 @@
 class ItemCountView {
     constructor(owned, needed, width, height) {
-        let image = new PIXI.Texture.from("images/status.PNG");
+        let image = new PIXI.Texture.from("images/need_owned.png");
         this.itemCountView = new PIXI.Sprite(image);
         if(width > height) {
             this.itemCountView.width = height / 3.7;

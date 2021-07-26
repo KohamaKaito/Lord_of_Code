@@ -1,7 +1,15 @@
 // window の設定
 let gameWindow = document.getElementById("game_window");
-let GameWindowHeight = window.innerHeight;
-let GameWindowWidth = window.innerWidth*(3/10);
+let GameWindowHeight
+let GameWindowWidth
+// 縦長と横長で画面比を変える
+if(window.innerWidth > window.innerHeight){
+    GameWindowHeight = window.innerHeight;
+    GameWindowWidth = window.innerWidth /2;
+}else {
+    GameWindowHeight = window.innerHeight/2;
+    GameWindowWidth = window.innerWidth * 0.7865;
+}
 let app = new PIXI.Application({
     width: GameWindowWidth,
     height: GameWindowHeight,
@@ -161,7 +169,7 @@ titleLogo.height = titleLogo.width*0.208007812;
 titleLogo.x = GameWindowWidth/2 - titleLogo.width/2;
 
 
-let toStageSelect = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage_select.PNG"));
+let toStageSelect = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage_select.png"));
 toStageSelect.interactive = true;
 toStageSelect.buttonMode = true;
 toStageSelect.height = startText.height * 0.85;
@@ -342,7 +350,7 @@ gratzText.x = GameWindowWidth/2 - gratzText.width/2;
 gratzText.y = GameWindowHeight/2 - gratzText.height/2 - 80;
 clearScene.addChild(gratzText);
 //「Next Stage」の表示
-let nextStageText = new PIXI.Sprite(new PIXI.Texture.from("images/menu/next_stage.PNG"));
+let nextStageText = new PIXI.Sprite(new PIXI.Texture.from("images/menu/nextstage.png"));
 nextStageText.interactive = true;
 nextStageText.buttonMode = true;
 nextStageText.height = toStageSelect.height;
@@ -352,7 +360,7 @@ nextStageText.y = gratzText.y + 150;
 nextStageText.on('pointertap', toNext);
 clearScene.addChild(nextStageText);
 //「Return to Title」の表示
-let toTitleText = new PIXI.Sprite(new PIXI.Texture.from("images/menu/back_to_title.PNG"));
+let toTitleText = new PIXI.Sprite(new PIXI.Texture.from("images/menu/backtotitle.png"));
 toTitleText.interactive = true;
 toTitleText.buttonMode = true;
 toTitleText.height = toStageSelect.height;
@@ -362,7 +370,7 @@ toTitleText.y = nextStageText.y + 80;
 toTitleText.on('pointertap', toTitle);
 clearScene.addChild(toTitleText);
 //「Stage Select」の表示
-let returnToStageSelectText = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage_select.PNG"));
+let returnToStageSelectText = new PIXI.Sprite(new PIXI.Texture.from("images/menu/stage_select.png"));
 returnToStageSelectText.interactive = true;
 returnToStageSelectText.buttonMode = true;
 returnToStageSelectText.height = toStageSelect.height;
