@@ -43,12 +43,14 @@
         <!-- game_windowの定義 -->
         <div class="game_windows" id="game_window"></div>
         <div class="blockly_container">
+            <div class="button_container">
+                <!-- 実行ボタンの定義 -->
+                <input id="run_button" type="image" src="images/RUN.png" onclick="onClickRun(workspace)">
+                <!-- リセットボタンの定義 -->
+                <input id="reset_button" type="image" src="images/RESET.png" onclick="onClickReset()">
+            </div>
             <!-- ワークスペースのエリア -->
             <div id="blocklyDiv" ></div>
-            <!-- 実行ボタンの定義 -->
-            <button id="run_button" onclick="onClickRun(workspace)">コードの実行</button>
-            <!-- リセットボタンの定義 -->
-            <button id="reset_button" onclick="onClickReset()">リセット</button>
         </div><!-- blockly_container -->
 
         <script type="text/javascript" src="js/main.js"></script>
