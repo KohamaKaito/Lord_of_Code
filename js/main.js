@@ -349,6 +349,22 @@ gratzText.height = gratzText.width * 0.407022106;
 gratzText.x = GameWindowWidth/2 - gratzText.width/2;
 gratzText.y = GameWindowHeight/2 - gratzText.height/2 - 80;
 clearScene.addChild(gratzText);
+
+// 「ranking」の表示
+let toRankingText = new PIXI.Text("Ranking", this.textStyle);
+toRankingText.interactive = true;
+toRankingText.buttonMode = true;
+toRankingText.x = GameWindowHeight * 0.65;
+toRankingText.y = GameWindowHeight * 0.07;
+toRankingText.on('pointertap', toRanking);
+clearScene.addChild(toRankingText);
+let rankingIcon = new PIXI.Sprite(new PIXI.Texture.from("images/gold.png"));
+rankingIcon.x = GameWindowHeight * 0.57;
+rankingIcon.y = GameWindowHeight * 0.07;
+rankingIcon.height = GameWindowHeight * 0.05;
+rankingIcon.width = GameWindowHeight * 0.065;
+clearScene.addChild(rankingIcon);
+
 //「Next Stage」の表示
 let nextStageText = new PIXI.Sprite(new PIXI.Texture.from("images/menu/nextstage.png"));
 nextStageText.interactive = true;
@@ -387,6 +403,15 @@ function toNext(){
     initializeStage(stageList[stageNum - 1].stageContainer, gameControllerList[stageNum - 1]);
 }
 
+function toRanking(){
+    app.stage.removeChild(clearScene);
+    allInitialize()
+    // ranking_scene.setNum()
+    setNum()
+    app.stage.addChild(rankingScene);
+    //initializeStage(stageList[stageNum - 1].stageContainer, gameControllerList[stageNum - 1]);
+}
+
 function toTitle(){
     app.stage.removeChild(clearScene);
     stageNum = 1;
@@ -411,6 +436,8 @@ app.ticker.add(main);
 function main(delta){
     let gc = gameControllerList[stageNum-1];
     let stage = stageList[stageNum-1].stageContainer;
+
+    console.log(gc.blockList)
 
     if(gc.actionFlag){
 
