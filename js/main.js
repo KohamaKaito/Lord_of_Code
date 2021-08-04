@@ -436,8 +436,7 @@ app.ticker.add(main);
 function main(delta){
     let gc = gameControllerList[stageNum-1];
     let stage = stageList[stageNum-1].stageContainer;
-
-    console.log(gc.blockList)
+    
 
     if(gc.actionFlag){
 
