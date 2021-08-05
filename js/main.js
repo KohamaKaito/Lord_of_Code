@@ -438,9 +438,6 @@ function main(delta){
     let gc = gameControllerList[stageNum-1];
     let stage = stageList[stageNum-1].stageContainer;
 
-    // myblock.countBlock
-    console.log(countBlock)
-
     if(gc.actionFlag){
 
         // アイテム数が満たしてたらクリア遷移
