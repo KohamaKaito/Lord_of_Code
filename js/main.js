@@ -351,11 +351,12 @@ gratzText.y = GameWindowHeight/2 - gratzText.height/2 - 80;
 clearScene.addChild(gratzText);
 
 // 「ranking」の表示
-let toRankingText = new PIXI.Text("Ranking", this.textStyle);
+let font = new PIXI.TextStyle({fill: "black", fontFamily: "Press Start 2P",});
+let toRankingText = new PIXI.Text("Ranking", font);
 toRankingText.interactive = true;
 toRankingText.buttonMode = true;
 toRankingText.x = GameWindowHeight * 0.65;
-toRankingText.y = GameWindowHeight * 0.07;
+toRankingText.y = GameWindowHeight * 0.08;
 toRankingText.on('pointertap', toRanking);
 clearScene.addChild(toRankingText);
 let rankingIcon = new PIXI.Sprite(new PIXI.Texture.from("images/gold.png"));
@@ -436,6 +437,9 @@ app.ticker.add(main);
 function main(delta){
     let gc = gameControllerList[stageNum-1];
     let stage = stageList[stageNum-1].stageContainer;
+
+    // myblock.countBlock
+    console.log(countBlock)
 
     if(gc.actionFlag){
 
@@ -702,5 +706,6 @@ function onClickReset(){
 
 //実行ボタンを押した時の挙動
 function onClickRun(workspace){
+    countBlock = 0
     gameControllerList[stageNum - 1].doCode(workspace,stageList[stageNum - 1].stageContainer);
 }
