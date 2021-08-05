@@ -30,45 +30,45 @@ WebFont.load(
             rankingScene.addChild(rankingText);
 
             let gold = new PIXI.Sprite(new PIXI.Texture.from("images/first.png"));
-            gold.x = GameWindowHeight * 0.2;
+            gold.x = GameWindowWidth * 0.25;
             gold.y = GameWindowHeight * 0.3;
             gold.height = GameWindowHeight * 0.08;
-            gold.width = GameWindowHeight * 0.1;
+            gold.width = GameWindowWidth * 0.1;
             rankingScene.addChild(gold);
 
             let silver = new PIXI.Sprite(new PIXI.Texture.from("images/second.png"));
-            silver.x = GameWindowHeight * 0.2;
+            silver.x = GameWindowWidth * 0.25;
             silver.y = GameWindowHeight * 0.45;
             silver.height = GameWindowHeight * 0.08;
-            silver.width = GameWindowHeight * 0.1;
+            silver.width = GameWindowWidth * 0.1;
             rankingScene.addChild(silver);
 
             let bronze = new PIXI.Sprite(new PIXI.Texture.from("images/third.png"));
-            bronze.x = GameWindowHeight * 0.2;
+            bronze.x = GameWindowWidth * 0.25;
             bronze.y = GameWindowHeight * 0.6;
             bronze.height = GameWindowHeight * 0.08;
-            bronze.width = GameWindowHeight * 0.1;
+            bronze.width = GameWindowWidth * 0.1;
             rankingScene.addChild(bronze);
 
             let BlocksText01 = new PIXI.Text("Blocks",textStyle01);
-            BlocksText01.x = GameWindowHeight * 0.5;
+            BlocksText01.x = GameWindowWidth * 0.6;
             BlocksText01.y = GameWindowHeight * 0.33;
             BlocksText01.height = GameWindowHeight * 0.04;
-            BlocksText01.width = GameWindowHeight * 0.12;
+            BlocksText01.width = GameWindowWidth * 0.12;
             rankingScene.addChild(BlocksText01);
 
             let BlocksText02 = new PIXI.Text("Blocks",textStyle01);
-            BlocksText02.x = GameWindowHeight * 0.5;
+            BlocksText02.x = GameWindowWidth * 0.6;
             BlocksText02.y = GameWindowHeight * 0.48;
             BlocksText02.height = GameWindowHeight * 0.04;
-            BlocksText02.width = GameWindowHeight * 0.12;
+            BlocksText02.width = GameWindowWidth * 0.12;
             rankingScene.addChild(BlocksText02);
 
             let BlocksText03 = new PIXI.Text("Blocks",textStyle01);
-            BlocksText03.x = GameWindowHeight * 0.5;
+            BlocksText03.x = GameWindowWidth * 0.6;
             BlocksText03.y = GameWindowHeight * 0.63;
             BlocksText03.height = GameWindowHeight * 0.04;
-            BlocksText03.width = GameWindowHeight * 0.12;
+            BlocksText03.width = GameWindowWidth * 0.12;
             rankingScene.addChild(BlocksText03);
 
 
@@ -98,7 +98,7 @@ function setNum(stageNum){
     console.log(body)
      **/
 
-
+    /**
     // json受け取る
     let get;
     var xhr = new XMLHttpRequest();
@@ -112,9 +112,9 @@ function setNum(stageNum){
     }
     console.log("getテスト↓");
     console.log(get);
+     **/
 
-    // json受け取ったとする
-    //let get = {"status":"ok", "number_of_block":[3,4,5]}
+
 
     /**
     xhr.open('POST', 'https://140.83.63.143/api');
@@ -136,33 +136,33 @@ function setNum(stageNum){
     }
      **/
 
+
     // json受け取ったとする
     let post = {"status":"ok", "your_block":6, "your_rank":4}
+    let get = {"status":"ok", "number_of_block":[3,4,5]}
 
 
-
-    /**
     let blocks01 = new PIXI.Text(get.number_of_block[0],textStyle01);
-    blocks01.x = GameWindowHeight * 0.38;
+    blocks01.x = GameWindowWidth * 0.45;
     blocks01.y = GameWindowHeight * 0.32;
     blocks01.height = GameWindowHeight * 0.05;
-    blocks01.width = GameWindowHeight * 0.05;
+    blocks01.width = GameWindowWidth * 0.05;
     rankingScene.removeChild(blocks01);
     rankingScene.addChild(blocks01);
 
     let blocks02 = new PIXI.Text(get.number_of_block[1],textStyle01);
-    blocks02.x = GameWindowHeight * 0.38;
+    blocks02.x = GameWindowWidth * 0.45;
     blocks02.y = GameWindowHeight * 0.47;
     blocks02.height = GameWindowHeight * 0.05;
-    blocks02.width = GameWindowHeight * 0.05;
+    blocks02.width = GameWindowWidth * 0.05;
     rankingScene.removeChild(blocks02);
     rankingScene.addChild(blocks02);
 
     let blocks03 = new PIXI.Text(get.number_of_block[2],textStyle01);
-    blocks03.x = GameWindowHeight * 0.38;
+    blocks03.x = GameWindowWidth * 0.45;
     blocks03.y = GameWindowHeight * 0.62;
     blocks03.height = GameWindowHeight * 0.05;
-    blocks03.width = GameWindowHeight * 0.05;
+    blocks03.width = GameWindowWidth * 0.05;
     rankingScene.removeChild(blocks03);
     rankingScene.addChild(blocks03);
 
@@ -171,56 +171,46 @@ function setNum(stageNum){
     youText.width = GameWindowWidth * 0.14;
     switch (post.your_rank){
         case 1:
-            youText.x = GameWindowHeight * 0.7;
+            youText.x = GameWindowWidth * 0.75;
             youText.y = GameWindowHeight * 0.33;
             break
         case 2:
-            youText.x = GameWindowHeight * 0.7;
+            youText.x = GameWindowWidth * 0.75;
             youText.y = GameWindowHeight * 0.48;
             break
         case 3:
-            youText.x = GameWindowHeight * 0.7;
+            youText.x = GameWindowWidth * 0.75;
             youText.y = GameWindowHeight * 0.63;
             break
         default:
             let myRank = new PIXI.Text(post.your_rank+"th",textStyle01);
-            myRank.x = GameWindowHeight * 0.2;
+            myRank.x = GameWindowWidth * 0.25;
             myRank.y = GameWindowHeight * 0.8;
             myRank.height = GameWindowHeight * 0.05;
-            myRank.width = GameWindowHeight * 0.1;
+            myRank.width = GameWindowWidth * 0.1;
             rankingScene.addChild(myRank);
 
             let blocks04 = new PIXI.Text(post.your_block,textStyle01);
-            blocks04.x = GameWindowHeight * 0.38;
+            blocks04.x = GameWindowWidth * 0.45;
             blocks04.y = GameWindowHeight * 0.8;
             blocks04.height = GameWindowHeight * 0.05;
-            blocks04.width = GameWindowHeight * 0.05;
+            blocks04.width = GameWindowWidth * 0.05;
             rankingScene.removeChild(blocks04);
             rankingScene.addChild(blocks04);
 
             let BlocksText04 = new PIXI.Text("Blocks",textStyle01);
-            BlocksText04.x = GameWindowHeight * 0.5;
+            BlocksText04.x = GameWindowWidth * 0.6;
             BlocksText04.y = GameWindowHeight * 0.81;
             BlocksText04.height = GameWindowHeight * 0.04;
-            BlocksText04.width = GameWindowHeight * 0.12;
+            BlocksText04.width = GameWindowWidth * 0.12;
             rankingScene.addChild(BlocksText04);
 
-            youText.x = GameWindowHeight * 0.7;
+            youText.x = GameWindowWidth * 0.75;
             youText.y = GameWindowHeight * 0.81;
 
 
             break
     }
     rankingScene.addChild(youText);
-     **/
 
-    /**
-    let blocks04 = new PIXI.Text(post.your_rank,textStyle01);
-    blocks04.x = GameWindowHeight * 0.5;
-    blocks04.y = GameWindowHeight * 0.78;
-    blocks04.height = GameWindowHeight * 0.07;
-    blocks04.width = GameWindowHeight * 0.07;
-    rankingScene.removeChild(blocks04);
-    rankingScene.addChild(blocks04);
-    **/
 }

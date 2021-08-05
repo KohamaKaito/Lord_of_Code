@@ -233,6 +233,8 @@ function toGame(){
     stageNum = 1;
     app.stage.removeChild(titleScene);
     app.stage.addChild(stage01.stageContainer);
+    //ランキング機能テスト楽にするため（あとで消す）
+    //app.stage.addChild(rankingScene)
     titleBGM.pause();
     titleBGM.currentTime=0;
 }
@@ -350,19 +352,20 @@ gratzText.x = GameWindowWidth/2 - gratzText.width/2;
 gratzText.y = GameWindowHeight/2 - gratzText.height/2 - 80;
 clearScene.addChild(gratzText);
 
-// 「ranking」の表示
+// 「ranking（文字）」の表示
 let font = new PIXI.TextStyle({fill: "black", fontFamily: "Press Start 2P",});
 let toRankingText = new PIXI.Text("Ranking", font);
 toRankingText.interactive = true;
 toRankingText.buttonMode = true;
-toRankingText.x = GameWindowHeight * 0.65;
+toRankingText.x = GameWindowWidth * 0.65;
 toRankingText.y = GameWindowHeight * 0.08;
 toRankingText.on('pointertap', toRanking);
 clearScene.addChild(toRankingText);
+// 「ranking（アイコン）」の表示
 let rankingIcon = new PIXI.Sprite(new PIXI.Texture.from("images/gold.png"));
-rankingIcon.x = GameWindowHeight * 0.57;
-rankingIcon.y = GameWindowHeight * 0.07;
-rankingIcon.height = GameWindowHeight * 0.05;
+rankingIcon.x = GameWindowWidth * 0.555;
+rankingIcon.y = GameWindowHeight * 0.072;
+rankingIcon.height = GameWindowWidth * 0.05;
 rankingIcon.width = GameWindowHeight * 0.065;
 clearScene.addChild(rankingIcon);
 
