@@ -86,17 +86,18 @@ function toClearScene(){
 
 function setNum(stageNum){
 
-    /**
+
     let body = {
         "user_id": "sample",
-        "stage":   1,
-        "map_info": stage01.gameController.mapModel.map,
-        "spown_point": [stage01.gameController.x0, stage01.gameController.y0],
-        "item_want_number": stage01.gameController.itemCount.needed,
-        "block_info": stage01.gameController.blockList
+        "stage": stageNum,
+        "map_info": gameControllerList[stageNum-1].mapModel.map,
+        "spown_point": [gameControllerList[stageNum-1].x0, gameControllerList[stageNum-1].y0],
+        "item_want_number": gameControllerList[stageNum-1].itemCount.needed,
+        "block_info": gameControllerList[stageNum-1].blockList,
+        "num_block": countBlock
     }
-    console.log(body)
-     **/
+    //console.log(body)
+
 
     /**
     // json受け取る

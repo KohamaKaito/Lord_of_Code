@@ -411,7 +411,7 @@ function toRanking(){
     app.stage.removeChild(clearScene);
     allInitialize()
     // ranking_scene.setNum()
-    setNum()
+    setNum(stageNum)
     app.stage.addChild(rankingScene);
     //initializeStage(stageList[stageNum - 1].stageContainer, gameControllerList[stageNum - 1]);
 }
@@ -604,7 +604,6 @@ function initializeStage(stage, gameController){
                 [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_ITEM,        MAP_CAN_MOVE,    MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
                 [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
             ]
-            console.log(map05)
             gameController.mapModel = new Map(map05);
             gameController.mapView = new MapView(GameWindowWidth,GameWindowHeight,gameController.mapModel.map,
                 "images/materials/material03.png","images/materials/material14.png");
@@ -619,7 +618,6 @@ function initializeStage(stage, gameController){
                 [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
                 [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
             ]
-            console.log(map06)
             gameController.mapModel = new Map(map06);
             gameController.mapView = new MapView(GameWindowWidth,GameWindowHeight,gameController.mapModel.map,
                 "images/materials/material04.png","images/materials/material16.png");
@@ -634,7 +632,6 @@ function initializeStage(stage, gameController){
                 [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
                 [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
             ]
-            console.log(map07)
             gameController.mapModel = new Map(map07);
             gameController.mapView = new MapView(GameWindowWidth,GameWindowHeight,gameController.mapModel.map,
                 "images/materials/material02.png","images/materials/material23.png");
@@ -649,7 +646,6 @@ function initializeStage(stage, gameController){
                 [MAP_CAN_NOT_MOVE,MAP_CAN_MOVE    ,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
                 [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
             ]
-            console.log(map08)
             gameController.mapModel = new Map(map08);
             gameController.mapView = new MapView(GameWindowWidth,GameWindowHeight,gameController.mapModel.map,
                 "images/materials/material06.png","images/materials/material10.png");
@@ -664,7 +660,6 @@ function initializeStage(stage, gameController){
                 [MAP_CAN_NOT_MOVE,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_ITEM        ,MAP_CAN_NOT_MOVE],
                 [MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE,MAP_CAN_NOT_MOVE],
             ]
-            console.log(map09)
             gameController.mapModel = new Map(map09);
             gameController.mapView = new MapView(GameWindowWidth,GameWindowHeight,gameController.mapModel.map,
                 "images/materials/material06.png","images/materials/material12.png");
