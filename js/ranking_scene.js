@@ -29,6 +29,7 @@ WebFont.load(
             rankingText.y = GameWindowHeight * 0.17;
             rankingScene.addChild(rankingText);
 
+
             let gold = new PIXI.Sprite(new PIXI.Texture.from("images/first.png"));
             gold.x = GameWindowWidth * 0.25;
             gold.y = GameWindowHeight * 0.3;
@@ -77,12 +78,46 @@ WebFont.load(
 
 
 
-
+// クリアシーンに戻る関数
 function toClearScene(){
     app.stage.removeChild(rankingScene);
     app.stage.addChild(clearScene);
     //initializeStage(stageList[stageNum - 1].stageContainer, gameControllerList[stageNum - 1]);
 }
+
+
+// ランキング１位２位３位のブロック数を描画する関数
+function setRanking(number_of_block){
+
+    // 1位のブロック数を描画
+    let blocks01 = new PIXI.Text(number_of_block[0],textStyle01);
+    blocks01.x = GameWindowWidth * 0.45;
+    blocks01.y = GameWindowHeight * 0.32;
+    blocks01.height = GameWindowHeight * 0.05;
+    blocks01.width = GameWindowWidth * 0.05;
+    rankingScene.removeChild(blocks01);
+    rankingScene.addChild(blocks01);
+
+    // 2位のブロック数を描画
+    let blocks02 = new PIXI.Text(number_of_block[1],textStyle01);
+    blocks02.x = GameWindowWidth * 0.45;
+    blocks02.y = GameWindowHeight * 0.47;
+    blocks02.height = GameWindowHeight * 0.05;
+    blocks02.width = GameWindowWidth * 0.05;
+    rankingScene.removeChild(blocks02);
+    rankingScene.addChild(blocks02);
+
+    // 3位のブロック数を描画
+    let blocks03 = new PIXI.Text(number_of_block[2],textStyle01);
+    blocks03.x = GameWindowWidth * 0.45;
+    blocks03.y = GameWindowHeight * 0.62;
+    blocks03.height = GameWindowHeight * 0.05;
+    blocks03.width = GameWindowWidth * 0.05;
+    rankingScene.removeChild(blocks03);
+    rankingScene.addChild(blocks03);
+}
+
+
 
 function setNum(stageNum){
 
@@ -99,21 +134,29 @@ function setNum(stageNum){
     //console.log(body)
 
 
-    /**
+
     // json受け取る
     let get;
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://140.83.63.143/api/ranking');
-    xhr.send({"user_id":"sample", "stage":1});
+    xhr.open('GET', 'http://0.0.0.0:8080/ranking?stage=1');
+    //xhr.setRequestHeader("Content-Type", "application/json");
+    //xhr.send({"user_id":"sample", "stage":1});
+    xhr.send();
+
     xhr.onreadystatechange = function() {
+        let get;
+
         if(xhr.readyState === 4 && xhr.status === 200) {
             //データを取得後の処理を書く
             get = xhr.responseText;
+            // jsonに変換
+            get = JSON.parse(get);
+            // number_of_block:[7,8,9]を渡す
+            setRanking(get.number_of_block)
         }
     }
-    console.log("getテスト↓");
-    console.log(get);
-     **/
+
+
 
 
 
@@ -140,33 +183,10 @@ function setNum(stageNum){
 
     // json受け取ったとする
     let post = {"status":"ok", "your_block":6, "your_rank":4}
-    let get = {"status":"ok", "number_of_block":[3,4,5]}
+    //let get = {"status":"ok", "number_of_block":[3,4,5]}
 
 
-    let blocks01 = new PIXI.Text(get.number_of_block[0],textStyle01);
-    blocks01.x = GameWindowWidth * 0.45;
-    blocks01.y = GameWindowHeight * 0.32;
-    blocks01.height = GameWindowHeight * 0.05;
-    blocks01.width = GameWindowWidth * 0.05;
-    rankingScene.removeChild(blocks01);
-    rankingScene.addChild(blocks01);
-
-    let blocks02 = new PIXI.Text(get.number_of_block[1],textStyle01);
-    blocks02.x = GameWindowWidth * 0.45;
-    blocks02.y = GameWindowHeight * 0.47;
-    blocks02.height = GameWindowHeight * 0.05;
-    blocks02.width = GameWindowWidth * 0.05;
-    rankingScene.removeChild(blocks02);
-    rankingScene.addChild(blocks02);
-
-    let blocks03 = new PIXI.Text(get.number_of_block[2],textStyle01);
-    blocks03.x = GameWindowWidth * 0.45;
-    blocks03.y = GameWindowHeight * 0.62;
-    blocks03.height = GameWindowHeight * 0.05;
-    blocks03.width = GameWindowWidth * 0.05;
-    rankingScene.removeChild(blocks03);
-    rankingScene.addChild(blocks03);
-
+    /**
     let youText = new PIXI.Text("← You",textStyle01);
     youText.height = GameWindowHeight * 0.04;
     youText.width = GameWindowWidth * 0.14;
@@ -213,5 +233,6 @@ function setNum(stageNum){
             break
     }
     rankingScene.addChild(youText);
+     **/
 
 }
