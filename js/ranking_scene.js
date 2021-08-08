@@ -198,8 +198,10 @@ function setMyScore(post){
 
 function httpRequest(stageNum){
 
+    let requestUrl = "http://0.0.0.0:8080/ranking"
+
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://0.0.0.0:8080/ranking');
+    xhr.open('POST', requestUrl);
     xhr.setRequestHeader("Content-Type", "application/json");
 
     // 送信するjsonを生成
@@ -232,7 +234,7 @@ function httpRequest(stageNum){
     /**
     let get;
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://0.0.0.0:8080/ranking?stage=1');
+    xhr.open('GET', requestUrl);
     //xhr.setRequestHeader("Content-Type", "application/json");
     //xhr.send({"user_id":"sample", "stage":1});
     xhr.send();
