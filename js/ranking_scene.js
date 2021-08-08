@@ -80,6 +80,7 @@ WebFont.load(
 
 // クリアシーンに戻る関数
 function toClearScene(){
+    // 確認したランキングの表示を消去
     rankingScene.removeChild(blocks01);
     rankingScene.removeChild(blocks02);
     rankingScene.removeChild(blocks03);
@@ -88,11 +89,11 @@ function toClearScene(){
     rankingScene.removeChild(blocks04);
     rankingScene.removeChild(BlocksText04);
     app.stage.removeChild(rankingScene);
+    // クリアシーンに戻る
     app.stage.addChild(clearScene);
-    //initializeStage(stageList[stageNum - 1].stageContainer, gameControllerList[stageNum - 1]);
 }
 
-// ユニークなIDを生成する
+// ユニークなIDを生成する関数
 function getUniqueStr(myStrong){
     var strong = 1000;
     if (myStrong) strong = myStrong;
@@ -134,6 +135,8 @@ function setRanking(number_of_block){
     rankingScene.addChild(blocks03);
 }
 
+
+// 自分のランキングを描画する関数
 let youText;
 let myRank;
 let blocks04;
@@ -143,58 +146,63 @@ function setMyScore(post){
      youText.height = GameWindowHeight * 0.04;
      youText.width = GameWindowWidth * 0.14;
      switch (post.your_rank){
-        case 1:
+         // 1位だった場合
+         case 1:
             youText.x = GameWindowWidth * 0.75;
             youText.y = GameWindowHeight * 0.33;
             break
-        case 2:
-            youText.x = GameWindowWidth * 0.75;
-            youText.y = GameWindowHeight * 0.48;
-            break
-        case 3:
-            youText.x = GameWindowWidth * 0.75;
-            youText.y = GameWindowHeight * 0.63;
-            break
-        default:
-            myRank = new PIXI.Text(post.your_rank+"th",textStyle01);
-            myRank.x = GameWindowWidth * 0.25;
-            myRank.y = GameWindowHeight * 0.8;
-            myRank.height = GameWindowHeight * 0.05;
-            myRank.width = GameWindowWidth * 0.1;
-            rankingScene.addChild(myRank);
+         // 2位だった場合
+         case 2:
+             youText.x = GameWindowWidth * 0.75;
+             youText.y = GameWindowHeight * 0.48;
+             break
+         // 3位だった場合
+         case 3:
+             youText.x = GameWindowWidth * 0.75;
+             youText.y = GameWindowHeight * 0.63;
+             break
+         // 4位以降だった場合
+         default:
+             youText.x = GameWindowWidth * 0.75;
+             youText.y = GameWindowHeight * 0.81;
 
-            blocks04 = new PIXI.Text(post.your_block,textStyle01);
-            blocks04.x = GameWindowWidth * 0.45;
-            blocks04.y = GameWindowHeight * 0.8;
-            blocks04.height = GameWindowHeight * 0.05;
-            blocks04.width = GameWindowWidth * 0.05;
-            rankingScene.removeChild(blocks04);
-            rankingScene.addChild(blocks04);
+             myRank = new PIXI.Text(post.your_rank+"th",textStyle01);
+             myRank.x = GameWindowWidth * 0.25;
+             myRank.y = GameWindowHeight * 0.8;
+             myRank.height = GameWindowHeight * 0.05;
+             myRank.width = GameWindowWidth * 0.1;
+             rankingScene.addChild(myRank);
 
-            BlocksText04 = new PIXI.Text("Blocks",textStyle01);
-            BlocksText04.x = GameWindowWidth * 0.6;
-            BlocksText04.y = GameWindowHeight * 0.81;
-            BlocksText04.height = GameWindowHeight * 0.04;
-            BlocksText04.width = GameWindowWidth * 0.12;
-            rankingScene.addChild(BlocksText04);
+             // ブロック数描画
+             blocks04 = new PIXI.Text(post.your_block,textStyle01);
+             blocks04.x = GameWindowWidth * 0.45;
+             blocks04.y = GameWindowHeight * 0.8;
+             blocks04.height = GameWindowHeight * 0.05;
+             blocks04.width = GameWindowWidth * 0.05;
+             rankingScene.addChild(blocks04);
 
-            youText.x = GameWindowWidth * 0.75;
-            youText.y = GameWindowHeight * 0.81;
-
-
-            break
+             // テキスト"Blocks"描画
+             BlocksText04 = new PIXI.Text("Blocks",textStyle01);
+             BlocksText04.x = GameWindowWidth * 0.6;
+             BlocksText04.y = GameWindowHeight * 0.81;
+             BlocksText04.height = GameWindowHeight * 0.04;
+             BlocksText04.width = GameWindowWidth * 0.12;
+             rankingScene.addChild(BlocksText04);
+             break
     }
-     rankingScene.addChild(youText);
+    // テキスト"<-you"描画
+    rankingScene.addChild(youText);
 }
 
 
 
-function setNum(stageNum){
-    // let get = {"status":"ok", "number_of_block":[3,4,5]}
+function httpRequest(stageNum){
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://0.0.0.0:8080/ranking');
     xhr.setRequestHeader("Content-Type", "application/json");
+
+    // 送信するjsonを生成
     let body = {
         "user_id": getUniqueStr(),
         "stage": stageNum,
@@ -205,26 +213,22 @@ function setNum(stageNum){
         "num_block": countBlock
     }
 
+    // Jsonをstringに変換
     body = JSON.stringify(body)
-    console.log(typeof (body))
-    console.log(body)
+
     xhr.send(body);
     xhr.onreadystatechange = function() {
         if(xhr.readyState === 4 && xhr.status === 200) {
-            //データを取得後の処理を書く
             let post = xhr.responseText;
-            console.log("aaaaaaaaaaaaa")
-            console.log(post)
+            // stringからjsonへ変換
             post = JSON.parse(post);
+            // 自分のランキングを描画
             setMyScore(post)
+            // 上位3人のブロック数を描画
             setRanking(post.number_of_block)
         }
     }
-    //console.log(body)
 
-
-
-    // json受け取る
     /**
     let get;
     var xhr = new XMLHttpRequest();
@@ -246,37 +250,4 @@ function setNum(stageNum){
         }
     }
      **/
-
-
-
-
-
-    /**
-    xhr.open('POST', 'https://140.83.63.143/api');
-    xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-    let body = {
-        "user_id": "sample",
-        "stage":   1,
-        "map_info": stage01.gameController.mapModel.map,
-        "spown_point": [stage01.gameController.x0, stage01.gameController.y0],
-        "item_want_number": stage01.gameController.itemCount.needed,
-        "block_info": stage01.gameController.blockList
-    }
-    xhr.send( body );
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState === 4 && xhr.status === 200) {
-            //データを取得後の処理を書く
-            let post = xhr.responseText;
-        }
-    }
-     **/
-
-
-    // json受け取ったとする
-    // let post = {"status":"ok", "your_block":6, "your_rank":4}
-
-
-
-
-
 }

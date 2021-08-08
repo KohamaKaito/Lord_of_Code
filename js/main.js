@@ -411,7 +411,7 @@ function toRanking(){
     app.stage.removeChild(clearScene);
     allInitialize()
     // ranking_scene.setNum()
-    setNum(stageNum)
+    httpRequest(stageNum)
     app.stage.addChild(rankingScene);
     //initializeStage(stageList[stageNum - 1].stageContainer, gameControllerList[stageNum - 1]);
 }
