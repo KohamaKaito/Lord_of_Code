@@ -6,7 +6,7 @@ class Stage{
         switch (stageNumber){
             case 1:
                 mapView = new MapView(GameWindowWidth,GameWindowHeight,mapModel.map,
-                    "images/materials/material01.png","images/materials/material13.png");
+                    "images/materials/material03.png","images/materials/material03.png");
                 break
             case 2:
                 mapView = new MapView(GameWindowWidth,GameWindowHeight,mapModel.map,

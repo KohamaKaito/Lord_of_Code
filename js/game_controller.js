@@ -136,13 +136,13 @@ class GameController{
             if(this.playerView.animFinished == true){
                 // アニメーション終わった後の処理
                 this.playerView.animFinished = false;
-                app.stage.removeChild(stage);
-                app.stage.addChild(clearScene);
-                if(stageNum == stageList.length){
-                    clearScene.removeChild(nextStageText);
-                }else{
-                    clearScene.addChild(nextStageText);
-                }
+                //app.stage.removeChild(stage);
+                //app.stage.addChild(clearScene);
+                //if(stageNum == stageList.length){
+                //    clearScene.removeChild(nextStageText);
+                //}else{
+                //    clearScene.addChild(nextStageText);
+                //}
             }
         }
     }
